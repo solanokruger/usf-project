@@ -3,7 +3,7 @@ package uol.compass.project.usf.dto.response;
 import java.time.LocalDateTime;
 
 import lombok.Data;
-import uol.compass.project.usf.model.Address;
+import uol.compass.project.usf.entities.AddressEntity;
 
 @Data
 public class DoctorResponseDTO {
@@ -20,6 +20,6 @@ public class DoctorResponseDTO {
     
     private LocalDateTime endTime;
 
-    private Address address;
+    private AddressEntity address;
 
 }

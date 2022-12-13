@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model;
+package uol.compass.project.usf.entities;
 
 import java.time.LocalDateTime;
 
@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Doctor {
+public class DoctorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +33,6 @@ public class Doctor {
     private LocalDateTime endTime;
 
     @OneToOne
-    private Address address;
+    private AddressEntity address;
 
 }

@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uol.compass.project.usf.model.Address;
+import uol.compass.project.usf.entities.AddressEntity;
 
 @Data
 @Builder
@@ -39,6 +39,6 @@ public class DoctorRequestDTO {
     private LocalDateTime endTime;
 
     @NotNull
-    private Address address;
+    private AddressEntity address;
 
 }
