@@ -13,14 +13,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AddressEntity {
-
+public class UsfEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String city;
+    private String name;
 
-    private String state;
+    private Long idCurrentTeam;
+
+    private String address;
 
 }

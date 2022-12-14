@@ -10,20 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.dto.request.DoctorRequestDTO;
-import uol.compass.project.usf.dto.response.DoctorResponseDTO;
-import uol.compass.project.usf.services.DoctorServiceImpl;
+import uol.compass.project.usf.dto.request.UsfRequestDto;
+import uol.compass.project.usf.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.repositories.UsfRepository;
+import uol.compass.project.usf.services.UsfServiceImpl;
 
 @RestController
-@RequestMapping("/doctor")
 @RequiredArgsConstructor
-public class DoctorController {
+@RequestMapping("/usf")
+public class UsfController {
     
-    private final DoctorServiceImpl doctorService;
+    private final UsfServiceImpl usfService;
 
     @PostMapping
-    public ResponseEntity<DoctorResponseDTO> create(@RequestBody @Valid DoctorRequestDTO request) {
-        DoctorResponseDTO response = doctorService.create(request);
+    public ResponseEntity<UsfResponseDTO> create(@RequestBody @Valid UsfRequestDto request) {
+        UsfResponseDTO response = usfService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
