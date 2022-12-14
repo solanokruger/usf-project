@@ -1,11 +1,18 @@
 package uol.compass.project.usf.services;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
 
@@ -23,6 +30,30 @@ public class UsfServiceImpl implements UsfService {
         UsfEntity usfCreated = usfRepository.save(usfToCreate);
         
         return modelMapper.map(usfCreated, UsfResponseDTO.class);
+    }
+
+    @Override
+    public UsfResponseParameters findAll(Pageable pageable) {
+        Page<UsfEntity> page = usfRepository.findAll(pageable);
+
+        return createUsfResponseParameters(page);
+    }
+
+    private UsfResponseParameters createUsfResponseParameters(Page<UsfEntity> page) {
+        List<UsfResponseDTO> usf = page.stream()
+                    .map(this::createUsfResponseDTO)
+                    .collect(Collectors.toList());
+        
+        return UsfResponseParameters.builder()
+                .numberOfElements(page.getNumberOfElements())
+                .totalElements(page.getTotalElements())
+                .totalPages(page.getTotalPages())
+                .usf(usf)
+                .build();
+    }
+
+    private UsfResponseDTO createUsfResponseDTO(UsfEntity usf) {
+        return modelMapper.map(usf, UsfResponseDTO.class);
     }
     
 }
