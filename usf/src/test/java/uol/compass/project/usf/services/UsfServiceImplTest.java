@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import uol.compass.project.usf.dto.request.UsfRequestDto;
+import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
@@ -34,7 +34,7 @@ public class UsfServiceImplTest {
     void shouldCreateUsf_sucess() {
         UsfEntity usf = new UsfEntity();
         UsfResponseDTO response = new UsfResponseDTO();
-        UsfRequestDto request = new UsfRequestDto();
+        UsfRequestDTO request = new UsfRequestDTO();
 
         Mockito.when(modelMapper.map(any(), eq(UsfEntity.class))).thenReturn(usf);
         Mockito.when(usfRepository.save(any())).thenReturn(usf);

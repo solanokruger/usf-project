@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsfRequestDto {
+public class UsfRequestDTO {
 
     @NotBlank
     private String name;

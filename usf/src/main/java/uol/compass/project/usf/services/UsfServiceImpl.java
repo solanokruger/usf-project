@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.dto.request.UsfRequestDto;
+import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
@@ -18,7 +18,7 @@ public class UsfServiceImpl implements UsfService {
     private final ModelMapper modelMapper;
 
     @Override
-    public UsfResponseDTO create(UsfRequestDto request) {
+    public UsfResponseDTO create(UsfRequestDTO request) {
         UsfEntity usfToCreate = modelMapper.map(request, UsfEntity.class);
         UsfEntity usfCreated = usfRepository.save(usfToCreate);
         
