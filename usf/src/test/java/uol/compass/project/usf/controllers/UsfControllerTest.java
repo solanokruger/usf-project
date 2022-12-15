@@ -15,8 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseParameters;
@@ -27,6 +25,7 @@ import uol.compass.project.utils.TestUtils;
 public class UsfControllerTest {
     
     public static final String BASE_URL = "/usf";
+    public static final String ID_URL = BASE_URL + "/1";
 
     @Autowired
     private MockMvc mvc;
@@ -63,6 +62,23 @@ public class UsfControllerTest {
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void findById() throws Exception {
+        UsfResponseDTO usfResponseDTO = new UsfResponseDTO();
+
+        when(usfService.findById(any())).thenReturn(usfResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(ID_URL)
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();

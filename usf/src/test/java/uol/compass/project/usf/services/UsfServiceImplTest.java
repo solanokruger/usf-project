@@ -2,16 +2,17 @@ package uol.compass.project.usf.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,8 @@ import uol.compass.project.usf.repositories.UsfRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class UsfServiceImplTest {
+
+    public static final Long ID = 1L;
     
     @InjectMocks
     private UsfServiceImpl usfService;
@@ -33,7 +36,7 @@ public class UsfServiceImplTest {
     @Mock
     private UsfRepository usfRepository;
 
-    @Mock
+    @Spy
     private ModelMapper modelMapper;
 
     @Test
@@ -42,9 +45,7 @@ public class UsfServiceImplTest {
         UsfResponseDTO response = new UsfResponseDTO();
         UsfRequestDTO request = new UsfRequestDTO();
 
-        Mockito.when(modelMapper.map(any(), eq(UsfEntity.class))).thenReturn(usf);
         Mockito.when(usfRepository.save(any())).thenReturn(usf);
-        Mockito.when(modelMapper.map(any(), eq(UsfResponseDTO.class))).thenReturn(response);
 
         UsfResponseDTO usfResponseDTO = usfService.create(request);
 
@@ -55,16 +56,26 @@ public class UsfServiceImplTest {
     @Test
     void shouldFindAllUsfs_sucess() {
         UsfEntity usf = new UsfEntity();
-        UsfResponseDTO response = new UsfResponseDTO();
         Page<UsfEntity> page = new PageImpl<>(List.of(usf));
         UsfResponseParameters expectedUsfResponseParameters = getUsfResponseParameters();
 
         Mockito.when(usfRepository.findAll((Pageable) any())).thenReturn(page);
-        Mockito.when(modelMapper.map(any(), eq(UsfResponseDTO.class))).thenReturn(response);
 
         UsfResponseParameters usfResponseParameters = usfService.findAll(any(Pageable.class));
 
         assertEquals(expectedUsfResponseParameters, usfResponseParameters);
+    }
+
+    @Test
+    void shouldFindUsfById_sucess() {
+        UsfEntity usf = new UsfEntity();
+
+        Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
+        UsfResponseDTO usfResponseDto = modelMapper.map(usf, UsfResponseDTO.class);
+
+        UsfResponseDTO response = usfService.findById(ID);
+
+        assertEquals(response, usfResponseDto);
     }
 
     private UsfResponseParameters getUsfResponseParameters() {
