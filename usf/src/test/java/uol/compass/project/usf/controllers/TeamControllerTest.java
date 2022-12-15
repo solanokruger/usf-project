@@ -1,10 +1,7 @@
 package uol.compass.project.usf.controllers;
 
-import ch.qos.logback.core.net.ObjectWriter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,6 +15,8 @@ import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.services.TeamService;
 import uol.compass.project.usf.utils.TestUtils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -54,6 +53,25 @@ public class TeamControllerTest {
 
         assertEquals(HttpStatus.CREATED.value(), response.getStatus());
     }
+
+    @Test
+    void findAll() throws Exception {
+        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+
+        Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(BASE_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+
 
     private TeamRequestDTO getTeamRequestDTO() {
         return TeamRequestDTO.builder()

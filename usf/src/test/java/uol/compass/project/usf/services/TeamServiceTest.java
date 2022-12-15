@@ -1,7 +1,6 @@
 package uol.compass.project.usf.services;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,8 +8,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.entities.TeamEntity;
@@ -49,10 +46,20 @@ public class TeamServiceTest {
         verify(teamRepository).save(any());
     }
 
+    @Test
+    public void shouldFindAllTeamsTest_success(){
+        TeamEntity team = new TeamEntity(1l, "blue");
+        TeamResponseDTO teamResponseDTO = new TeamResponseDTO(1l, "blue");
 
+        Mockito.when(teamRepository.findAll()).thenReturn(List.of(team));
+        Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
 
+        List<TeamResponseDTO> response = teamService.getTeams();
 
-
-
+        assertNotNull(teamResponseDTO);
+        assertEquals(1, response.size());
+        assertEquals(TeamResponseDTO.class, response.get(0).getClass());
+        assertEquals("blue", response.get(0).getColor());
+    }
 
 }
