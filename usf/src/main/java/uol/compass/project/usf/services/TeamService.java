@@ -11,6 +11,7 @@ import uol.compass.project.usf.repositories.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,6 +32,14 @@ public class TeamService {
         return modelMapper.map(allTeams, List.class);
     }
 
+    public TeamResponseDTO getTeamById(Long id){
+        validateTeamAmount(id);
+
+        Optional<TeamEntity> team = teamRepository.findById(id);
+        return modelMapper.map(team, TeamResponseDTO.class);
+    }
+
+
     public void validateTeamColor(TeamRequestDTO teamRequestDTO){
         List<TeamEntity> all = teamRepository.findAll();
         List<String> colors = new ArrayList();
@@ -39,6 +48,13 @@ public class TeamService {
         }
         if (colors.contains(teamRequestDTO.getColor())){
             throw new DataIntegrityViolationException("Color already registered!");
+        }
+    }
+
+    public void validateTeamAmount(Long id){
+        List<TeamEntity> all = teamRepository.findAll();
+        if (all.size() < id){
+            throw new IndexOutOfBoundsException("This team is not registered!");
         }
     }
 

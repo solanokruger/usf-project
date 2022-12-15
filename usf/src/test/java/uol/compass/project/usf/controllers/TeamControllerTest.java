@@ -71,8 +71,6 @@ public class TeamControllerTest {
         assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
-
-
     private TeamRequestDTO getTeamRequestDTO() {
         return TeamRequestDTO.builder()
                 .color("Blue")

@@ -14,6 +14,7 @@ import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -48,10 +49,8 @@ public class TeamServiceTest {
 
     @Test
     public void shouldFindAllTeamsTest_success(){
-        TeamEntity team = new TeamEntity(1l, "blue");
         TeamResponseDTO teamResponseDTO = new TeamResponseDTO(1l, "blue");
 
-        Mockito.when(teamRepository.findAll()).thenReturn(List.of(team));
         Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
 
         List<TeamResponseDTO> response = teamService.getTeams();
@@ -60,6 +59,20 @@ public class TeamServiceTest {
         assertEquals(1, response.size());
         assertEquals(TeamResponseDTO.class, response.get(0).getClass());
         assertEquals("blue", response.get(0).getColor());
+    }
+
+    @Test
+    public void shouldFindTeamByIdTest_success(){
+        TeamResponseDTO teamResponseDTO = new TeamResponseDTO(1l, "blue");
+
+        Mockito.when(teamService.getTeamById(1l)).thenReturn(teamResponseDTO);
+
+        TeamResponseDTO response = teamService.getTeamById(1l);
+
+        assertNotNull(response);
+        assertEquals(response.getId(), 1l);
+        assertEquals(response.getColor(), "blue");
+        assertEquals(response.getClass(), TeamResponseDTO.class);
     }
 
 }

@@ -11,7 +11,6 @@ import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.services.TeamService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/team")
@@ -39,7 +38,11 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body(teams);
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<TeamResponseDTO> getTeamById(@PathVariable Long id) {
+        TeamResponseDTO teamResponseDTO = teamService.getTeamById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
+    }
 
     private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
         char[] chars = teamRequestDTO.getColor().toCharArray();

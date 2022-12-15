@@ -17,4 +17,10 @@ public class RestExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
+    @ExceptionHandler(IndexOutOfBoundsException.class)
+    protected ResponseEntity<Object> objectNotRegistered(IndexOutOfBoundsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+
 }
