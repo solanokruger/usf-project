@@ -3,6 +3,9 @@ package uol.compass.project.usf.exceptions.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.NotFoundException;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,6 +79,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleAllExceptions(Exception ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.INTERNAL_SERVER_ERROR, ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    protected ResponseEntity<Object> objectAldreadyRegistered(DataIntegrityViolationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> objectNotRegistered(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 }
