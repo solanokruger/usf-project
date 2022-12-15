@@ -1,6 +1,7 @@
 package uol.compass.project.usf.services;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
 
+import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,10 +35,19 @@ public class TeamService {
     }
 
     public TeamResponseDTO getTeamById(Long id){
-        validateTeamAmount(id);
-
-        Optional<TeamEntity> team = teamRepository.findById(id);
+        TeamEntity team = teamRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("This team is not registered!"));
         return modelMapper.map(team, TeamResponseDTO.class);
+    }
+
+    public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
+        TeamEntity team = teamRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("This team is not registered!"));
+        TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
+        newTeam.setId(id);
+        TeamEntity updatedTeam = teamRepository.save(newTeam);
+
+        return modelMapper.map(updatedTeam, TeamResponseDTO.class);
     }
 
 
@@ -51,11 +62,5 @@ public class TeamService {
         }
     }
 
-    public void validateTeamAmount(Long id){
-        List<TeamEntity> all = teamRepository.findAll();
-        if (all.size() < id){
-            throw new IndexOutOfBoundsException("This team is not registered!");
-        }
-    }
 
 }

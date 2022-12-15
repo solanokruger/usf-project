@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class TeamServiceTest {
@@ -28,8 +30,10 @@ public class TeamServiceTest {
     TeamService teamService;
     @Mock
     TeamRepository teamRepository;
-    @Mock
+    @Spy
     ModelMapper modelMapper;
+
+    private final long ID = 1l;
 
     @Test
     public void shouldCreateTeamTest_success(){
@@ -49,30 +53,43 @@ public class TeamServiceTest {
 
     @Test
     public void shouldFindAllTeamsTest_success(){
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO(1l, "blue");
+        TeamEntity team = new TeamEntity(ID, "blue");
 
-        Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
+        Mockito.when(teamRepository.findAll()).thenReturn(List.of(team));
 
         List<TeamResponseDTO> response = teamService.getTeams();
 
-        assertNotNull(teamResponseDTO);
-        assertEquals(1, response.size());
-        assertEquals(TeamResponseDTO.class, response.get(0).getClass());
-        assertEquals("blue", response.get(0).getColor());
+        assertNotNull(response);
+        assertEquals(response.get(0), team);
     }
 
     @Test
     public void shouldFindTeamByIdTest_success(){
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO(1l, "blue");
+        TeamEntity team = new TeamEntity(ID, "blue");
 
-        Mockito.when(teamService.getTeamById(1l)).thenReturn(teamResponseDTO);
+        Mockito.when(teamRepository.findById(ID)).thenReturn(Optional.of(team));
 
-        TeamResponseDTO response = teamService.getTeamById(1l);
+        TeamResponseDTO response = teamService.getTeamById(ID);
 
         assertNotNull(response);
-        assertEquals(response.getId(), 1l);
+        assertEquals(response.getId(), ID);
         assertEquals(response.getColor(), "blue");
-        assertEquals(response.getClass(), TeamResponseDTO.class);
+    }
+
+    @Test
+    public void shouldUpdateTeam_success(){
+        TeamEntity team = new TeamEntity(ID, "blue");
+        TeamResponseDTO response = new TeamResponseDTO(ID, "blue");
+        TeamRequestDTO request = new TeamRequestDTO();
+        request.setColor("black");
+
+        Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
+        Mockito.when(teamRepository.save(any())).thenReturn(team);
+
+        TeamResponseDTO teamResponseDTO = teamService.update(ID, request);
+
+        assertEquals(response.getId(), teamResponseDTO.getId());
+        verify(teamRepository, times(1)).save(any());
     }
 
 }

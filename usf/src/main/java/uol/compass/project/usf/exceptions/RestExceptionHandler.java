@@ -1,5 +1,6 @@
 package uol.compass.project.usf.exceptions;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.ws.rs.NotFoundException;
+
 @ControllerAdvice
 public class RestExceptionHandler {
 
@@ -17,10 +20,12 @@ public class RestExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
-    @ExceptionHandler(IndexOutOfBoundsException.class)
-    protected ResponseEntity<Object> objectNotRegistered(IndexOutOfBoundsException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> objectNotRegistered(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
+
 
 
 }

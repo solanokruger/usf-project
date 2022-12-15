@@ -44,6 +44,14 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TeamResponseDTO> atualizarPartido(@PathVariable Long id,
+                                                            @RequestBody TeamRequestDTO partidoRequestDTO) {
+        TeamResponseDTO partidoResponseDTO = teamService.update(id, partidoRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(partidoResponseDTO);
+    }
+
     private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
         char[] chars = teamRequestDTO.getColor().toCharArray();
         for (char c:chars) {
