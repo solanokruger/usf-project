@@ -47,7 +47,8 @@ public class UsfServiceImpl implements UsfService {
     }
 
     private UsfEntity getUsfEntity(Long id) {
-        return usfRepository.findById(id).orElseThrow(UsfNotFoundException::new);
+        return usfRepository.findById(id)
+            .orElseThrow(UsfNotFoundException::new);
     }
 
     private UsfResponseParameters createUsfResponseParameters(Page<UsfEntity> page) {

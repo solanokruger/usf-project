@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,12 @@ public class UsfController {
     @GetMapping
     public ResponseEntity<UsfResponseParameters> findAll(Pageable pageable) {
         UsfResponseParameters response = usfService.findAll(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UsfResponseDTO> findById(@PathVariable("id") Long id) {
+        UsfResponseDTO response = usfService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

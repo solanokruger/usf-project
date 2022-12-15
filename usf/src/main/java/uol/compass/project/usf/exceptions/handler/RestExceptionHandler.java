@@ -13,11 +13,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import uol.compass.project.usf.constants.ErrorCode;
 import uol.compass.project.usf.dto.ExceptionResponse;
+import uol.compass.project.usf.exceptions.UsfNotFoundException;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -62,6 +64,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             HttpHeaders headers, HttpStatus status, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.BAD_REQUEST, ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(UsfNotFoundException.class)
+    public final ResponseEntity<Object> handleUsfNotFoundException(UsfNotFoundException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USF_NOT_FOUND, ex);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleAllExceptions(Exception ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.INTERNAL_SERVER_ERROR, ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
     }
 
 }
