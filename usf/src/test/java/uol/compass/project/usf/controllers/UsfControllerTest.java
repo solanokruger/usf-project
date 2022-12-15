@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.services.UsfServiceImpl;
 import uol.compass.project.utils.TestUtils;
 
@@ -52,6 +53,23 @@ public class UsfControllerTest {
         MockHttpServletResponse servletResponse = result.getResponse();
 
         assertEquals(HttpStatus.CREATED.value(), servletResponse.getStatus());
+    }
+
+    @Test
+    void findAll() throws Exception {
+        UsfResponseParameters usfResponseParameters = new UsfResponseParameters();
+
+        when(usfService.findAll(any())).thenReturn(usfResponseParameters);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(BASE_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
     private UsfRequestDTO getUsfRequestDTO() {
