@@ -1,7 +1,6 @@
 package uol.compass.project.usf.services;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +13,7 @@ import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.entities.UsfEntity;
+import uol.compass.project.usf.exceptions.UsfNotFoundException;
 import uol.compass.project.usf.repositories.UsfRepository;
 
 @Service
@@ -35,8 +35,19 @@ public class UsfServiceImpl implements UsfService {
     @Override
     public UsfResponseParameters findAll(Pageable pageable) {
         Page<UsfEntity> page = usfRepository.findAll(pageable);
-
+        
         return createUsfResponseParameters(page);
+    }
+    
+    @Override
+    public UsfResponseDTO findById(Long id) {
+        UsfEntity usf = getUsfEntity(id);
+
+        return modelMapper.map(usf, UsfResponseDTO.class);
+    }
+
+    private UsfEntity getUsfEntity(Long id) {
+        return usfRepository.findById(id).orElseThrow(UsfNotFoundException::new);
     }
 
     private UsfResponseParameters createUsfResponseParameters(Page<UsfEntity> page) {

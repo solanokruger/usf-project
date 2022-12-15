@@ -15,14 +15,13 @@ import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseParameters;
-import uol.compass.project.usf.repositories.UsfRepository;
 import uol.compass.project.usf.services.UsfServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usf")
 public class UsfController {
-    
+ 
     private final UsfServiceImpl usfService;
 
     @PostMapping

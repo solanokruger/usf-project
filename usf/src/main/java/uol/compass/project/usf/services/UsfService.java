@@ -11,5 +11,7 @@ public interface UsfService {
     UsfResponseDTO create(UsfRequestDTO request);
 
     UsfResponseParameters findAll(Pageable pageable);
+
+    UsfResponseDTO findById(Long id);
     
 }
