@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-UsfApplication<usf>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uol.compass.project.usf.UsfApplication",
+            "projectName": "usf",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
