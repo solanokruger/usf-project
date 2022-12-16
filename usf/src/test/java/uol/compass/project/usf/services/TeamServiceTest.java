@@ -24,8 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+
 @ExtendWith(MockitoExtension.class)
 public class TeamServiceTest {
 
@@ -99,22 +99,19 @@ public class TeamServiceTest {
     }
 
     @Test
-    public void shouldSetUsfTeam() {
+    public void shouldSetUsfTeamTest() {
         TeamEntity team = new TeamEntity(ID_TEAM, "blue");
         UsfEntity usf = new UsfEntity(ID_USF, "USF_TESTE", ID_TEAM, "Rua X");
         UsfResponseDTO usfResponseDTO = new UsfResponseDTO();
-        usfResponseDTO.setId(ID_USF);
-        usfResponseDTO.setName("teste");
-        usfResponseDTO.setIdCurrentTeam(null);
-        usfResponseDTO.setAddress("Rua Y");
 
         Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
         Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
-        Mockito.when(usfRepository.save(any())).thenReturn(usfResponseDTO);
+        Mockito.when(usfRepository.save(any())).thenReturn(usf);
 
-        UsfResponseDTO responseDTO = teamService.setUsfTeam(team.getId(), usf.getId());
+        UsfResponseDTO usfEntity = teamService.setUsfTeam(team.getId(), usf.getId());
 
-        assertNotNull(responseDTO);
+        assertNotNull(usfEntity);
     }
+
 
 }

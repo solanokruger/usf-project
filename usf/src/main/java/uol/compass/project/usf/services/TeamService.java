@@ -66,12 +66,12 @@ public class TeamService {
     public UsfResponseDTO setUsfTeam(Long idTeam, Long idUsf){
         getTeamByIdVerication(idTeam);
         UsfEntity usf = getUsfEntity(idUsf);
-        UsfEntity usfWithTeam = modelMapper.map(usf, UsfEntity.class);
-        usfWithTeam.setId(idUsf);
-        usfWithTeam.setIdCurrentTeam(idTeam);
-        UsfEntity newUsf = usfRepository.save(usfWithTeam);
 
-        return modelMapper.map(newUsf, UsfResponseDTO.class);
+        usf.setId(idUsf);
+        usf.setIdCurrentTeam(idTeam);
+        usfRepository.save(usf);
+
+        return modelMapper.map(usf, UsfResponseDTO.class);
     }
 
     public UsfResponseDTO deleteTeamFromUsf(Long idTeam, Long idUsf) {
