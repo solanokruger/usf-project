@@ -10,6 +10,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.entities.TeamEntity;
@@ -44,17 +45,15 @@ public class TeamServiceTest {
     @Test
     public void shouldCreateTeamTest_success(){
         TeamEntity team = new TeamEntity();
-        TeamResponseDTO responseDTO = new TeamResponseDTO();
-        TeamRequestDTO teamRequestDTO = new TeamRequestDTO();
+        TeamResponseDTO response = new TeamResponseDTO();
+        TeamRequestDTO request = new TeamRequestDTO();
 
-        Mockito.when(modelMapper.map(any(), eq(TeamEntity.class))).thenReturn(team);
-        Mockito.when(teamRepository.save(any())).thenReturn(team);
-        Mockito.when(modelMapper.map(any(), eq(TeamResponseDTO.class))).thenReturn(responseDTO);
+        Mockito.when(usfRepository.save(any())).thenReturn(team);
 
-        TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
+        TeamResponseDTO teamResponseDTO = teamService.createTeam(request);
 
-        assertEquals(responseDTO, teamResponseDTO);
-        verify(teamRepository).save(any());
+        assertEquals(response, teamResponseDTO);
+        verify(usfRepository).save(any());
     }
 
     @Test

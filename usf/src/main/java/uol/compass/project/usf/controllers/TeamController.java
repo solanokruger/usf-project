@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.services.TeamService;
@@ -48,6 +49,12 @@ public class TeamController {
     public ResponseEntity<TeamResponseDTO> getTeamById(@PathVariable Long id) {
         TeamResponseDTO teamResponseDTO = teamService.getTeamById(id);
         return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
+    }
+
+    @GetMapping("/{id}/doctor")
+    public ResponseEntity<List<DoctorResponseDTO>> getDoctorsByTeam(@PathVariable Long id) {
+        List<DoctorResponseDTO> doctorsByTeam = teamService.getDoctorsByTeam(id);
+        return ResponseEntity.status(HttpStatus.OK).body(doctorsByTeam);
     }
 
     @PutMapping("/{id}")

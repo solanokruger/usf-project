@@ -5,12 +5,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.entities.DoctorEntity;
 import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.exceptions.TeamNotFoundException;
 import uol.compass.project.usf.exceptions.UsfNotFoundException;
+import uol.compass.project.usf.repositories.DoctorRepository;
 import uol.compass.project.usf.repositories.TeamRepository;
 import uol.compass.project.usf.repositories.UsfRepository;
 
@@ -23,7 +26,7 @@ public class TeamService {
 
     private final ModelMapper modelMapper;
     private final TeamRepository teamRepository;
-
+    private final DoctorRepository doctorRepository;
     private final UsfRepository usfRepository;
 
     public TeamResponseDTO createTeam(TeamRequestDTO teamRequestDTO){
@@ -46,6 +49,12 @@ public class TeamService {
     private TeamEntity getTeamByIdVerication(Long id) {
         return teamRepository.findById(id)
                 .orElseThrow(TeamNotFoundException::new);
+    }
+
+    public List<DoctorResponseDTO> getDoctorsByTeam(Long id) {
+        getTeamByIdVerication(id);
+        List<DoctorEntity> allDoctors = doctorRepository.findByIdTeam(id);
+        return modelMapper.map(allDoctors, List.class);
     }
 
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
@@ -95,6 +104,7 @@ public class TeamService {
             throw new DataIntegrityViolationException("Color already registered!");
         }
     }
+
 
 
 }
