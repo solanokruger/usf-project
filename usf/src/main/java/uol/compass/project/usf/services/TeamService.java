@@ -6,9 +6,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
+import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.entities.TeamEntity;
+import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.exceptions.TeamNotFoundException;
+import uol.compass.project.usf.exceptions.UsfNotFoundException;
 import uol.compass.project.usf.repositories.TeamRepository;
+import uol.compass.project.usf.repositories.UsfRepository;
 
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ public class TeamService {
 
     private final ModelMapper modelMapper;
     private final TeamRepository teamRepository;
+
+    private final UsfRepository usfRepository;
 
     public TeamResponseDTO createTeam(TeamRequestDTO teamRequestDTO){
         validateTeamColor(teamRequestDTO);
@@ -50,6 +56,33 @@ public class TeamService {
         TeamEntity updatedTeam = teamRepository.save(newTeam);
 
         return modelMapper.map(updatedTeam, TeamResponseDTO.class);
+    }
+
+    private UsfEntity getUsfEntity(Long id) {
+        return usfRepository.findById(id)
+                .orElseThrow(UsfNotFoundException::new);
+    }
+
+    public UsfResponseDTO setUsfTeam(Long idTeam, Long idUsf){
+        getTeamByIdVerication(idTeam);
+        UsfEntity usf = getUsfEntity(idUsf);
+        UsfEntity usfWithTeam = modelMapper.map(usf, UsfEntity.class);
+        usfWithTeam.setId(idUsf);
+        usfWithTeam.setIdCurrentTeam(idTeam);
+        UsfEntity newUsf = usfRepository.save(usfWithTeam);
+
+        return modelMapper.map(newUsf, UsfResponseDTO.class);
+    }
+
+    public UsfResponseDTO deleteTeamFromUsf(Long idTeam, Long idUsf) {
+        getTeamByIdVerication(idTeam);
+        UsfEntity usf = getUsfEntity(idUsf);
+        UsfEntity usfWithTeam = modelMapper.map(usf, UsfEntity.class);
+        usfWithTeam.setId(idUsf);
+        usfWithTeam.setIdCurrentTeam(null);
+        UsfEntity newUsf = usfRepository.save(usfWithTeam);
+
+        return modelMapper.map(newUsf, UsfResponseDTO.class);
     }
 
 

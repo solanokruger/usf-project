@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
+import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.services.TeamService;
 
 import java.util.List;
@@ -30,6 +31,13 @@ public class TeamController {
         }
     }
 
+    @PostMapping("/{idTeam}/usf/{idUsf}")
+    @Transactional
+    public ResponseEntity<UsfResponseDTO> linkTeamToUsf(@PathVariable Long idTeam, @PathVariable Long idUsf){
+        UsfResponseDTO usfResponseDTO = teamService.setUsfTeam(idTeam, idUsf);
+        return ResponseEntity.status(HttpStatus.OK).body(usfResponseDTO);
+    }
+
     @GetMapping
     public ResponseEntity<List<TeamResponseDTO>> getAllTeams() {
         List<TeamResponseDTO> teams = teamService.getTeams();
@@ -49,6 +57,13 @@ public class TeamController {
         TeamResponseDTO partidoResponseDTO = teamService.update(id, partidoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(partidoResponseDTO);
     }
+
+    @DeleteMapping("/{idTeam}/usf/{idUsf}")
+    public ResponseEntity<UsfResponseDTO> deleteTeamFromUsf(@PathVariable Long idTeam, @PathVariable Long idUsf){
+        UsfResponseDTO usfResponseDTO = teamService.deleteTeamFromUsf(idTeam, idUsf);
+        return ResponseEntity.status(HttpStatus.OK).body(usfResponseDTO);
+    }
+
 
     private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
         char[] chars = teamRequestDTO.getColor().toCharArray();
