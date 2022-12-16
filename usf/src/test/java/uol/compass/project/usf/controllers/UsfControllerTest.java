@@ -88,6 +88,40 @@ public class UsfControllerTest {
         assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
+    @Test
+    void update() throws Exception {
+        UsfRequestDTO request = getUsfRequestDTO();
+        UsfResponseDTO usfResponseDTO = new UsfResponseDTO();
+
+        when(usfService.update(any(), any())).thenReturn(usfResponseDTO);
+
+        String input = TestUtils.mapToJson(request);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.put(ID_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .content(input)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void delete() throws Exception {
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.delete(ID_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
+    }
+
     private UsfRequestDTO getUsfRequestDTO() {
         return UsfRequestDTO.builder()
             .name("Test")

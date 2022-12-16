@@ -69,13 +69,38 @@ public class UsfServiceImplTest {
     @Test
     void shouldFindUsfById_sucess() {
         UsfEntity usf = new UsfEntity();
+        UsfResponseDTO usfResponseDto = new UsfResponseDTO();
 
         Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
-        UsfResponseDTO usfResponseDto = modelMapper.map(usf, UsfResponseDTO.class);
 
         UsfResponseDTO response = usfService.findById(ID);
 
         assertEquals(response, usfResponseDto);
+    }
+
+    @Test
+    void shouldUpdateUsf_sucess() {
+        UsfEntity usf = new UsfEntity();
+        UsfResponseDTO usfResponseDto = new UsfResponseDTO();
+        UsfRequestDTO request = new UsfRequestDTO();
+
+        Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
+        Mockito.when(usfRepository.save(any())).thenReturn(usf);
+
+        UsfResponseDTO response = usfService.update(ID, request);
+
+        assertEquals(response, usfResponseDto);
+    }
+
+    @Test
+    void shouldDeleteUsf_sucess() {
+        UsfEntity usf = new UsfEntity();
+
+        Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
+
+        usfService.delete(ID);
+
+        verify(usfRepository).deleteById(any());
     }
 
     private UsfResponseParameters getUsfResponseParameters() {
