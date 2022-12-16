@@ -28,17 +28,17 @@ public class UsfServiceImpl implements UsfService {
     public UsfResponseDTO create(UsfRequestDTO request) {
         UsfEntity usfToCreate = modelMapper.map(request, UsfEntity.class);
         UsfEntity usfCreated = usfRepository.save(usfToCreate);
-        
+
         return modelMapper.map(usfCreated, UsfResponseDTO.class);
     }
 
     @Override
     public UsfResponseParameters findAll(Pageable pageable) {
         Page<UsfEntity> page = usfRepository.findAll(pageable);
-        
+
         return createUsfResponseParameters(page);
     }
-    
+
     @Override
     public UsfResponseDTO findById(Long id) {
         UsfEntity usf = getUsfEntity(id);
@@ -46,16 +46,33 @@ public class UsfServiceImpl implements UsfService {
         return modelMapper.map(usf, UsfResponseDTO.class);
     }
 
+    @Override
+    public UsfResponseDTO update(Long id, UsfRequestDTO request) {
+        getUsfEntity(id);
+
+        UsfEntity usfToUpdate = modelMapper.map(request, UsfEntity.class);
+        usfToUpdate.setId(id);
+        UsfEntity updatedUsf = usfRepository.save(usfToUpdate);
+
+        return modelMapper.map(updatedUsf, UsfResponseDTO.class);
+    }
+
+    @Override
+    public void delete(Long id) {
+        getUsfEntity(id);
+        usfRepository.deleteById(id);
+    }
+
     private UsfEntity getUsfEntity(Long id) {
         return usfRepository.findById(id)
-            .orElseThrow(UsfNotFoundException::new);
+                .orElseThrow(UsfNotFoundException::new);
     }
 
     private UsfResponseParameters createUsfResponseParameters(Page<UsfEntity> page) {
         List<UsfResponseDTO> usf = page.stream()
-                    .map(this::createUsfResponseDTO)
-                    .collect(Collectors.toList());
-        
+                .map(this::createUsfResponseDTO)
+                .collect(Collectors.toList());
+
         return UsfResponseParameters.builder()
                 .numberOfElements(page.getNumberOfElements())
                 .totalElements(page.getTotalElements())
@@ -67,5 +84,5 @@ public class UsfServiceImpl implements UsfService {
     private UsfResponseDTO createUsfResponseDTO(UsfEntity usf) {
         return modelMapper.map(usf, UsfResponseDTO.class);
     }
-    
+
 }
