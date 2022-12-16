@@ -39,14 +39,14 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TeamResponseDTO> getTeamById(@PathVariable Long id) {
+    public ResponseEntity<TeamResponseDTO> getTeamById(@PathVariable Long id) throws Exception {
         TeamResponseDTO teamResponseDTO = teamService.getTeamById(id);
         return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
     }
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<TeamResponseDTO> atualizarPartido(@PathVariable Long id,
+    public ResponseEntity<TeamResponseDTO> updateTeam(@PathVariable Long id,
                                                             @RequestBody TeamRequestDTO partidoRequestDTO) {
         TeamResponseDTO partidoResponseDTO = teamService.update(id, partidoRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(partidoResponseDTO);
