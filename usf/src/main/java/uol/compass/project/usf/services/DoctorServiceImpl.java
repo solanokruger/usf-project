@@ -28,11 +28,6 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctorCreated, DoctorResponseDTO.class);
     }
 
-    @Override
-    public DoctorResponseParameters findAll(java.awt.print.Pageable pageable) {
-        return null;
-    }
-
 
     @Override
     public DoctorResponseParameters findAll(Pageable pageable) {

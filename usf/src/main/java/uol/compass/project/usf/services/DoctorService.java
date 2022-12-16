@@ -4,14 +4,12 @@ import uol.compass.project.usf.dto.request.DoctorRequestDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseParameters;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 
 public interface DoctorService {
     DoctorResponseDTO create(DoctorRequestDTO request);
 
     DoctorResponseParameters findAll(Pageable pageable);
-
-    DoctorResponseParameters findAll(org.springframework.data.domain.Pageable pageable);
 
     DoctorResponseDTO findById(Long id);
 
