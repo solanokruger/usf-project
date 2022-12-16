@@ -14,7 +14,6 @@ import uol.compass.project.usf.exceptions.UsfNotFoundException;
 import uol.compass.project.usf.repositories.TeamRepository;
 import uol.compass.project.usf.repositories.UsfRepository;
 
-import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
