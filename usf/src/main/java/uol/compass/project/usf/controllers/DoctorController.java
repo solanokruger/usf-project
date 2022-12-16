@@ -1,7 +1,6 @@
 package uol.compass.project.usf.controllers;
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +26,25 @@ public class DoctorController {
 
     @GetMapping
     public ResponseEntity<DoctorResponseParameters> findAll(Pageable pageable) {
-        DoctorResponseParameters response = doctorService.findAll((java.awt.print.Pageable) pageable);
+        DoctorResponseParameters response = doctorService.findAll(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<DoctorResponseDTO> findById(@PathVariable("id") Long id) {
+        DoctorResponseDTO response = doctorService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<DoctorResponseDTO> update(@PathVariable("id") Long id, @RequestBody @Valid DoctorRequestDTO request) {
+        DoctorResponseDTO response = doctorService.update(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        doctorService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
