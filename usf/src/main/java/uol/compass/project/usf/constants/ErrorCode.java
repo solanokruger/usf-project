@@ -10,7 +10,8 @@ public enum ErrorCode {
     BAD_REQUEST("Request invalid"),
     INVALID_PARAMETER("Invalid request parameter"),
     INTERNAL_SERVER_ERROR("Internal error has occured"),
-    USF_NOT_FOUND("USF not found");
+    USF_NOT_FOUND("USF not found"),
+    TEAM_NOT_FOUND("Team not found");
 
     private final String message;
 

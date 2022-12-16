@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.entities.TeamEntity;
+import uol.compass.project.usf.exceptions.TeamNotFoundException;
 import uol.compass.project.usf.repositories.TeamRepository;
 
 import javax.ws.rs.NotFoundException;
@@ -33,14 +34,17 @@ public class TeamService {
     }
 
     public TeamResponseDTO getTeamById(Long id){
-        TeamEntity team = teamRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("This team is not registered!"));
+        TeamEntity team = getTeamByIdVerication(id);
         return modelMapper.map(team, TeamResponseDTO.class);
     }
 
+    private TeamEntity getTeamByIdVerication(Long id) {
+        return teamRepository.findById(id)
+                .orElseThrow(TeamNotFoundException::new);
+    }
+
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
-        TeamEntity team = teamRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("This team is not registered!"));
+        TeamEntity team = getTeamByIdVerication(id);
         TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
         newTeam.setId(id);
         TeamEntity updatedTeam = teamRepository.save(newTeam);

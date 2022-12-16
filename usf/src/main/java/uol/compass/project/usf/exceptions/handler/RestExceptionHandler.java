@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import uol.compass.project.usf.constants.ErrorCode;
 import uol.compass.project.usf.dto.ExceptionResponse;
+import uol.compass.project.usf.exceptions.TeamNotFoundException;
 import uol.compass.project.usf.exceptions.UsfNotFoundException;
 
 @ControllerAdvice
@@ -72,6 +73,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UsfNotFoundException.class)
     public final ResponseEntity<Object> handleUsfNotFoundException(UsfNotFoundException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USF_NOT_FOUND, ex);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(TeamNotFoundException.class)
+    public final ResponseEntity<Object> handleTeamNotFoundException(TeamNotFoundException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.TEAM_NOT_FOUND, ex);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 
