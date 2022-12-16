@@ -23,7 +23,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorResponseDTO create(DoctorRequestDTO request) {
         DoctorEntity doctorToCreate = modelMapper.map(request, DoctorEntity.class);
-        DoctorEntity doctorCreated = DoctorRepository.save(doctorToCreate);
+        DoctorEntity doctorCreated = doctorRepository.save(doctorToCreate);
 
         return modelMapper.map(doctorCreated, DoctorResponseDTO.class);
     }
