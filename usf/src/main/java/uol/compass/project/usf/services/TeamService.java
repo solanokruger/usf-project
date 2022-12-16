@@ -49,7 +49,7 @@ public class TeamService {
     }
 
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
-        TeamEntity team = getTeamByIdVerication(id);
+        getTeamByIdVerication(id);
         TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
         newTeam.setId(id);
         TeamEntity updatedTeam = teamRepository.save(newTeam);
@@ -76,10 +76,10 @@ public class TeamService {
     public UsfResponseDTO deleteTeamFromUsf(Long idTeam, Long idUsf) {
         getTeamByIdVerication(idTeam);
         UsfEntity usf = getUsfEntity(idUsf);
-        UsfEntity usfWithTeam = modelMapper.map(usf, UsfEntity.class);
-        usfWithTeam.setId(idUsf);
-        usfWithTeam.setIdCurrentTeam(null);
-        UsfEntity newUsf = usfRepository.save(usfWithTeam);
+
+        usf.setId(idUsf);
+        usf.setIdCurrentTeam(null);
+        UsfEntity newUsf = usfRepository.save(usf);
 
         return modelMapper.map(newUsf, UsfResponseDTO.class);
     }

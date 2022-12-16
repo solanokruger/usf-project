@@ -111,6 +111,23 @@ public class TeamServiceTest {
         UsfResponseDTO usfEntity = teamService.setUsfTeam(team.getId(), usf.getId());
 
         assertNotNull(usfEntity);
+        assertEquals(usf.getIdCurrentTeam(), usfEntity.getIdCurrentTeam());
+    }
+
+    @Test
+    public void shouldDeleteUsfTeamTest() {
+        TeamEntity team = new TeamEntity(ID_TEAM, "blue");
+        UsfEntity usf = new UsfEntity(ID_USF, "USF_TESTE", null, "Rua X");
+        UsfResponseDTO usfResponseDTO = new UsfResponseDTO();
+
+        Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
+        Mockito.when(usfRepository.findById(any())).thenReturn(Optional.of(usf));
+        Mockito.when(usfRepository.save(any())).thenReturn(usf);
+
+        UsfResponseDTO usfEntity = teamService.deleteTeamFromUsf(team.getId(), usf.getId());
+
+        assertNotNull(usfEntity);
+        assertEquals(usf.getIdCurrentTeam(), usfEntity.getIdCurrentTeam());
     }
 
 
