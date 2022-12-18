@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
     
-    BAD_REQUEST("Request invalid"),
-    INVALID_PARAMETER("Invalid request parameter"),
-    INTERNAL_SERVER_ERROR("Internal error has occured"),
-    USF_NOT_FOUND("USF not found"),
-    TEAM_NOT_FOUND("Team not found"),
-    DOCTOR_NOT_FOUND("Doctor not found");
+    BAD_REQUEST("Pedido inválido"),
+    INVALID_PARAMETER("Paramêtro do pedido inválido"),
+    INTERNAL_SERVER_ERROR("Erro interno do servidor"),
+    USF_NOT_FOUND("USF não encontrada"),
+    TEAM_NOT_FOUND("Time não encontrado"),
+    DOCTOR_NOT_FOUND("Médico não encontrado");
 
     private final String message;
     

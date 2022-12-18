@@ -101,7 +101,7 @@ public class TeamService {
             colors.add(all.get(i).getColor());
         }
         if (colors.contains(teamRequestDTO.getColor())){
-            throw new DataIntegrityViolationException("Color already registered!");
+            throw new DataIntegrityViolationException("Cor já registrada");
         }
     }
 
