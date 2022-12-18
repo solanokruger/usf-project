@@ -59,10 +59,10 @@ public class TeamController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<TeamResponseDTO> atualizarPartido(@PathVariable Long id,
-                                                            @RequestBody TeamRequestDTO partidoRequestDTO) {
-        TeamResponseDTO partidoResponseDTO = teamService.update(id, partidoRequestDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(partidoResponseDTO);
+    public ResponseEntity<TeamResponseDTO> updateTeam(@PathVariable Long id,
+                                                            @RequestBody TeamRequestDTO request) {
+        TeamResponseDTO response = teamService.update(id, request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping("/{idTeam}/usf/{idUsf}")
