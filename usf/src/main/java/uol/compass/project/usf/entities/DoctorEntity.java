@@ -17,7 +17,7 @@ public class DoctorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String occupation;
+    private String specialization;
     private Long idTeam;
     
 }

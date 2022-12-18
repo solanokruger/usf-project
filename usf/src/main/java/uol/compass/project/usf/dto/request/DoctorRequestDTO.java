@@ -16,7 +16,7 @@ public class DoctorRequestDTO {
     @NotBlank
     private String name;
     @NotBlank
-    private String occupation;
+    private String specialization;
     private long idTeam;
     private long id;
 }

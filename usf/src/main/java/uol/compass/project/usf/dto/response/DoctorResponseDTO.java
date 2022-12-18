@@ -6,7 +6,7 @@ public class DoctorResponseDTO {
 
     private long id;
     private String name;
-    private String occupation;
+    private String specialization;
     private long idTeam;
 
 }
