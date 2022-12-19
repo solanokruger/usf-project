@@ -52,7 +52,7 @@ public class TeamServiceTest {
 
         TeamResponseDTO teamResponseDTO = teamService.createTeam(request);
 
-        assertEquals(response, teamResponseDTO);
+        assertEquals(response.getId(), teamResponseDTO.getId());
         verify(usfRepository).save(any());
     }
 
