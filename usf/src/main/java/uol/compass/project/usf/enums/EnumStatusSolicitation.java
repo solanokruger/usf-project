@@ -1,6 +1,6 @@
 package uol.compass.project.usf.enums;
 
-public enum EnumStatusRequest {
+public enum EnumStatusSolicitation {
     PENDENT,
     CONCLUDED;
 }

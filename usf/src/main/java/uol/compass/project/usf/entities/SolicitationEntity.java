@@ -14,15 +14,17 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uol.compass.project.usf.enums.EnumStatusRequest;
+import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.enums.EnumStatusSolicitation;
+import uol.compass.project.usf.repositories.UsfRepository;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "request")
-@Table(name = "request")
-public class RequestEntity {
-    
+@Entity(name = "solicitation")
+@Table(name = "solicitation")
+public class SolicitationEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,11 +36,19 @@ public class RequestEntity {
     private LocalDateTime answeredDate;
 
     @Enumerated(EnumType.STRING)
-    private EnumStatusRequest statusRequest;
+    private EnumStatusSolicitation statusSolicitation;
 
     @ManyToOne
     private UsfEntity idUsf;
 
     private Long necessaryAmount;
+
+    public SolicitationEntity(SolicitationRequestDTO request) {
+        this.idResource = request.getIdResource();
+        this.requestedDate = LocalDateTime.now();
+        this.statusSolicitation = EnumStatusSolicitation.PENDENT;
+        // this.idUsf = 
+        this.necessaryAmount = request.getNecessaryAmount();
+    }
 
 }
