@@ -18,6 +18,8 @@ public class DoctorEntity {
     private Long id;
     private String name;
     private String specialization;
-    private Long idTeam;
+
+    @ManyToOne
+    private TeamEntity idTeam;
     
 }
