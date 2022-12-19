@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class SolicitationRequestDTO {
 
     @NotNull
-    private Long idResource;
+    private Long resource;
 
     @NotNull
-    private Long idUsf;
+    private Long usf;
 
     @NotNull
     private Long necessaryAmount;

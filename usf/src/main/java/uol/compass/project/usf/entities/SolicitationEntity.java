@@ -8,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +26,7 @@ public class SolicitationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long idResource;
+    private Long resource;
 
     private LocalDateTime requestedDate;
 
@@ -36,8 +35,7 @@ public class SolicitationEntity {
     @Enumerated(EnumType.STRING)
     private EnumStatusSolicitation statusSolicitation;
 
-    @ManyToOne
-    private Long idUsf;
+    private Long usf;
 
     private Long necessaryAmount;
 
