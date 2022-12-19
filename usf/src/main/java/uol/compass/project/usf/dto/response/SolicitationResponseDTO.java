@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uol.compass.project.usf.entities.UsfEntity;
+import uol.compass.project.usf.enums.EnumStatusSolicitation;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +18,10 @@ public class SolicitationResponseDTO {
     private Long idResource;
 
     private LocalDateTime requestedDate;
+
+    private LocalDateTime answeredDate;
+
+    private EnumStatusSolicitation statusSolicitation;
 
     private UsfEntity idUsf;
 

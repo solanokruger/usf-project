@@ -29,7 +29,7 @@ import uol.compass.project.usf.repositories.UsfRepository;
 public class UsfServiceImplTest {
 
     public static final Long ID = 1L;
-    
+
     @InjectMocks
     private UsfServiceImpl usfService;
 
