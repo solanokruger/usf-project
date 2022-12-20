@@ -19,7 +19,7 @@ import uol.compass.project.usf.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.services.UsfServiceImpl;
-import uol.compass.project.utils.TestUtils;
+import uol.compass.project.usf.utils.TestUtils;
 
 @WebMvcTest(controllers = UsfController.class)
 public class UsfControllerTest {
