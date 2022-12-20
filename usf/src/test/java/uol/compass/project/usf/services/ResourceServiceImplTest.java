@@ -44,4 +44,9 @@ public class ResourceServiceImplTest {
 
         verify(resourceRepository).save(any());
     }
+
+    @Test
+    public void shouldFindAllResourcesTest_success(){
+
+    }
 }

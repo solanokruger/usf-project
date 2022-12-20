@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uol.compass.project.usf.enums.EnumCategoryResource;
 
-import javax.persistence.*;
-
 @Getter
 @Setter
 @AllArgsConstructor
