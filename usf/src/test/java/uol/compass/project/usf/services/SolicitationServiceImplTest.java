@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.entities.SolicitationEntity;
+import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +24,9 @@ public class SolicitationServiceImplTest {
 
     @InjectMocks
     private SolicitationServiceImpl solicitationService;
+
+    @Mock
+    private UsfServiceImpl usfService;
 
     @Mock
     private SolicitationRepository solicitationRepository;
@@ -35,6 +39,10 @@ public class SolicitationServiceImplTest {
         SolicitationEntity solicitation = new SolicitationEntity();
         SolicitationRequestDTO request = new SolicitationRequestDTO();
         SolicitationResponseDTO response = new SolicitationResponseDTO();
+
+        UsfEntity usf = new UsfEntity();
+
+        Mockito.when(usfService.getUsfEntity(any())).thenReturn(usf);
 
         Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);
 

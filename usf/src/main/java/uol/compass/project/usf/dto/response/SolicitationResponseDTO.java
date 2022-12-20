@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.enums.EnumStatusSolicitation;
 
 @Data
@@ -14,7 +15,7 @@ public class SolicitationResponseDTO {
 
     private Long id;
 
-    private Long resource;
+    private Long idResource;
 
     private LocalDateTime requestedDate;
 
@@ -22,7 +23,7 @@ public class SolicitationResponseDTO {
 
     private EnumStatusSolicitation statusSolicitation;
 
-    private Long usf;
+    private UsfEntity idUsf;
 
     private Long necessaryAmount;
 

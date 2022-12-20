@@ -56,8 +56,8 @@ public class SolicitationControllerTest {
 
     private SolicitationRequestDTO getSolicitationRequestDTO() {
         return SolicitationRequestDTO.builder()
-                .resource(Long.valueOf(1))
-                .usf(Long.valueOf(1))
+                .idResource(Long.valueOf(1))
+                .idUsf(Long.valueOf(1))
                 .necessaryAmount(Long.valueOf(1))
                 .build();
     }

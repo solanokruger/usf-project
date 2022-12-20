@@ -63,7 +63,7 @@ public class UsfServiceImpl implements UsfService {
         usfRepository.deleteById(id);
     }
 
-    private UsfEntity getUsfEntity(Long id) {
+    public UsfEntity getUsfEntity(Long id) {
         return usfRepository.findById(id)
                 .orElseThrow(UsfNotFoundException::new);
     }
