@@ -28,7 +28,4 @@ public class ResourceEntity {
     @Enumerated(EnumType.STRING)
     private EnumCategoryResource category;
 
-//    @Column(name = "MINAMOUNT", nullable = false)
-//    private int minAmount;
-
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.enums.EnumCategoryResource;
 import uol.compass.project.usf.services.ResourceServiceImpl;
 
 @RestController
@@ -24,8 +25,9 @@ public class ResourceController {
     }
 
     @GetMapping
-    public ResponseEntity<ResourceResponseParameters> findAll(Pageable pageable) {
-        ResourceResponseParameters response = resourceService.getAllResources(pageable);
+    public ResponseEntity<ResourceResponseParameters> findAll(@RequestParam(required = false) EnumCategoryResource category,
+                                                              Pageable pageable) {
+        ResourceResponseParameters response = resourceService.getAllResources(category, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

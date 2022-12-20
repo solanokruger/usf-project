@@ -10,6 +10,7 @@ import uol.compass.project.usf.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.entities.ResourceEntity;
+import uol.compass.project.usf.enums.EnumCategoryResource;
 import uol.compass.project.usf.repositories.ResourceRepository;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class ResourceServiceImpl implements ResourceService{
 
     private final ModelMapper modelMapper;
+
     private final ResourceRepository resourceRepository;
 
     @Override
@@ -32,12 +34,13 @@ public class ResourceServiceImpl implements ResourceService{
     }
 
     @Override
-    public ResourceResponseParameters getAllResources(Pageable pageable) {
-        Page<ResourceEntity> page = resourceRepository.findAll(pageable);
+    public ResourceResponseParameters getAllResources(EnumCategoryResource category, Pageable pageable) {
+        Page<ResourceEntity> page = category == null ?
+                resourceRepository.findAll(pageable):
+                resourceRepository.findAllByCategory(category, pageable);
 
         return createResourceResponseParameters(page);
     }
-
 
     private ResourceResponseParameters createResourceResponseParameters(Page<ResourceEntity> page) {
         List<ResourceResponseDTO> resources = page.stream()

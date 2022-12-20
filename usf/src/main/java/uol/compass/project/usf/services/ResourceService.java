@@ -4,9 +4,10 @@ import org.springframework.data.domain.Pageable;
 import uol.compass.project.usf.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.enums.EnumCategoryResource;
 
 public interface ResourceService {
         ResourceResponseDTO createResource(ResourceRequestDTO requestDTO);
-        ResourceResponseParameters getAllResources(Pageable pageable);
 
+        ResourceResponseParameters getAllResources(EnumCategoryResource category, Pageable pageable);
 }

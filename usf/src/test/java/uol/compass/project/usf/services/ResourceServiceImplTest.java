@@ -8,13 +8,16 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
-import uol.compass.project.usf.dto.response.TeamResponseDTO;
+import uol.compass.project.usf.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.entities.ResourceEntity;
-import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.repositories.ResourceRepository;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,7 +34,7 @@ public class ResourceServiceImplTest {
     ModelMapper modelMapper;
 
     @Test
-    public void shouldCreateTeamTest_success(){
+    public void shouldCreateResourceTest_success(){
         ResourceEntity resourceEntity = new ResourceEntity();
         ResourceRequestDTO resourceRequestDTO = new ResourceRequestDTO();
         ResourceResponseDTO responseDTO = new ResourceResponseDTO();
@@ -47,6 +50,25 @@ public class ResourceServiceImplTest {
 
     @Test
     public void shouldFindAllResourcesTest_success(){
+        ResourceEntity resource = new ResourceEntity();
+        ResourceResponseDTO response = new ResourceResponseDTO();
+        Page<ResourceEntity> page = new PageImpl<>(List.of(resource));
+        ResourceResponseParameters expectedResourceResponseParameters = getResourceResponseParameters();
 
+        Mockito.when(resourceService.getAllResources(any(), (Pageable) any())).thenReturn((ResourceResponseParameters) page);
+
+        ResourceResponseParameters resourceResponseParameters = resourceService.getAllResources(null, any(Pageable.class));
+
+        assertEquals(expectedResourceResponseParameters, resourceResponseParameters);
+    }
+
+
+    private ResourceResponseParameters getResourceResponseParameters() {
+        return ResourceResponseParameters.builder()
+                .numberOfElements(1)
+                .totalElements(1L)
+                .totalPages(1)
+                .resources(List.of(new ResourceResponseDTO()))
+                .build();
     }
 }
