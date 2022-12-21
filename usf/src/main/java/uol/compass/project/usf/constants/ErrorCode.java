@@ -12,7 +12,8 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR("Erro interno do servidor"),
     USF_NOT_FOUND("USF não encontrada"),
     TEAM_NOT_FOUND("Equipe não encontrado"),
-    DOCTOR_NOT_FOUND("Médico não encontrado");
+    DOCTOR_NOT_FOUND("Médico não encontrado"),
+    RESOURCE_NOT_FOUND("Recurso não encontrado");
 
     private final String message;
     

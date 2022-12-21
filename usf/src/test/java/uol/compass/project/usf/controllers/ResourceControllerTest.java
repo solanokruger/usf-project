@@ -26,6 +26,8 @@ public class ResourceControllerTest {
 
     public static final String BASE_URL = "/resource";
 
+    public static final String ID_URL = BASE_URL + "/1";
+
     @Autowired
     private MockMvc mvc;
 
@@ -61,6 +63,23 @@ public class ResourceControllerTest {
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void findById() throws Exception {
+        ResourceResponseDTO resourceResponseDTO = new ResourceResponseDTO();
+
+        when(resourceService.getResourceById(any())).thenReturn(resourceResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(ID_URL)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();

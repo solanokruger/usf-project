@@ -11,6 +11,7 @@ import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.entities.ResourceEntity;
 import uol.compass.project.usf.enums.EnumCategoryResource;
+import uol.compass.project.usf.exceptions.ResourceNotFoundException;
 import uol.compass.project.usf.repositories.ResourceRepository;
 
 import java.util.ArrayList;
@@ -40,6 +41,17 @@ public class ResourceServiceImpl implements ResourceService{
                 resourceRepository.findAllByCategory(category, pageable);
 
         return createResourceResponseParameters(page);
+    }
+
+    @Override
+    public ResourceResponseDTO getResourceById(Long id) {
+        ResourceEntity resource = getResourceByIdVerification(id);
+        return modelMapper.map(resource, ResourceResponseDTO.class);
+    }
+
+    private ResourceEntity getResourceByIdVerification(Long id) {
+        return resourceRepository.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     private ResourceResponseParameters createResourceResponseParameters(Page<ResourceEntity> page) {

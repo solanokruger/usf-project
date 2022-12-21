@@ -10,4 +10,7 @@ public interface ResourceService {
         ResourceResponseDTO createResource(ResourceRequestDTO requestDTO);
 
         ResourceResponseParameters getAllResources(EnumCategoryResource category, Pageable pageable);
+
+        ResourceResponseDTO getResourceById(Long id);
+
 }

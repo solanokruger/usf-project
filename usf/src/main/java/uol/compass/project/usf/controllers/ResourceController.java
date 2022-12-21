@@ -31,6 +31,12 @@ public class ResourceController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ResourceResponseDTO> getTeamById(@PathVariable Long id) {
+        ResourceResponseDTO responseDTO = resourceService.getResourceById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+    }
+
 
 
 }

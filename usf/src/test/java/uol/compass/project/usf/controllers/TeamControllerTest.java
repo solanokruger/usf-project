@@ -27,6 +27,8 @@ public class TeamControllerTest {
 
     public static final String BASE_URL = "/team";
 
+    public static final String ID_URL = BASE_URL + "/1";
+
     @Autowired
     private MockMvc mvc;
 
@@ -62,6 +64,23 @@ public class TeamControllerTest {
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void findById() throws Exception {
+        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+
+        when(teamService.getTeamById(any())).thenReturn(teamResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(ID_URL)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
