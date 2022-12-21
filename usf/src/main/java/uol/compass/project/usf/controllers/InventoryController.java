@@ -1,6 +1,7 @@
 package uol.compass.project.usf.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import uol.compass.project.usf.dto.response.InventoryResponseParameters;
 import uol.compass.project.usf.services.InventoryServiceImpl;
 
 import javax.validation.Valid;
-import java.awt.print.Pageable;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class InventoryController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<InventoryResponseDTO> update(@PathVariable("id") Long id, @RequestBody @Valid InventoryRequestDTO request) {
-        InventoryResponseDTO response = inventoryService.findById(id);
+        InventoryResponseDTO response = inventoryService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

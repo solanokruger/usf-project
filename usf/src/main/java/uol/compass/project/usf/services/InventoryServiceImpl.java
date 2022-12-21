@@ -29,6 +29,7 @@ public class InventoryServiceImpl implements InventoryService {
         return modelMapper.map(inventoryCreated, InventoryResponseDTO.class);
     }
 
+
     @Override
     public InventoryResponseParameters findAll(Pageable pageable) {
         Page<InventoryEntity> page = inventoryRepository.findAll(pageable);
