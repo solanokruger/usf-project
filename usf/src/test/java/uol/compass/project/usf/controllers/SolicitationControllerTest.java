@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
@@ -52,6 +53,23 @@ public class SolicitationControllerTest {
         MockHttpServletResponse servletResponse = result.getResponse();
 
         assertEquals(HttpStatus.CREATED.value(), servletResponse.getStatus());
+    }
+
+    @Test
+    void findAll() throws Exception {
+        SolicitationResponseParameters solicitationResponseParameters = new SolicitationResponseParameters();
+
+        when(solicitationService.findAll(any())).thenReturn(solicitationResponseParameters);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(BASE_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
     private SolicitationRequestDTO getSolicitationRequestDTO() {
