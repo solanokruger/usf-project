@@ -96,7 +96,7 @@ public class TeamService {
 
     public void validateTeamColor(TeamRequestDTO teamRequestDTO){
         List<TeamEntity> all = teamRepository.findAll();
-        List<String> colors = new ArrayList();
+        List<String> colors = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             colors.add(all.get(i).getColor());
         }
