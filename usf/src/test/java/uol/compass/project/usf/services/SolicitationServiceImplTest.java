@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +28,8 @@ import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class SolicitationServiceImplTest {
+
+    public static final Long ID = 1L;
 
     @InjectMocks
     private SolicitationServiceImpl solicitationService;
@@ -69,6 +72,18 @@ public class SolicitationServiceImplTest {
         SolicitationResponseParameters solicitationResponseParameters = solicitationService.findAll(any(Pageable.class));
 
         assertEquals(expectedSolicitationResponseParameters, solicitationResponseParameters);
+    }
+
+    @Test
+    void shouldFindSolicitationById_sucess() {
+        SolicitationEntity solicitation = new SolicitationEntity();
+        SolicitationResponseDTO solicitationResponseDto = new SolicitationResponseDTO();
+
+        Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
+
+        SolicitationResponseDTO response = solicitationService.findById(ID);
+
+        assertEquals(response, solicitationResponseDto);
     }
 
     private SolicitationResponseParameters getSolicitationResponseParameters() {

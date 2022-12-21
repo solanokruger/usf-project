@@ -72,6 +72,23 @@ public class SolicitationControllerTest {
         assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
+    @Test
+    void findById() throws Exception {
+        SolicitationResponseDTO solicitationResponseDTO = new SolicitationResponseDTO();
+
+        when(solicitationService.findById(any())).thenReturn(solicitationResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(ID_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
     private SolicitationRequestDTO getSolicitationRequestDTO() {
         return SolicitationRequestDTO.builder()
                 .idResource(Long.valueOf(1))

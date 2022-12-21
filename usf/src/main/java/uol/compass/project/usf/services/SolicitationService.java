@@ -12,4 +12,6 @@ public interface SolicitationService {
 
     SolicitationResponseParameters findAll(Pageable pageable);
 
+    SolicitationResponseDTO findById(Long id);
+
 }

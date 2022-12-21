@@ -13,6 +13,7 @@ import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.entities.SolicitationEntity;
+import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
 import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @Service
@@ -43,6 +44,18 @@ public class SolicitationServiceImpl implements SolicitationService {
         return createSolicitationResponseParameters(page);
     }
 
+    @Override
+    public SolicitationResponseDTO findById(Long id) {
+        SolicitationEntity solicitation = getSolicitationEntity(id);
+
+        return modelMapper.map(solicitation, SolicitationResponseDTO.class);
+    }
+
+    private SolicitationEntity getSolicitationEntity(Long id) {
+        return solicitationRepository.findById(id)
+                .orElseThrow(SolicitationNotFoundException::new);
+    }
+
     private SolicitationResponseParameters createSolicitationResponseParameters(Page<SolicitationEntity> page) {
         List<SolicitationResponseDTO> solicitation = page.stream()
                 .map(this::createSolicitationResponse)
@@ -59,5 +72,5 @@ public class SolicitationServiceImpl implements SolicitationService {
     private SolicitationResponseDTO createSolicitationResponse(SolicitationEntity solicitation) {
         return modelMapper.map(solicitation, SolicitationResponseDTO.class);
     }
-    
+
 }
