@@ -88,7 +88,7 @@ public class SolicitationServiceImplTest {
     }
 
     @Test
-    void shouldUpdateUsf_sucess() {
+    void shouldUpdateSolicitation_sucess() {
         SolicitationEntity solicitation = new SolicitationEntity();
         SolicitationResponseDTO solicitationResponseDto = new SolicitationResponseDTO();
         solicitationResponseDto.setNecessaryAmount(1L);
@@ -101,6 +101,17 @@ public class SolicitationServiceImplTest {
         SolicitationResponseDTO response = solicitationService.update(ID, request);
 
         assertEquals(response, solicitationResponseDto);
+    }
+
+    @Test
+    void shouldDeleteSolicitation_sucess() {
+        SolicitationEntity solicitation = new SolicitationEntity();
+
+        Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
+
+        solicitationService.delete(ID);
+
+        verify(solicitationRepository).deleteById(any());
     }
 
     private SolicitationResponseParameters getSolicitationResponseParameters() {

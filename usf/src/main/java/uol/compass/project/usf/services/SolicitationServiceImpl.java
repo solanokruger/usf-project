@@ -69,6 +69,12 @@ public class SolicitationServiceImpl implements SolicitationService {
         return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
     }
 
+    @Override
+    public void delete(Long id) {
+        getSolicitationEntity(id);
+        solicitationRepository.deleteById(id);
+    }
+
     private SolicitationEntity getSolicitationEntity(Long id) {
         return solicitationRepository.findById(id)
                 .orElseThrow(SolicitationNotFoundException::new);
