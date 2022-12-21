@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
@@ -87,6 +88,33 @@ public class SolicitationControllerTest {
         MockHttpServletResponse response = result.getResponse();
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void update() throws Exception {
+        SolicitationUpdateRequestDTO request = getSolicitationUpdateRequestDTO();
+        SolicitationResponseDTO solicitationResponseDTO = new SolicitationResponseDTO();
+
+        when(solicitationService.update(any(), any())).thenReturn(solicitationResponseDTO);
+
+        String input = TestUtils.mapToJson(request);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.patch(ID_URL)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .content(input)
+                    .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    private SolicitationUpdateRequestDTO getSolicitationUpdateRequestDTO() {
+        return SolicitationUpdateRequestDTO.builder()
+                .necessaryAmount(Long.valueOf(1))
+                .build();
     }
 
     private SolicitationRequestDTO getSolicitationRequestDTO() {

@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.entities.SolicitationEntity;
@@ -82,6 +83,22 @@ public class SolicitationServiceImplTest {
         Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
 
         SolicitationResponseDTO response = solicitationService.findById(ID);
+
+        assertEquals(response, solicitationResponseDto);
+    }
+
+    @Test
+    void shouldUpdateUsf_sucess() {
+        SolicitationEntity solicitation = new SolicitationEntity();
+        SolicitationResponseDTO solicitationResponseDto = new SolicitationResponseDTO();
+        solicitationResponseDto.setNecessaryAmount(1L);
+        SolicitationUpdateRequestDTO request = new SolicitationUpdateRequestDTO();
+        request.setNecessaryAmount(1L);
+
+        Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
+        Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);
+
+        SolicitationResponseDTO response = solicitationService.update(ID, request);
 
         assertEquals(response, solicitationResponseDto);
     }
