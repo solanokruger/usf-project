@@ -89,6 +89,27 @@ public class ResourceControllerTest {
         assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
+    @Test
+    void update() throws Exception {
+        ResourceRequestDTO request = getResourceRequestDTO();
+        ResourceResponseDTO resourceResponseDTO = new ResourceResponseDTO();
+
+        when(resourceService.update(any(), any())).thenReturn(resourceResponseDTO);
+
+        String input = uol.compass.project.utils.TestUtils.mapToJson(request);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.put(ID_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(input)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
 
     private ResourceRequestDTO getResourceRequestDTO() {
         return ResourceRequestDTO.builder()

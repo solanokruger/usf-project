@@ -90,6 +90,27 @@ public class TeamControllerTest {
         assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
+    @Test
+    void update() throws Exception {
+        TeamRequestDTO request = getTeamRequestDTO();
+        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+
+        when(teamService.update(any(), any())).thenReturn(teamResponseDTO);
+
+        String input = uol.compass.project.utils.TestUtils.mapToJson(request);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.put(ID_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(input)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
     private TeamRequestDTO getTeamRequestDTO() {
         return TeamRequestDTO.builder()
                 .color("Blue")

@@ -61,9 +61,9 @@ public class TeamService {
         getTeamByIdVerication(id);
         TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
         newTeam.setId(id);
-        TeamEntity updatedTeam = teamRepository.save(newTeam);
+        teamRepository.save(newTeam);
 
-        return modelMapper.map(updatedTeam, TeamResponseDTO.class);
+        return modelMapper.map(newTeam, TeamResponseDTO.class);
     }
 
     private UsfEntity getUsfEntity(Long id) {

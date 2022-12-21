@@ -24,6 +24,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,7 +61,7 @@ public class ResourceServiceImplTest {
         Page<ResourceEntity> page = new PageImpl<>(List.of(resource));
         ResourceResponseParameters expectedResourceResponseParameters = getResourceResponseParameters();
 
-        Mockito.when(resourceService.getAllResources(any(), (Pageable) any())).thenReturn((ResourceResponseParameters) page);
+        Mockito.when(resourceRepository.findAll((Pageable) any())).thenReturn(page);
 
         ResourceResponseParameters resourceResponseParameters = resourceService.getAllResources(null, any(Pageable.class));
 
@@ -79,6 +80,29 @@ public class ResourceServiceImplTest {
         assertNotNull(response);
         assertEquals(response.getId(), resource.getId());
         assertEquals(response.getName(), resource.getName());
+    }
+
+    @Test
+    public void shouldUpdateResourceTest_success(){
+        ResourceEntity resource = new ResourceEntity(
+                ID, "Estetoscopio", "Equipamento médico", EnumCategoryResource.EQUIPAMENTO);
+
+        ResourceResponseDTO expectedResponse = new ResourceResponseDTO(
+                ID, "Estetoscopio", "Equipamento médico", EnumCategoryResource.EQUIPAMENTO);
+
+        ResourceRequestDTO request = new ResourceRequestDTO();
+
+        request.setCategory(EnumCategoryResource.MEDICAMENTO.toString());
+        request.setName("Teste");
+        request.setDescription("Equipamento de teste");
+
+        Mockito.when(resourceRepository.findById(any())).thenReturn(Optional.of(resource));
+        Mockito.when(resourceRepository.save(any())).thenReturn(resource);
+
+        ResourceResponseDTO resourceResponseDTO = resourceService.update(request, ID);
+
+        assertEquals(expectedResponse.getId(), resourceResponseDTO.getId());
+        verify(resourceRepository, times(1)).save(any());
     }
 
 

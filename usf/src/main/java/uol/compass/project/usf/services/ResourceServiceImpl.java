@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import uol.compass.project.usf.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.entities.ResourceEntity;
+import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.enums.EnumCategoryResource;
 import uol.compass.project.usf.exceptions.ResourceNotFoundException;
 import uol.compass.project.usf.repositories.ResourceRepository;
@@ -47,6 +49,17 @@ public class ResourceServiceImpl implements ResourceService{
     public ResourceResponseDTO getResourceById(Long id) {
         ResourceEntity resource = getResourceByIdVerification(id);
         return modelMapper.map(resource, ResourceResponseDTO.class);
+    }
+
+    @Override
+    public ResourceResponseDTO update(ResourceRequestDTO request, Long id) {
+        getResourceByIdVerification(id);
+        ResourceEntity newResource = modelMapper.map(request, ResourceEntity.class);
+        newResource.setId(id);
+
+        resourceRepository.save(newResource);
+
+        return modelMapper.map(newResource, ResourceResponseDTO.class);
     }
 
     private ResourceEntity getResourceByIdVerification(Long id) {

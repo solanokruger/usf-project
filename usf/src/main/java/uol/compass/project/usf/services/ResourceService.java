@@ -13,4 +13,6 @@ public interface ResourceService {
 
         ResourceResponseDTO getResourceById(Long id);
 
+        ResourceResponseDTO update(ResourceRequestDTO request, Long id);
+
 }
