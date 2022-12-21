@@ -1,5 +1,6 @@
 package uol.compass.project.usf.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.entities.SolicitationEntity;
+import uol.compass.project.usf.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
 import uol.compass.project.usf.repositories.SolicitationRepository;
 
@@ -49,6 +52,21 @@ public class SolicitationServiceImpl implements SolicitationService {
         SolicitationEntity solicitation = getSolicitationEntity(id);
 
         return modelMapper.map(solicitation, SolicitationResponseDTO.class);
+    }
+
+    @Override
+    public SolicitationResponseDTO update(Long id, SolicitationUpdateRequestDTO request) {
+        SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
+
+        if (request.getNecessaryAmount() == 0) {
+            solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUDED);
+            solicitationToUpdate.setAnsweredDate(LocalDateTime.now());
+        }
+
+        solicitationToUpdate.setNecessaryAmount(request.getNecessaryAmount());
+        SolicitationEntity updatedSolicitation = solicitationRepository.save(solicitationToUpdate);
+
+        return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
     }
 
     private SolicitationEntity getSolicitationEntity(Long id) {

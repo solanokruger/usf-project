@@ -6,14 +6,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
@@ -40,6 +43,13 @@ public class SolicitationController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<SolicitationResponseDTO> findById(@PathVariable("id") Long id) {
         SolicitationResponseDTO response = solicitationService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<SolicitationResponseDTO> update(@PathVariable("id") Long id,
+                            @RequestBody @Valid SolicitationUpdateRequestDTO request) {
+        SolicitationResponseDTO response = solicitationService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
