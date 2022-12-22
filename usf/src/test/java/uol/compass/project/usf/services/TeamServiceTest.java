@@ -128,5 +128,16 @@ public class TeamServiceTest {
         assertEquals(usf.getIdCurrentTeam(), usfEntity.getIdCurrentTeam());
     }
 
+    @Test
+    void shouldDeleteTeam_sucess() {
+        TeamEntity team = new TeamEntity();
+
+        Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
+
+        teamService.delete(ID_TEAM);
+
+        verify(teamRepository).deleteById(any());
+    }
+
 
 }

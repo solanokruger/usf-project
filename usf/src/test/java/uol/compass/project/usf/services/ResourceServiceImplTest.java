@@ -105,6 +105,17 @@ public class ResourceServiceImplTest {
         verify(resourceRepository, times(1)).save(any());
     }
 
+    @Test
+    void shouldDeleteResource_sucess() {
+        ResourceEntity resource = new ResourceEntity();
+
+        Mockito.when(resourceRepository.findById(any())).thenReturn(Optional.of(resource));
+
+        resourceService.delete(ID);
+
+        verify(resourceRepository).deleteById(any());
+    }
+
 
     private ResourceResponseParameters getResourceResponseParameters() {
         return ResourceResponseParameters.builder()
