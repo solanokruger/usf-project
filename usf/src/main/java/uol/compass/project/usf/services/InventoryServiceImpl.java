@@ -10,6 +10,7 @@ import uol.compass.project.usf.dto.response.InventoryResponseDTO;
 import uol.compass.project.usf.dto.response.InventoryResponseParameters;
 import uol.compass.project.usf.entities.InventoryEntity;
 import uol.compass.project.usf.exceptions.DoctorNotFoundException;
+import uol.compass.project.usf.exceptions.InventoryNotFoundException;
 import uol.compass.project.usf.repositories.InventoryRepository;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     private InventoryEntity getInventoryEntity(Long id) {
         return inventoryRepository.findById(id)
-                .orElseThrow(DoctorNotFoundException::new);
+                .orElseThrow(InventoryNotFoundException::new);
     }
 
     private InventoryResponseParameters createInventoryResponseParameters(Page<InventoryEntity> page) {
