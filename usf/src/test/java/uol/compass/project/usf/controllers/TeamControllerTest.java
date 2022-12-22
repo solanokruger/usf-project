@@ -97,7 +97,7 @@ public class TeamControllerTest {
 
         when(teamService.update(any(), any())).thenReturn(teamResponseDTO);
 
-        String input = uol.compass.project.utils.TestUtils.mapToJson(request);
+        String input = uol.compass.project.usf.utils.TestUtils.mapToJson(request);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.put(ID_URL)

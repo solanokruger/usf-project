@@ -96,7 +96,7 @@ public class ResourceControllerTest {
 
         when(resourceService.update(any(), any())).thenReturn(resourceResponseDTO);
 
-        String input = uol.compass.project.utils.TestUtils.mapToJson(request);
+        String input = uol.compass.project.usf.utils.TestUtils.mapToJson(request);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.put(ID_URL)
