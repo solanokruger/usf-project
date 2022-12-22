@@ -93,6 +93,11 @@ public class TeamService {
         return modelMapper.map(newUsf, UsfResponseDTO.class);
     }
 
+    public void delete(Long id) {
+        getTeamByIdVerication(id);
+        teamRepository.deleteById(id);
+    }
+
 
     public void validateTeamColor(TeamRequestDTO teamRequestDTO){
         List<TeamEntity> all = teamRepository.findAll();

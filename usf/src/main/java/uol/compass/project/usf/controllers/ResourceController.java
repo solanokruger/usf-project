@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.enums.EnumCategoryResource;
@@ -33,7 +32,7 @@ public class ResourceController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResourceResponseDTO> getTeamById(@PathVariable Long id) {
+    public ResponseEntity<ResourceResponseDTO> findById(@PathVariable Long id) {
         ResourceResponseDTO responseDTO = resourceService.getResourceById(id);
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
@@ -44,6 +43,12 @@ public class ResourceController {
         ResourceResponseDTO responseDTO = resourceService.update(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        resourceService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 

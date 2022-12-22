@@ -71,6 +71,12 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body(usfResponseDTO);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        teamService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
     private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
         char[] chars = teamRequestDTO.getColor().toCharArray();

@@ -15,4 +15,6 @@ public interface ResourceService {
 
         ResourceResponseDTO update(ResourceRequestDTO request, Long id);
 
+        void delete(Long id);
+
 }
