@@ -1,8 +1,7 @@
 package uol.compass.project.usf.exceptions;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 import uol.compass.project.usf.constants.ErrorCode;
 
 @Getter

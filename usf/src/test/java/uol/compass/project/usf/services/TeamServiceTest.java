@@ -44,15 +44,16 @@ public class TeamServiceTest {
     @Test
     public void shouldCreateTeamTest_success(){
         TeamEntity team = new TeamEntity();
-        TeamResponseDTO response = new TeamResponseDTO();
-        TeamRequestDTO request = new TeamRequestDTO();
+        TeamRequestDTO teamRequestDTO = new TeamRequestDTO();
+        TeamResponseDTO responseDTO = new TeamResponseDTO();
 
-        Mockito.when(usfRepository.save(any())).thenReturn(team);
+        Mockito.when(teamRepository.save(any())).thenReturn(team);
 
-        TeamResponseDTO teamResponseDTO = teamService.createTeam(request);
+        TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
 
-        assertEquals(response.getId(), teamResponseDTO.getId());
-        verify(usfRepository).save(any());
+        assertEquals(teamResponseDTO.getId(), responseDTO.getId());
+
+        verify(teamRepository).save(any());
     }
 
     @Test
