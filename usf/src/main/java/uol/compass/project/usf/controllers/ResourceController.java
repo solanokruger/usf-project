@@ -19,7 +19,7 @@ public class ResourceController {
     private final ResourceServiceImpl resourceService;
 
     @PostMapping
-    public ResponseEntity create(@RequestBody ResourceRequestDTO resourceRequestDTO){
+    public ResponseEntity<ResourceResponseDTO> create(@RequestBody ResourceRequestDTO resourceRequestDTO){
         ResourceResponseDTO responseDTO = resourceService.createResource(resourceRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }

@@ -86,7 +86,7 @@ public class ResourceServiceImpl implements ResourceService{
 
     private void validateResourceName(ResourceRequestDTO requestDTO) {
         List<ResourceEntity> all = resourceRepository.findAll();
-        List<String> names = new ArrayList();
+        List<String> names = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             names.add(all.get(i).getName());
         }

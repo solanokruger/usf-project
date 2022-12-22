@@ -59,7 +59,7 @@ public class SolicitationServiceImpl implements SolicitationService {
         SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
 
         if (request.getNecessaryAmount() == 0) {
-            solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUDED);
+            solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUIDO);
             solicitationToUpdate.setAnsweredDate(LocalDateTime.now());
         }
 

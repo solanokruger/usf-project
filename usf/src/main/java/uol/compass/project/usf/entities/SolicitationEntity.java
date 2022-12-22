@@ -45,7 +45,7 @@ public class SolicitationEntity {
     @PrePersist
     public void prePersist() {
         requestedDate = LocalDateTime.now();
-        statusSolicitation = EnumStatusSolicitation.PENDENT;
+        statusSolicitation = EnumStatusSolicitation.PENDENTE;
     }
 
 }
