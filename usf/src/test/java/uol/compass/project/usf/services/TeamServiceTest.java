@@ -23,7 +23,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+<<<<<<< HEAD
 import static org.mockito.Mockito.*;
+=======
+
+>>>>>>> crud-resource
 
 @ExtendWith(MockitoExtension.class)
 public class TeamServiceTest {
@@ -43,15 +47,16 @@ public class TeamServiceTest {
     @Test
     public void shouldCreateTeamTest_success(){
         TeamEntity team = new TeamEntity();
-        TeamResponseDTO response = new TeamResponseDTO();
-        TeamRequestDTO request = new TeamRequestDTO();
+        TeamRequestDTO teamRequestDTO = new TeamRequestDTO();
+        TeamResponseDTO responseDTO = new TeamResponseDTO();
 
-        Mockito.when(usfRepository.save(any())).thenReturn(team);
+        Mockito.when(teamRepository.save(any())).thenReturn(team);
 
-        TeamResponseDTO teamResponseDTO = teamService.createTeam(request);
+        TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
 
-        assertEquals(response, teamResponseDTO);
-        verify(usfRepository).save(any());
+        assertEquals(teamResponseDTO.getId(), responseDTO.getId());
+
+        verify(teamRepository).save(any());
     }
 
     @Test
@@ -125,6 +130,17 @@ public class TeamServiceTest {
 
         assertNotNull(usfEntity);
         assertEquals(usf.getIdCurrentTeam(), usfEntity.getIdCurrentTeam());
+    }
+
+    @Test
+    void shouldDeleteTeam_sucess() {
+        TeamEntity team = new TeamEntity();
+
+        Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
+
+        teamService.delete(ID_TEAM);
+
+        verify(teamRepository).deleteById(any());
     }
 
 

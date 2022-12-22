@@ -24,7 +24,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import uol.compass.project.usf.constants.ErrorCode;
 import uol.compass.project.usf.dto.ExceptionResponse;
 import uol.compass.project.usf.exceptions.DoctorNotFoundException;
+<<<<<<< HEAD
 import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
+=======
+import uol.compass.project.usf.exceptions.ResourceNotFoundException;
+>>>>>>> crud-resource
 import uol.compass.project.usf.exceptions.TeamNotFoundException;
 import uol.compass.project.usf.exceptions.UsfNotFoundException;
 
@@ -91,9 +95,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 
+<<<<<<< HEAD
     @ExceptionHandler(SolicitationNotFoundException.class)
     public final ResponseEntity<Object> handleSolicitationNotFoundException(SolicitationNotFoundException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.SOLICITATION_NOT_FOUND, ex);
+=======
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.RESOURCE_NOT_FOUND, ex);
+>>>>>>> crud-resource
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 

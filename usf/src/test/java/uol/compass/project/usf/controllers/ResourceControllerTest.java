@@ -11,21 +11,20 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.dto.request.TeamRequestDTO;
-import uol.compass.project.usf.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.services.TeamService;
+import uol.compass.project.usf.dto.request.ResourceRequestDTO;
+import uol.compass.project.usf.dto.response.ResourceResponseDTO;
+import uol.compass.project.usf.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.services.ResourceServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(controllers = TeamController.class)
-public class TeamControllerTest {
+@WebMvcTest(controllers = ResourceController.class)
+public class ResourceControllerTest {
 
-    public static final String BASE_URL = "/team";
+    public static final String BASE_URL = "/resource";
 
     public static final String ID_URL = BASE_URL + "/1";
 
@@ -33,14 +32,14 @@ public class TeamControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private TeamService teamService;
+    private ResourceServiceImpl resourceService;
 
     @Test
     void create() throws Exception {
-        TeamRequestDTO request = getTeamRequestDTO();
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        ResourceRequestDTO request = getResourceRequestDTO();
+        ResourceResponseDTO responseDTO = new ResourceResponseDTO();
 
-        when(teamService.createTeam(any())).thenReturn(teamResponseDTO);
+        when(resourceService.createResource(any())).thenReturn(responseDTO);
 
         String input = TestUtils.mapToJson(request);
 
@@ -58,9 +57,9 @@ public class TeamControllerTest {
 
     @Test
     void findAll() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        ResourceResponseParameters resourceResponseParameters = new ResourceResponseParameters();
 
-        Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
+        Mockito.when(resourceService.getAllResources(any(), any())).thenReturn(resourceResponseParameters);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
@@ -75,9 +74,9 @@ public class TeamControllerTest {
 
     @Test
     void findById() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        ResourceResponseDTO resourceResponseDTO = new ResourceResponseDTO();
 
-        when(teamService.getTeamById(any())).thenReturn(teamResponseDTO);
+        when(resourceService.getResourceById(any())).thenReturn(resourceResponseDTO);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(ID_URL)
@@ -92,10 +91,10 @@ public class TeamControllerTest {
 
     @Test
     void update() throws Exception {
-        TeamRequestDTO request = getTeamRequestDTO();
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        ResourceRequestDTO request = getResourceRequestDTO();
+        ResourceResponseDTO resourceResponseDTO = new ResourceResponseDTO();
 
-        when(teamService.update(any(), any())).thenReturn(teamResponseDTO);
+        when(resourceService.update(any(), any())).thenReturn(resourceResponseDTO);
 
         String input = uol.compass.project.utils.TestUtils.mapToJson(request);
 
@@ -124,11 +123,12 @@ public class TeamControllerTest {
         assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
     }
 
-    private TeamRequestDTO getTeamRequestDTO() {
-        return TeamRequestDTO.builder()
-                .color("Blue")
+
+    private ResourceRequestDTO getResourceRequestDTO() {
+        return ResourceRequestDTO.builder()
+                .name("Recurso")
+                .category("EQUIPAMENTO")
+                .description("Recurso para USF")
                 .build();
     }
-
-
 }
