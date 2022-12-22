@@ -23,6 +23,7 @@ import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.entities.ResourceEntity;
 import uol.compass.project.usf.entities.SolicitationEntity;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.repositories.SolicitationRepository;
@@ -39,6 +40,9 @@ public class SolicitationServiceImplTest {
     private UsfServiceImpl usfService;
 
     @Mock
+    private ResourceServiceImpl resourceService;
+
+    @Mock
     private SolicitationRepository solicitationRepository;
 
     @Spy
@@ -51,6 +55,10 @@ public class SolicitationServiceImplTest {
         SolicitationResponseDTO response = new SolicitationResponseDTO();
 
         UsfEntity usf = new UsfEntity();
+
+        ResourceEntity resource = new ResourceEntity();
+
+        Mockito.when(resourceService.getResourceByIdVerification(any())).thenReturn(resource);
 
         Mockito.when(usfService.getUsfEntity(any())).thenReturn(usf);
 

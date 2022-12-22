@@ -28,7 +28,8 @@ public class SolicitationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long idResource;
+    @ManyToOne
+    private ResourceEntity idResource;
 
     private LocalDateTime requestedDate;
 

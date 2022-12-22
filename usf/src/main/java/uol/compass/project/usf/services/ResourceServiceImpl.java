@@ -66,7 +66,7 @@ public class ResourceServiceImpl implements ResourceService{
         resourceRepository.deleteById(id);
     }
 
-    private ResourceEntity getResourceByIdVerification(Long id) {
+    public ResourceEntity getResourceByIdVerification(Long id) {
         return resourceRepository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
