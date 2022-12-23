@@ -9,17 +9,14 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "doctor")
-@Table(name = "doctor")
-public class DoctorEntity {
-
+@Entity(name = "inventory")
+@Table(name = "inventory")
+public class InventoryEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String specialization;
-
-    @ManyToOne
-    private TeamEntity idTeam;
-    
+    private long id;
+    private long idResource;
+    private long idUsf;
+    private int amount;
 }

@@ -15,8 +15,8 @@ public enum ErrorCode {
     TEAM_NOT_FOUND("Equipe não encontrado"),
     DOCTOR_NOT_FOUND("Médico não encontrado"),
     SOLICITATION_NOT_FOUND("Pedido não encontrado"),
-    RESOURCE_NOT_FOUND("Recurso não encontrado");
-
+    RESOURCE_NOT_FOUND("Recurso não encontrado"),
+    INVENTORY_NOT_FOUND("Inventário não encontrado");
 
     private final String message;
     

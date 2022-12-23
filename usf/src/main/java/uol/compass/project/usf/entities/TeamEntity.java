@@ -2,6 +2,8 @@ package uol.compass.project.usf.entities;
 
 import lombok.*;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Getter
@@ -20,5 +22,7 @@ public class TeamEntity {
     @Column(name = "COLOR", nullable = false)
     private String color;
 
+    @OneToMany(mappedBy = "idTeam")
+    private List<DoctorEntity> doutores;
 
 }
