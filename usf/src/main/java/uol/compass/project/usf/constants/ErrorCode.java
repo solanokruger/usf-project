@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ErrorCode {
-    
+
     BAD_REQUEST("Pedido inválido"),
     INVALID_PARAMETER("Paramêtro do pedido inválido"),
     INTERNAL_SERVER_ERROR("Erro interno do servidor"),
@@ -19,5 +19,5 @@ public enum ErrorCode {
     INVENTORY_NOT_FOUND("Inventário não encontrado");
 
     private final String message;
-    
+
 }
