@@ -9,6 +9,7 @@ import uol.compass.project.usf.dto.request.DoctorRequestDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseParameters;
 import uol.compass.project.usf.entities.DoctorEntity;
+import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.exceptions.DoctorNotFoundException;
 import uol.compass.project.usf.repositories.DoctorRepository;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
+    private final TeamService teamService;
     private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
 
@@ -41,6 +43,16 @@ public class DoctorServiceImpl implements DoctorService {
         DoctorEntity doctor = getDoctorEntity(id);
 
         return modelMapper.map(doctor, DoctorResponseDTO.class);
+    }
+
+    public DoctorResponseDTO link(Long idDoctor, Long idTeam) {
+        TeamEntity team = modelMapper.map(teamService.getTeamById(idTeam), TeamEntity.class);
+
+        DoctorEntity doctor = getDoctorEntity(idDoctor);
+        doctor.setIdTeam(team);
+
+        DoctorEntity doctorToSave = doctorRepository.save(doctor);
+        return modelMapper.map(doctorToSave, DoctorResponseDTO.class);
     }
 
     @Override

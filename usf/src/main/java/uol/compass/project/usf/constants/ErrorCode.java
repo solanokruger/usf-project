@@ -13,7 +13,9 @@ public enum ErrorCode {
     USF_NOT_FOUND("USF não encontrada"),
     TEAM_NOT_FOUND("Time não encontrado"),
     DOCTOR_NOT_FOUND("Médico não encontrado"),
-    SOLICITATION_NOT_FOUND("Pedido não encontrado");
+    SOLICITATION_NOT_FOUND("Pedido não encontrado"),
+    INVENTORY_NOT_FOUND("Inventário não encontrado");
+
 
     private final String message;
     
