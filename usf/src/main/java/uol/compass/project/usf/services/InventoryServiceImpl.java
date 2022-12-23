@@ -9,7 +9,6 @@ import uol.compass.project.usf.dto.request.InventoryRequestDTO;
 import uol.compass.project.usf.dto.response.InventoryResponseDTO;
 import uol.compass.project.usf.dto.response.InventoryResponseParameters;
 import uol.compass.project.usf.entities.InventoryEntity;
-import uol.compass.project.usf.exceptions.DoctorNotFoundException;
 import uol.compass.project.usf.exceptions.InventoryNotFoundException;
 import uol.compass.project.usf.repositories.InventoryRepository;
 

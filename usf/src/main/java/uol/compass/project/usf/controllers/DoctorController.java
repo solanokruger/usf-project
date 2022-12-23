@@ -21,7 +21,6 @@ public class DoctorController {
     public ResponseEntity<DoctorResponseDTO> create(@RequestBody @Valid DoctorRequestDTO request) {
         DoctorResponseDTO response = doctorService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
     }
 
     @GetMapping

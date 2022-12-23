@@ -17,5 +17,5 @@ public class InventoryEntity {
     private long id;
     private long idResource;
     private long idUsf;
-    private int amount;
+    private long amount;
 }
