@@ -31,7 +31,7 @@ public class InventoryController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping(value = "/id")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<InventoryResponseDTO> findById(@PathVariable("id") Long id) {
         InventoryResponseDTO response = inventoryService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);

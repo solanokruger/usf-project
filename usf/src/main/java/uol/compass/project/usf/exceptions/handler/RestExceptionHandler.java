@@ -100,6 +100,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 
+    @ExceptionHandler(InventoryNotFoundException.class)
+    public final ResponseEntity<Object> handleInventoryNotFoundException(InventoryNotFoundException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.INVENTORY_NOT_FOUND, ex);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
+    }
+
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.INTERNAL_SERVER_ERROR, ex);
