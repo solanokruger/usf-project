@@ -27,12 +27,14 @@ public class SolicitationServiceImpl implements SolicitationService {
 
     private final UsfServiceImpl usfService;
 
+    private final ResourceServiceImpl resourceService;
+
     private final ModelMapper modelMapper;
 
     @Override
     public SolicitationResponseDTO create(SolicitationRequestDTO request) {
         SolicitationEntity solicitationToCreate = new SolicitationEntity();
-        solicitationToCreate.setIdResource(request.getIdResource());
+        solicitationToCreate.setIdResource(resourceService.getResourceByIdVerification(request.getIdResource()));
         solicitationToCreate.setIdUsf(usfService.getUsfEntity(request.getIdUsf()));
         solicitationToCreate.setNecessaryAmount(request.getNecessaryAmount());
         SolicitationEntity solicitationCreated = solicitationRepository.save(solicitationToCreate);
@@ -59,7 +61,7 @@ public class SolicitationServiceImpl implements SolicitationService {
         SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
 
         if (request.getNecessaryAmount() == 0) {
-            solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUDED);
+            solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUIDO);
             solicitationToUpdate.setAnsweredDate(LocalDateTime.now());
         }
 
