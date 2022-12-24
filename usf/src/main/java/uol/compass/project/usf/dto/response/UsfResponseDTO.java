@@ -3,6 +3,7 @@ package uol.compass.project.usf.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uol.compass.project.usf.entities.TeamEntity;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +14,7 @@ public class UsfResponseDTO {
 
     private String name;
 
-    private Long idCurrentTeam;
+    private TeamEntity idCurrentTeam;
 
     private String address;
 

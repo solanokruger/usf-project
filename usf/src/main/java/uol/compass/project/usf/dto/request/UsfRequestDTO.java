@@ -17,8 +17,6 @@ public class UsfRequestDTO {
     @NotBlank
     private String name;
 
-    private Long idCurrentTeam;
-
     @NotNull
     private String address;
 
