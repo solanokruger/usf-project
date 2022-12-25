@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.services.TeamService;
 
 import java.util.List;
@@ -22,21 +21,21 @@ public class TeamController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Object> registerTeam(@RequestBody TeamRequestDTO teamRequestDTO){
+    public ResponseEntity<Object> registerTeam(@RequestBody TeamRequestDTO teamRequestDTO) {
         try {
             validateTeamParameter(teamRequestDTO);
             TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(teamResponseDTO);
-        }catch (IllegalStateException ex){
+        } catch (IllegalStateException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
 
     @PostMapping("/{idTeam}/usf/{idUsf}")
     @Transactional
-    public ResponseEntity<UsfResponseDTO> linkTeamToUsf(@PathVariable Long idTeam, @PathVariable Long idUsf){
-        UsfResponseDTO usfResponseDTO = teamService.setUsfTeam(idTeam, idUsf);
-        return ResponseEntity.status(HttpStatus.OK).body(usfResponseDTO);
+    public ResponseEntity<TeamResponseDTO> linkTeamToUsf(@PathVariable Long idTeam, @PathVariable Long idUsf) {
+        TeamResponseDTO teamResponseDTO = teamService.attachTeamToUsf(idTeam, idUsf);
+        return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
     }
 
     @GetMapping
@@ -53,22 +52,22 @@ public class TeamController {
 
     @GetMapping("/{id}/doctor")
     public ResponseEntity<List<DoctorResponseDTO>> getDoctorsByTeam(@PathVariable Long id) {
-        List<DoctorResponseDTO> doctorsByTeam = teamService.getDoctorsByTeam(id);
+        List<DoctorResponseDTO> doctorsByTeam = teamService.getDoctorsInTeam(id);
         return ResponseEntity.status(HttpStatus.OK).body(doctorsByTeam);
     }
 
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<TeamResponseDTO> updateTeam(@PathVariable Long id,
-                                                            @RequestBody TeamRequestDTO request) {
+            @RequestBody TeamRequestDTO request) {
         TeamResponseDTO response = teamService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping("/{idTeam}/usf/{idUsf}")
-    public ResponseEntity<UsfResponseDTO> deleteTeamFromUsf(@PathVariable Long idTeam, @PathVariable Long idUsf){
-        UsfResponseDTO usfResponseDTO = teamService.deleteTeamFromUsf(idTeam, idUsf);
-        return ResponseEntity.status(HttpStatus.OK).body(usfResponseDTO);
+    public ResponseEntity<TeamResponseDTO> deleteTeamFromUsf(@PathVariable Long idTeam, @PathVariable Long idUsf) {
+        TeamResponseDTO teamResponseDTO = teamService.disattachTeamFromUsf(idTeam, idUsf);
+        return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -77,10 +76,9 @@ public class TeamController {
         return ResponseEntity.noContent().build();
     }
 
-
     private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
         char[] chars = teamRequestDTO.getColor().toCharArray();
-        for (char c:chars) {
+        for (char c : chars) {
             if (!Character.isAlphabetic(c)) {
                 throw new IllegalStateException();
             }

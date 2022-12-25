@@ -7,15 +7,11 @@ import org.springframework.stereotype.Service;
 import uol.compass.project.usf.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.entities.DoctorEntity;
 import uol.compass.project.usf.entities.TeamEntity;
 import uol.compass.project.usf.entities.UsfEntity;
 import uol.compass.project.usf.exceptions.TeamNotFoundException;
-import uol.compass.project.usf.exceptions.UsfNotFoundException;
-import uol.compass.project.usf.repositories.DoctorRepository;
 import uol.compass.project.usf.repositories.TeamRepository;
-import uol.compass.project.usf.repositories.UsfRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,34 +22,33 @@ public class TeamService {
 
     private final ModelMapper modelMapper;
     private final TeamRepository teamRepository;
-    private final DoctorRepository doctorRepository;
-    private final UsfRepository usfRepository;
+    private final UsfServiceImpl usfService;
 
-    public TeamResponseDTO createTeam(TeamRequestDTO teamRequestDTO){
+    public TeamResponseDTO createTeam(TeamRequestDTO teamRequestDTO) {
         validateTeamColor(teamRequestDTO);
         TeamEntity teamEntity = modelMapper.map(teamRequestDTO, TeamEntity.class);
         TeamEntity createdTeam = teamRepository.save(teamEntity);
         return modelMapper.map(createdTeam, TeamResponseDTO.class);
     }
 
-    public List<TeamResponseDTO> getTeams(){
+    public List<TeamResponseDTO> getTeams() {
         List<TeamEntity> allTeams = teamRepository.findAll();
         return modelMapper.map(allTeams, List.class);
     }
 
-    public TeamResponseDTO getTeamById(Long id){
+    public TeamResponseDTO getTeamById(Long id) {
         TeamEntity team = getTeamByIdVerication(id);
         return modelMapper.map(team, TeamResponseDTO.class);
     }
 
-    private TeamEntity getTeamByIdVerication(Long id) {
+    public TeamEntity getTeamByIdVerication(Long id) {
         return teamRepository.findById(id)
                 .orElseThrow(TeamNotFoundException::new);
     }
 
-    public List<DoctorResponseDTO> getDoctorsByTeam(Long id) {
-        getTeamByIdVerication(id);
-        List<DoctorEntity> allDoctors = doctorRepository.findByIdTeam(id);
+    public List<DoctorResponseDTO> getDoctorsInTeam(Long id) {
+        TeamEntity team = getTeamByIdVerication(id);
+        List<DoctorEntity> allDoctors = team.getDoctors();
         return modelMapper.map(allDoctors, List.class);
     }
 
@@ -66,31 +61,24 @@ public class TeamService {
         return modelMapper.map(newTeam, TeamResponseDTO.class);
     }
 
-    private UsfEntity getUsfEntity(Long id) {
-        return usfRepository.findById(id)
-                .orElseThrow(UsfNotFoundException::new);
+    public TeamResponseDTO attachTeamToUsf(Long idTeam, Long idUsf) {
+        TeamEntity teamToAttach = getTeamByIdVerication(idTeam);
+        UsfEntity usf = usfService.getUsfEntity(idUsf);
+
+        teamToAttach.setCurrentUSF(usf);
+        TeamEntity teamAttached = teamRepository.save(teamToAttach);
+
+        return modelMapper.map(teamAttached, TeamResponseDTO.class);
     }
 
-    public UsfResponseDTO setUsfTeam(Long idTeam, Long idUsf){
-        getTeamByIdVerication(idTeam);
-        UsfEntity usf = getUsfEntity(idUsf);
+    public TeamResponseDTO disattachTeamFromUsf(Long idTeam, Long idUsf) {
+        TeamEntity teamTodisattach = getTeamByIdVerication(idTeam);
+        usfService.getUsfEntity(idUsf);
 
-        usf.setId(idUsf);
-        usf.setIdCurrentTeam(idTeam);
-        usfRepository.save(usf);
+        teamTodisattach.setCurrentUSF(null);
+        TeamEntity teamDisattached = teamRepository.save(teamTodisattach);
 
-        return modelMapper.map(usf, UsfResponseDTO.class);
-    }
-
-    public UsfResponseDTO deleteTeamFromUsf(Long idTeam, Long idUsf) {
-        getTeamByIdVerication(idTeam);
-        UsfEntity usf = getUsfEntity(idUsf);
-
-        usf.setId(idUsf);
-        usf.setIdCurrentTeam(null);
-        UsfEntity newUsf = usfRepository.save(usf);
-
-        return modelMapper.map(newUsf, UsfResponseDTO.class);
+        return modelMapper.map(teamDisattached, TeamResponseDTO.class);
     }
 
     public void delete(Long id) {
@@ -98,18 +86,15 @@ public class TeamService {
         teamRepository.deleteById(id);
     }
 
-
-    public void validateTeamColor(TeamRequestDTO teamRequestDTO){
+    public void validateTeamColor(TeamRequestDTO teamRequestDTO) {
         List<TeamEntity> all = teamRepository.findAll();
         List<String> colors = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             colors.add(all.get(i).getColor());
         }
-        if (colors.contains(teamRequestDTO.getColor())){
+        if (colors.contains(teamRequestDTO.getColor())) {
             throw new DataIntegrityViolationException("Cor já registrada");
         }
     }
-
-
 
 }

@@ -16,10 +16,13 @@ public class DoctorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String specialization;
 
     @ManyToOne
-    private TeamEntity idTeam;
-    
+    @JoinColumn(name = "team_id")
+    private TeamEntity team;
+
 }

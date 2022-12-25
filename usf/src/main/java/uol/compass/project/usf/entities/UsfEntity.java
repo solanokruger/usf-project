@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,8 +25,9 @@ public class UsfEntity {
 
     private String name;
 
-    @OneToOne
-    private TeamEntity idCurrentTeam;
+    @OneToOne(mappedBy = "currentUSF")
+    @JoinColumn(name = "current_team_id")
+    private TeamEntity currentTeam;
 
     private String address;
 

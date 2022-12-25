@@ -11,7 +11,7 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Team")
+@Entity(name = "team")
 @Table(name = "team")
 public class TeamEntity {
 
@@ -19,10 +19,14 @@ public class TeamEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "COLOR", nullable = false)
+    @Column(name = "color", nullable = false)
     private String color;
 
-    @OneToMany(mappedBy = "idTeam")
-    private List<DoctorEntity> doutores;
+    @OneToOne
+    @JoinColumn(name = "current_usf_id")
+    private UsfEntity currentUSF;
+
+    @OneToMany(mappedBy = "team")
+    private List<DoctorEntity> doctors;
 
 }

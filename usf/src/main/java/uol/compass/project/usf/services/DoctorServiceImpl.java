@@ -44,14 +44,26 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctor, DoctorResponseDTO.class);
     }
 
-    public DoctorResponseDTO link(Long idDoctor, Long idTeam) {
-        TeamEntity team = modelMapper.map(teamService.getTeamById(idTeam), TeamEntity.class);
-
+    public DoctorResponseDTO attachDoctorToTeam(Long idDoctor, Long idTeam) {
+        TeamEntity team = teamService.getTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
-        doctor.setIdTeam(team);
 
-        DoctorEntity doctorToSave = doctorRepository.save(doctor);
-        return modelMapper.map(doctorToSave, DoctorResponseDTO.class);
+        doctor.setTeam(team);
+
+        DoctorEntity doctorAttached = doctorRepository.save(doctor);
+
+        return modelMapper.map(doctorAttached, DoctorResponseDTO.class);
+    }
+
+    public DoctorResponseDTO disattachDoctorToTeam(Long idDoctor, Long idTeam) {
+        teamService.getTeamByIdVerication(idTeam);
+        DoctorEntity doctor = getDoctorEntity(idDoctor);
+
+        doctor.setTeam(null);
+
+        DoctorEntity doctorDisattached = doctorRepository.save(doctor);
+
+        return modelMapper.map(doctorDisattached, DoctorResponseDTO.class);
     }
 
     @Override

@@ -18,17 +18,17 @@ public class SolicitationResponseDTO {
 
     private Long id;
 
-    private ResourceEntity idResource;
+    private ResourceEntity resource;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime requestedDate;
+    private LocalDateTime requestDate;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime answeredDate;
+    private LocalDateTime answerDate;
 
     private EnumStatusSolicitation statusSolicitation;
 
-    private UsfEntity idUsf;
+    private UsfEntity usf;
 
     private Long necessaryAmount;
 

@@ -2,12 +2,14 @@ package uol.compass.project.usf.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -29,23 +31,29 @@ public class SolicitationEntity {
     private Long id;
 
     @ManyToOne
-    private ResourceEntity idResource;
+    @JoinColumn(name = "resource_id")
+    private ResourceEntity resource;
 
-    private LocalDateTime requestedDate;
+    @Column(name = "request_date")
+    private LocalDateTime requestDate;
 
-    private LocalDateTime answeredDate;
+    @Column(name = "answer_date")
+    private LocalDateTime answerDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status_solicitation")
     private EnumStatusSolicitation statusSolicitation;
 
     @ManyToOne
-    private UsfEntity idUsf;
+    @JoinColumn(name = "usf_id")
+    private UsfEntity usf;
 
+    @Column(name = "necessary_amount")
     private Long necessaryAmount;
 
     @PrePersist
     public void prePersist() {
-        requestedDate = LocalDateTime.now();
+        requestDate = LocalDateTime.now();
         statusSolicitation = EnumStatusSolicitation.PENDENTE;
     }
 

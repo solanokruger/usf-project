@@ -46,4 +46,12 @@ public class DoctorController {
         doctorService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping(value = "/{idDoctor}/team/{idTeam}")
+    public ResponseEntity<DoctorResponseDTO> attachDoctorToTeam(@PathVariable("idDoctor") Long idDoctor,
+                    @PathVariable("idTeam") Long idTeam) {
+        DoctorResponseDTO response = doctorService.attachDoctorToTeam(idDoctor, idTeam);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }

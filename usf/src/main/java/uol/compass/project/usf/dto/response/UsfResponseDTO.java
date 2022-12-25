@@ -14,7 +14,7 @@ public class UsfResponseDTO {
 
     private String name;
 
-    private TeamEntity idCurrentTeam;
+    private TeamEntity currentTeam;
 
     private String address;
 

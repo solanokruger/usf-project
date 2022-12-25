@@ -10,7 +10,7 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Resource")
+@Entity(name = "resource")
 @Table(name = "resource")
 public class ResourceEntity {
 
@@ -18,13 +18,13 @@ public class ResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "CATEGORY", nullable = false)
+    @Column(name = "category", nullable = false)
     @Enumerated(EnumType.STRING)
     private EnumCategoryResource category;
 

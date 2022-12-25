@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 public class InventoryRequestDTO {
 
     @NotNull
+    private Long idResource;
+    @NotNull
+    private Long idUsf;
+    @NotNull
     private int amount;
-    private long idUsf;
-    private long idResource;
-    private long id;
 
 }

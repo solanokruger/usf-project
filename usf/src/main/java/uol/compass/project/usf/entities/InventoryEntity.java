@@ -16,7 +16,15 @@ public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long idResource;
-    private long idUsf;
+
+    @OneToOne
+    @JoinColumn(name = "resource_id")
+    private ResourceEntity resource;
+
+    @OneToOne
+    @JoinColumn(name = "usf_id")
+    private UsfEntity usf;
+
     private int amount;
+
 }
