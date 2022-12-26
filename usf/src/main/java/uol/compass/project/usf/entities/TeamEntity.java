@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Getter
 @Setter
 @ToString
@@ -27,6 +29,7 @@ public class TeamEntity {
     private UsfEntity currentUSF;
 
     @OneToMany(mappedBy = "team")
+    @JsonIgnore
     private List<DoctorEntity> doctors;
 
 }

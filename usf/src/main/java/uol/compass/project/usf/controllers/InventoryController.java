@@ -42,5 +42,11 @@ public class InventoryController {
         InventoryResponseDTO response = inventoryService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        inventoryService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
     
 }

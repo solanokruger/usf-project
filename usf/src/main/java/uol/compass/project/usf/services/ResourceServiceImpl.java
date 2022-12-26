@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ResourceServiceImpl implements ResourceService{
+public class ResourceServiceImpl implements ResourceService {
 
     private final ModelMapper modelMapper;
 
@@ -36,9 +36,8 @@ public class ResourceServiceImpl implements ResourceService{
 
     @Override
     public ResourceResponseParameters getAllResources(EnumCategoryResource category, Pageable pageable) {
-        Page<ResourceEntity> page = category == null ?
-                resourceRepository.findAll(pageable):
-                resourceRepository.findAllByCategory(category, pageable);
+        Page<ResourceEntity> page = category == null ? resourceRepository.findAll(pageable)
+                : resourceRepository.findAllByCategory(category, pageable);
 
         return createResourceResponseParameters(page);
     }
@@ -90,7 +89,7 @@ public class ResourceServiceImpl implements ResourceService{
         for (int i = 0; i < all.size(); i++) {
             names.add(all.get(i).getName());
         }
-        if (names.contains(requestDTO.getName())){
+        if (names.contains(requestDTO.getName())) {
             throw new DataIntegrityViolationException("Recurso já registrado");
         }
     }

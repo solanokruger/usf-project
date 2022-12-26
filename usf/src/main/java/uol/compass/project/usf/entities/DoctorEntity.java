@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +25,7 @@ public class DoctorEntity {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @JsonIgnore
     private TeamEntity team;
 
 }

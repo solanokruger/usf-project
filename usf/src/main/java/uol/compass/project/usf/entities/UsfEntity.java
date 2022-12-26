@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class UsfEntity {
 
     @OneToOne(mappedBy = "currentUSF")
     @JoinColumn(name = "current_team_id")
+    @JsonIgnore
     private TeamEntity currentTeam;
 
     private String address;

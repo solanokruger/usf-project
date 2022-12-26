@@ -7,6 +7,7 @@ import uol.compass.project.usf.dto.response.DoctorResponseParameters;
 import org.springframework.data.domain.Pageable;
 
 public interface DoctorService {
+    
     DoctorResponseDTO create(DoctorRequestDTO request);
 
     DoctorResponseParameters findAll(Pageable pageable);
@@ -16,4 +17,9 @@ public interface DoctorService {
     DoctorResponseDTO update(Long id, DoctorRequestDTO request);
 
     void delete(Long id);
+
+    DoctorResponseDTO attachDoctorToTeam(Long idDoctor, Long idTeam);
+
+    DoctorResponseDTO disattachDoctorFromTeam(Long idDoctor, Long idTeam);
+
 }

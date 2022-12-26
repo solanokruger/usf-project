@@ -15,6 +15,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/doctor")
 public class DoctorController {
+    
     private final DoctorServiceImpl doctorService;
 
     @PostMapping
@@ -51,6 +52,13 @@ public class DoctorController {
     public ResponseEntity<DoctorResponseDTO> attachDoctorToTeam(@PathVariable("idDoctor") Long idDoctor,
                     @PathVariable("idTeam") Long idTeam) {
         DoctorResponseDTO response = doctorService.attachDoctorToTeam(idDoctor, idTeam);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @DeleteMapping(value = "/{idDoctor}/team/{idTeam}")
+    public ResponseEntity<DoctorResponseDTO> disattachDoctorFromTeam(@PathVariable("idDoctor") Long idDoctor,
+                    @PathVariable("idTeam") Long idTeam) {
+        DoctorResponseDTO response = doctorService.disattachDoctorFromTeam(idDoctor, idTeam);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

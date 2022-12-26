@@ -44,6 +44,7 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctor, DoctorResponseDTO.class);
     }
 
+    @Override
     public DoctorResponseDTO attachDoctorToTeam(Long idDoctor, Long idTeam) {
         TeamEntity team = teamService.getTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
@@ -55,7 +56,8 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctorAttached, DoctorResponseDTO.class);
     }
 
-    public DoctorResponseDTO disattachDoctorToTeam(Long idDoctor, Long idTeam) {
+    @Override
+    public DoctorResponseDTO disattachDoctorFromTeam(Long idDoctor, Long idTeam) {
         teamService.getTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
 

@@ -6,7 +6,7 @@ import uol.compass.project.usf.entities.TeamEntity;
 @Data
 public class DoctorResponseDTO {
 
-    private long id;
+    private Long id;
 
     private String name;
 
