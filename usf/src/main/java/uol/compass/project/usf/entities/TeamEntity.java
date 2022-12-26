@@ -21,7 +21,7 @@ public class TeamEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "color", nullable = false)
+    @Column(name = "color")
     private String color;
 
     @OneToOne
