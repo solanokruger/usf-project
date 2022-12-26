@@ -5,9 +5,7 @@ import uol.compass.project.usf.enums.EnumCategoryResource;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "resource")
