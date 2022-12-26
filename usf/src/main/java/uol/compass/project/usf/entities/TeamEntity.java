@@ -26,6 +26,7 @@ public class TeamEntity {
 
     @OneToOne
     @JoinColumn(name = "current_usf_id")
+    @JsonIgnore
     private UsfEntity currentUSF;
 
     @OneToMany(mappedBy = "team")
