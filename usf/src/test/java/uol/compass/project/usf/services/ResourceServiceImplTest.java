@@ -57,7 +57,6 @@ public class ResourceServiceImplTest {
     @Test
     public void shouldFindAllResourcesTest_success(){
         ResourceEntity resource = new ResourceEntity();
-        ResourceResponseDTO response = new ResourceResponseDTO();
         Page<ResourceEntity> page = new PageImpl<>(List.of(resource));
         ResourceResponseParameters expectedResourceResponseParameters = getResourceResponseParameters();
 

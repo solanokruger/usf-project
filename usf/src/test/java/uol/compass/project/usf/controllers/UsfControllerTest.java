@@ -125,7 +125,6 @@ public class UsfControllerTest {
     private UsfRequestDTO getUsfRequestDTO() {
         return UsfRequestDTO.builder()
             .name("Test")
-            .idCurrentTeam(Long.valueOf(1))
             .address("AddressTest")
             .build();
     }

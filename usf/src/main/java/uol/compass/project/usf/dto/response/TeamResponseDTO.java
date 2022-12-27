@@ -3,14 +3,12 @@ package uol.compass.project.usf.dto.response;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import uol.compass.project.usf.entities.DoctorEntity;
 import uol.compass.project.usf.entities.UsfEntity;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeamResponseDTO {
