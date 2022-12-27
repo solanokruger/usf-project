@@ -11,6 +11,8 @@ import uol.compass.project.usf.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.enums.EnumCategoryResource;
 import uol.compass.project.usf.services.ResourceServiceImpl;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/resource")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class ResourceController {
     private final ResourceServiceImpl resourceService;
 
     @PostMapping
-    public ResponseEntity<ResourceResponseDTO> create(@RequestBody ResourceRequestDTO resourceRequestDTO){
+    public ResponseEntity<ResourceResponseDTO> create(@RequestBody @Valid ResourceRequestDTO resourceRequestDTO){
         ResourceResponseDTO responseDTO = resourceService.createResource(resourceRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }

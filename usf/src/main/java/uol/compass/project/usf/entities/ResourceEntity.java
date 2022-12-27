@@ -5,9 +5,7 @@ import uol.compass.project.usf.enums.EnumCategoryResource;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "resource")
@@ -18,13 +16,13 @@ public class ResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "category")
     @Enumerated(EnumType.STRING)
     private EnumCategoryResource category;
 

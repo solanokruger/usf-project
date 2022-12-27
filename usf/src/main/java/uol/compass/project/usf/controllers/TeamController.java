@@ -10,6 +10,7 @@ import uol.compass.project.usf.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.services.TeamService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class TeamController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Object> registerTeam(@RequestBody TeamRequestDTO teamRequestDTO) {
+    public ResponseEntity<Object> createTeam(@RequestBody @Valid TeamRequestDTO teamRequestDTO) {
         try {
             validateTeamParameter(teamRequestDTO);
             TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
