@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO create(UserRequestDTO request) {
         UserEntity userReceived = modelMapper.map(request, UserEntity.class);
 
-        UserEntity userToBeCreated = userRepository.findByUsername(userReceived.getUsername());
+        UserEntity userToBeCreated = userRepository.findByLogin(userReceived.getLogin());
 
         if (userToBeCreated != null) {
             throw new UserAlreadyExistsException();

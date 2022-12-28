@@ -30,9 +30,9 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
 
-    private String email;
+    private String login;
 
     private String password;
 
@@ -42,6 +42,11 @@ public class UserEntity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.login;
     }
 
     @Override
