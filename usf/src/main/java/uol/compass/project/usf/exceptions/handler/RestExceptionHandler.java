@@ -86,6 +86,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public final ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USER_ALREADY_EXISTS, ex);
+        return ResponseEntity.status(HttpStatus.FOUND).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public final ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USER_NOT_FOUND, ex);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
+    }
 
     @ExceptionHandler(SolicitationNotFoundException.class)
     public final ResponseEntity<Object> handleSolicitationNotFoundException(SolicitationNotFoundException ex) {

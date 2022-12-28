@@ -16,6 +16,8 @@ public enum ErrorCode {
     DOCTOR_NOT_FOUND("Médico não encontrado"),
     SOLICITATION_NOT_FOUND("Pedido não encontrado"),
     RESOURCE_NOT_FOUND("Recurso não encontrado"),
+    USER_NOT_FOUND("Usuário não encontrado"),
+    USER_ALREADY_EXISTS("Usuário já existe"),
     INVENTORY_NOT_FOUND("Inventário não encontrado");
 
     private final String message;
