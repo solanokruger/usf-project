@@ -16,7 +16,7 @@ public class UserAlreadyExistsException extends RuntimeException {
 
     public UserAlreadyExistsException() {
         super(ErrorCode.USER_ALREADY_EXISTS.name());
-        this.httpStatus = HttpStatus.FOUND;
+        this.httpStatus = HttpStatus.CONFLICT;
         this.errorCode = ErrorCode.USER_ALREADY_EXISTS;
         this.details = ErrorCode.USER_ALREADY_EXISTS.getMessage();
     }
