@@ -25,7 +25,6 @@ public class AutenticationController {
         var authentication = authenticationManager.authenticate(token);
 
         return ResponseEntity.ok().build();
-
     }
 
 }
