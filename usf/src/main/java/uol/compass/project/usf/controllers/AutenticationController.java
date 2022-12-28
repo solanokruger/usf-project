@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uol.compass.project.usf.config.security.AutenticationData;
+import uol.compass.project.usf.config.security.AuthenticationData;
 import uol.compass.project.usf.config.security.JwtTokenData;
 import uol.compass.project.usf.config.security.TokenService;
 import uol.compass.project.usf.entities.UserEntity;
@@ -25,7 +25,7 @@ public class AutenticationController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity login(@RequestBody @Valid AutenticationData data){
+    public ResponseEntity login(@RequestBody @Valid AuthenticationData data){
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var authentication = authenticationManager.authenticate(authenticationToken);
 
