@@ -32,7 +32,7 @@ public class UserEntity implements UserDetails {
 
     private String name;
 
-    private String email;
+    private String login;
 
     private String password;
 
@@ -46,7 +46,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.login;
     }
 
     @Override
