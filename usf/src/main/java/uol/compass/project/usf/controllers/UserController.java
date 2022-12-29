@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,6 +28,7 @@ public class UserController {
 
     private final RoleUserService roleUserService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/create")
     public ResponseEntity<UserResponseDTO> create(@RequestBody @Valid UserRequestDTO request) {
         UserResponseDTO response = userService.create(request);
@@ -39,6 +41,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/role")
     public ResponseEntity<UserResponseDTO> role(@RequestBody CreateUserRoleDTO createUserRoleDTO) {
         UserResponseDTO response = roleUserService.execute(createUserRoleDTO);

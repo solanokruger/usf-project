@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +24,9 @@ import uol.compass.project.usf.services.UsfServiceImpl;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usf")
+@PreAuthorize("hasRole('ADMIN')")
 public class UsfController {
- 
+
     private final UsfServiceImpl usfService;
 
     @PostMapping
@@ -46,7 +48,8 @@ public class UsfController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UsfResponseDTO> update(@PathVariable("id") Long id, @RequestBody @Valid UsfRequestDTO request) {
+    public ResponseEntity<UsfResponseDTO> update(@PathVariable("id") Long id,
+            @RequestBody @Valid UsfRequestDTO request) {
         UsfResponseDTO response = usfService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -1,6 +1,5 @@
 package uol.compass.project.usf.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ public class RoleUserService {
     public UserResponseDTO execute(CreateUserRoleDTO createUserRoleDTO) {
 
         Optional<UserEntity> userExists = userRepository.findById(createUserRoleDTO.getIdUser());
-        List<Role> roles = new ArrayList<>();
+        List<Role> roles;
 
         if (userExists.isEmpty()) {
             throw new UserNotFoundException();
