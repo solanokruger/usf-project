@@ -44,7 +44,7 @@ public class TeamServiceImplTest {
 
         Mockito.when(teamRepository.save(any())).thenReturn(team);
 
-        TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
+        TeamResponseDTO teamResponseDTO = teamService.create(teamRequestDTO);
 
         assertEquals(teamResponseDTO.getId(), responseDTO.getId());
 
@@ -57,7 +57,7 @@ public class TeamServiceImplTest {
 
         Mockito.when(teamRepository.findAll()).thenReturn(List.of(team));
 
-        List<TeamResponseDTO> response = teamService.getTeams();
+        List<TeamResponseDTO> response = teamService.findAll();
 
         assertEquals(response.get(0), team);
     }
@@ -69,7 +69,7 @@ public class TeamServiceImplTest {
 
         Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
 
-        TeamResponseDTO response = teamService.getTeamById(ID);
+        TeamResponseDTO response = teamService.findById(ID);
 
         assertEquals(response, responseDTO);
     }

@@ -18,42 +18,37 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class TeamServiceImpl {
+public class TeamServiceImpl implements TeamService{
 
     private final ModelMapper modelMapper;
     private final TeamRepository teamRepository;
     private final UsfServiceImpl usfService;
 
-    public TeamResponseDTO createTeam(TeamRequestDTO teamRequestDTO) {
+    public TeamResponseDTO create(TeamRequestDTO teamRequestDTO) {
         validateTeamColor(teamRequestDTO);
         TeamEntity teamEntity = modelMapper.map(teamRequestDTO, TeamEntity.class);
         TeamEntity createdTeam = teamRepository.save(teamEntity);
         return modelMapper.map(createdTeam, TeamResponseDTO.class);
     }
 
-    public List<TeamResponseDTO> getTeams() {
+    public List<TeamResponseDTO> findAll() {
         List<TeamEntity> allTeams = teamRepository.findAll();
         return modelMapper.map(allTeams, List.class);
     }
 
-    public TeamResponseDTO getTeamById(Long id) {
-        TeamEntity team = getTeamByIdVerication(id);
+    public TeamResponseDTO findById(Long id) {
+        TeamEntity team = findTeamByIdVerication(id);
         return modelMapper.map(team, TeamResponseDTO.class);
     }
 
-    public TeamEntity getTeamByIdVerication(Long id) {
-        return teamRepository.findById(id)
-                .orElseThrow(TeamNotFoundException::new);
-    }
-
-    public List<DoctorResponseDTO> getDoctorsInTeam(Long id) {
-        TeamEntity team = getTeamByIdVerication(id);
+    public List<DoctorResponseDTO> findDoctorsInTeam(Long id) {
+        TeamEntity team = findTeamByIdVerication(id);
         List<DoctorEntity> allDoctors = team.getDoctors();
         return modelMapper.map(allDoctors, List.class);
     }
 
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
-        getTeamByIdVerication(id);
+        findTeamByIdVerication(id);
         TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
         newTeam.setId(id);
         teamRepository.save(newTeam);
@@ -61,8 +56,13 @@ public class TeamServiceImpl {
         return modelMapper.map(newTeam, TeamResponseDTO.class);
     }
 
+    public TeamEntity findTeamByIdVerication(Long id) {
+        return teamRepository.findById(id)
+                .orElseThrow(TeamNotFoundException::new);
+    }
+
     public TeamResponseDTO attachTeamToUsf(Long idTeam, Long idUsf) {
-        TeamEntity teamToAttach = getTeamByIdVerication(idTeam);
+        TeamEntity teamToAttach = findTeamByIdVerication(idTeam);
         UsfEntity usf = usfService.getUsfEntity(idUsf);
 
         teamToAttach.setCurrentUSF(usf);
@@ -72,17 +72,17 @@ public class TeamServiceImpl {
     }
 
     public TeamResponseDTO disattachTeamFromUsf(Long idTeam, Long idUsf) {
-        TeamEntity teamTodisattach = getTeamByIdVerication(idTeam);
+        TeamEntity teamToDisattach = findTeamByIdVerication(idTeam);
         usfService.getUsfEntity(idUsf);
 
-        teamTodisattach.setCurrentUSF(null);
-        TeamEntity teamDisattached = teamRepository.save(teamTodisattach);
+        teamToDisattach.setCurrentUSF(null);
+        TeamEntity teamDisattached = teamRepository.save(teamToDisattach);
 
         return modelMapper.map(teamDisattached, TeamResponseDTO.class);
     }
 
     public void delete(Long id) {
-        getTeamByIdVerication(id);
+        findTeamByIdVerication(id);
         teamRepository.deleteById(id);
     }
 

@@ -11,6 +11,7 @@ import uol.compass.project.usf.model.entities.UsfEntity;
 @AllArgsConstructor
 public class InventoryResponseDTO {
 
+    private Long id;
     private ResourceEntity resource;
     private UsfEntity usf;
     private int amount;

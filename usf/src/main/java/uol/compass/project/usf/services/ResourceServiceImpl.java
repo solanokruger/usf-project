@@ -1,11 +1,12 @@
 package uol.compass.project.usf.services;
 
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ResourceServiceImpl implements ResourceService {
 
     private final ModelMapper modelMapper;
