@@ -16,11 +16,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
-import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.services.SolicitationServiceImpl;
+import uol.compass.project.usf.model.controllers.SolicitationController;
+import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.services.SolicitationServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 @WebMvcTest(controllers = SolicitationController.class)

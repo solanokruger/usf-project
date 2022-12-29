@@ -14,7 +14,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.repositories.UserRepository;
+import uol.compass.project.usf.config.security.token.TokenService;
+import uol.compass.project.usf.config.security.user.UserRepository;
 
 @Component
 @RequiredArgsConstructor

@@ -19,14 +19,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
-import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.entities.ResourceEntity;
-import uol.compass.project.usf.entities.SolicitationEntity;
-import uol.compass.project.usf.entities.UsfEntity;
-import uol.compass.project.usf.repositories.SolicitationRepository;
+import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.entities.ResourceEntity;
+import uol.compass.project.usf.model.entities.SolicitationEntity;
+import uol.compass.project.usf.model.entities.UsfEntity;
+import uol.compass.project.usf.model.repositories.SolicitationRepository;
+import uol.compass.project.usf.model.services.ResourceServiceImpl;
+import uol.compass.project.usf.model.services.SolicitationServiceImpl;
+import uol.compass.project.usf.model.services.UsfServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class SolicitationServiceImplTest {

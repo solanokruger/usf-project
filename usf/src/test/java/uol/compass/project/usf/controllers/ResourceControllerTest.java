@@ -11,10 +11,11 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseParameters;
-import uol.compass.project.usf.services.ResourceServiceImpl;
+import uol.compass.project.usf.model.controllers.ResourceController;
+import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.model.services.ResourceServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -11,9 +11,10 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.dto.request.TeamRequestDTO;
-import uol.compass.project.usf.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.services.TeamService;
+import uol.compass.project.usf.model.controllers.TeamController;
+import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
+import uol.compass.project.usf.model.services.TeamServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class TeamControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private TeamService teamService;
+    private TeamServiceImpl teamService;
 
     @Test
     void create() throws Exception {
