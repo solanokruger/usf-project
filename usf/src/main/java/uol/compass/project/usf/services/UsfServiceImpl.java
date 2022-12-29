@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +13,8 @@ import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.model.entities.UsfEntity;
+import uol.compass.project.usf.repositories.UsfRepository;
 import uol.compass.project.usf.exceptions.UsfNotFoundException;
-import uol.compass.project.usf.model.repositories.UsfRepository;
 
 @Service
 @RequiredArgsConstructor

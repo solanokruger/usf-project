@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +10,7 @@ import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.model.enums.EnumCategoryResource;
-import uol.compass.project.usf.model.services.ResourceServiceImpl;
+import uol.compass.project.usf.services.ResourceServiceImpl;
 
 import javax.validation.Valid;
 

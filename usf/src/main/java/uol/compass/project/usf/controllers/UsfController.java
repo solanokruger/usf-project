@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import javax.validation.Valid;
 
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
-import uol.compass.project.usf.model.services.UsfServiceImpl;
+import uol.compass.project.usf.services.UsfServiceImpl;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +16,8 @@ import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.model.entities.SolicitationEntity;
 import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
+import uol.compass.project.usf.repositories.SolicitationRepository;
 import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
-import uol.compass.project.usf.model.repositories.SolicitationRepository;
 
 @Service
 @RequiredArgsConstructor

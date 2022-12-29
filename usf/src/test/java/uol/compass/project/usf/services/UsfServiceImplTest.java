@@ -15,8 +15,7 @@ import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.model.entities.UsfEntity;
-import uol.compass.project.usf.model.repositories.UsfRepository;
-import uol.compass.project.usf.model.services.UsfServiceImpl;
+import uol.compass.project.usf.repositories.UsfRepository;
 
 import java.util.List;
 import java.util.Optional;

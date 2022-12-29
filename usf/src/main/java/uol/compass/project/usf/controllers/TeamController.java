@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.model.services.TeamServiceImpl;
+import uol.compass.project.usf.services.TeamServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;

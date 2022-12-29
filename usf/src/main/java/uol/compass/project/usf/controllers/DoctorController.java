@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.model.dto.request.DoctorRequestDTO;
 import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.DoctorResponseParameters;
-import uol.compass.project.usf.model.services.DoctorServiceImpl;
+import uol.compass.project.usf.services.DoctorServiceImpl;
 
 import javax.validation.Valid;
 

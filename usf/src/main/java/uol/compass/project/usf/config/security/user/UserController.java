@@ -20,7 +20,7 @@ import uol.compass.project.usf.config.security.role.RoleUserService;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-    
+
     private final UserServiceImpl userService;
 
     private final RoleUserService roleUserService;
@@ -33,7 +33,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<UserResponseDTO> update(@PathVariable("id") Long id, @RequestBody @Valid UserRequestDTO request) {
+    public ResponseEntity<UserResponseDTO> update(@PathVariable("id") Long id,
+            @RequestBody @Valid UserRequestDTO request) {
         UserResponseDTO response = userService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

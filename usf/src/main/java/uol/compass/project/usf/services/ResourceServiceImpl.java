@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -11,8 +11,8 @@ import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.enums.EnumCategoryResource;
+import uol.compass.project.usf.repositories.ResourceRepository;
 import uol.compass.project.usf.exceptions.ResourceNotFoundException;
-import uol.compass.project.usf.model.repositories.ResourceRepository;
 
 import java.util.ArrayList;
 import java.util.List;

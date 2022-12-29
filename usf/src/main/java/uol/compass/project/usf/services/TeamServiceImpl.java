@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -10,8 +10,8 @@ import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.model.entities.DoctorEntity;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
+import uol.compass.project.usf.repositories.TeamRepository;
 import uol.compass.project.usf.exceptions.TeamNotFoundException;
-import uol.compass.project.usf.model.repositories.TeamRepository;
 
 import java.util.ArrayList;
 import java.util.List;

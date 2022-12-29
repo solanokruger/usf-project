@@ -12,9 +12,7 @@ import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
-import uol.compass.project.usf.model.repositories.TeamRepository;
-import uol.compass.project.usf.model.services.TeamServiceImpl;
-import uol.compass.project.usf.model.services.UsfServiceImpl;
+import uol.compass.project.usf.repositories.TeamRepository;
 
 import java.util.List;
 import java.util.Optional;

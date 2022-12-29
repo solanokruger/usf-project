@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import org.springframework.data.domain.Pageable;
 import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
