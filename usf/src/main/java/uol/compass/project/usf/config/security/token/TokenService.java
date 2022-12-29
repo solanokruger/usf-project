@@ -28,6 +28,7 @@ public class TokenService {
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
+            //500
             throw new RuntimeException("Erro ao lançar token JWT");
         }
 
@@ -42,6 +43,7 @@ public class TokenService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
+                //401
             throw new RuntimeException("Token JWT inválido ou expirado!");
         }
     }

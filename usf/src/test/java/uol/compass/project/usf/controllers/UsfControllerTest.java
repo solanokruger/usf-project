@@ -11,15 +11,15 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import uol.compass.project.usf.model.controllers.UsfController;
 import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
-import uol.compass.project.usf.model.services.UsfServiceImpl;
+import uol.compass.project.usf.services.UsfServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 @WebMvcTest(controllers = UsfController.class)

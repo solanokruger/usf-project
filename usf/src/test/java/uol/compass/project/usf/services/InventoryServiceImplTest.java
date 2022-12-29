@@ -17,9 +17,7 @@ import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
 import uol.compass.project.usf.model.entities.InventoryEntity;
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
-import uol.compass.project.usf.model.enums.EnumCategoryResource;
-import uol.compass.project.usf.model.repositories.InventoryRepository;
-import uol.compass.project.usf.model.services.InventoryServiceImpl;
+import uol.compass.project.usf.repositories.InventoryRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,35 +25,47 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class InventoryServiceImplTest {
 
     @InjectMocks
-    InventoryServiceImpl inventoryService;
+    private InventoryServiceImpl inventoryService;
 
     @Mock
-    InventoryRepository inventoryRepository;
+    private InventoryRepository inventoryRepository;
+
+    @Mock
+    private ResourceServiceImpl resourceService;
+
+    @Mock
+    private UsfServiceImpl usfService;
 
     @Spy
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     private final Long ID = 1l;
 
     @Test
     public void shouldCreateInventoryTest_success(){
-        InventoryEntity inventoryEntity = new InventoryEntity();
-        InventoryRequestDTO inventoryRequestDTO = new InventoryRequestDTO();
-        InventoryResponseDTO responseDTO = new InventoryResponseDTO();
+        InventoryEntity inventory = new InventoryEntity();
+        InventoryRequestDTO request = new InventoryRequestDTO();
+        InventoryResponseDTO response = new InventoryResponseDTO();
 
-        Mockito.when(inventoryRepository.save(any())).thenReturn(inventoryEntity);
+        UsfEntity usf = new UsfEntity();
 
-        InventoryResponseDTO inventoryResponseDTO = inventoryService.create(inventoryRequestDTO);
+        ResourceEntity resource = new ResourceEntity();
 
-        assertEquals(inventoryResponseDTO.getId(), responseDTO.getId());
+        Mockito.when(resourceService.getResourceByIdVerification(any())).thenReturn(resource);
 
+        Mockito.when(usfService.getUsfEntity(any())).thenReturn(usf);
+
+        Mockito.when(inventoryRepository.save(any())).thenReturn(inventory);
+
+        InventoryResponseDTO inventoryDTO = inventoryService.create(request);
+
+        assertEquals(inventoryDTO, response);
         verify(inventoryRepository).save(any());
     }
 
@@ -76,7 +86,7 @@ public class InventoryServiceImplTest {
     public void shouldFindInventoryByIdTest_success(){
         InventoryEntity inventory = new InventoryEntity();
 
-        Mockito.when(inventoryRepository.findById(ID)).thenReturn(Optional.of(inventory));
+        Mockito.when(inventoryRepository.findById(any())).thenReturn(Optional.of(inventory));
 
         InventoryResponseDTO response = inventoryService.findById(ID);
 
@@ -86,23 +96,29 @@ public class InventoryServiceImplTest {
 
     @Test
     public void shouldUpdateInventoryTest_success(){
-        ResourceEntity resource = new ResourceEntity(
-                ID, "Estetoscopio", "Equipamento médico", EnumCategoryResource.EQUIPAMENTO);
-        InventoryEntity inventory = new InventoryEntity(ID, resource, new UsfEntity(), 5);
-
-        InventoryResponseDTO expectedResponse = new InventoryResponseDTO();
-
+        InventoryEntity inventory = new InventoryEntity();
         InventoryRequestDTO request = new InventoryRequestDTO();
-        request.setAmount(10);
-        request.setIdResource(resource.getId());
+        InventoryResponseDTO response = new InventoryResponseDTO();
+
+        UsfEntity usf = new UsfEntity();
+
+        ResourceEntity resource = new ResourceEntity();
+
+        response.setUsf(usf);
+        response.setResource(resource);
 
         Mockito.when(inventoryRepository.findById(any())).thenReturn(Optional.of(inventory));
+
+        Mockito.when(resourceService.getResourceByIdVerification(any())).thenReturn(resource);
+
+        Mockito.when(usfService.getUsfEntity(any())).thenReturn(usf);
+
         Mockito.when(inventoryRepository.save(any())).thenReturn(inventory);
 
-        InventoryResponseDTO inventoryResponseDTO = inventoryService.update(ID, request);
+        InventoryResponseDTO inventoryDTO = inventoryService.update(ID, request);
 
-        assertEquals(expectedResponse.getId(), inventoryResponseDTO.getId());
-        verify(inventoryRepository, times(1)).save(any());
+        assertEquals(inventoryDTO, response);
+        verify(inventoryRepository).save(any());
     }
 
     @Test

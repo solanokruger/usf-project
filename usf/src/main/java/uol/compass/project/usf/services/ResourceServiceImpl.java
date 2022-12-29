@@ -1,26 +1,26 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
 import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.enums.EnumCategoryResource;
+import uol.compass.project.usf.repositories.ResourceRepository;
 import uol.compass.project.usf.exceptions.ResourceNotFoundException;
-import uol.compass.project.usf.model.repositories.ResourceRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ResourceServiceImpl implements ResourceService {
 
     private final ModelMapper modelMapper;

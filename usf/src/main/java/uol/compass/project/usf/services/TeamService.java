@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.services;
+package uol.compass.project.usf.services;
 
 import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;

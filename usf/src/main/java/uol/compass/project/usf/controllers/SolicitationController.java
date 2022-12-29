@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import javax.validation.Valid;
 
@@ -20,7 +20,7 @@ import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.model.services.SolicitationServiceImpl;
+import uol.compass.project.usf.services.SolicitationServiceImpl;
 
 @RestController
 @RequiredArgsConstructor

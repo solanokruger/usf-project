@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.controllers;
+package uol.compass.project.usf.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import uol.compass.project.usf.model.dto.request.InventoryRequestDTO;
 import uol.compass.project.usf.model.dto.response.InventoryResponseDTO;
 import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
-import uol.compass.project.usf.model.services.InventoryServiceImpl;
+import uol.compass.project.usf.services.InventoryServiceImpl;
 
 import javax.validation.Valid;
 

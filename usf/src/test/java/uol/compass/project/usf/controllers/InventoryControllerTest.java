@@ -11,11 +11,10 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.model.controllers.InventoryController;
 import uol.compass.project.usf.model.dto.request.InventoryRequestDTO;
 import uol.compass.project.usf.model.dto.response.InventoryResponseDTO;
 import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
-import uol.compass.project.usf.model.services.InventoryServiceImpl;
+import uol.compass.project.usf.services.InventoryServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

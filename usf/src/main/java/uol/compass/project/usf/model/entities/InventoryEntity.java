@@ -15,7 +15,7 @@ public class InventoryEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "resource_id")

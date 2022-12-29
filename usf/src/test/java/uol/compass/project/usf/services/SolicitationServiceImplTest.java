@@ -26,10 +26,7 @@ import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.entities.SolicitationEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
-import uol.compass.project.usf.model.repositories.SolicitationRepository;
-import uol.compass.project.usf.model.services.ResourceServiceImpl;
-import uol.compass.project.usf.model.services.SolicitationServiceImpl;
-import uol.compass.project.usf.model.services.UsfServiceImpl;
+import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class SolicitationServiceImplTest {
