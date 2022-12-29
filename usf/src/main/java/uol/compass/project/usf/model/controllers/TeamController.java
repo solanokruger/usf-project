@@ -27,7 +27,7 @@ public class TeamController {
     public ResponseEntity<Object> createTeam(@RequestBody @Valid TeamRequestDTO teamRequestDTO) {
         try {
             validateTeamParameter(teamRequestDTO);
-            TeamResponseDTO teamResponseDTO = teamService.createTeam(teamRequestDTO);
+            TeamResponseDTO teamResponseDTO = teamService.create(teamRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(teamResponseDTO);
         } catch (IllegalStateException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
@@ -45,21 +45,21 @@ public class TeamController {
     @PreAuthorize("hasRole('ADMIN') or hasRole('USF_OPERATOR')")
     @GetMapping
     public ResponseEntity<List<TeamResponseDTO>> getAllTeams() {
-        List<TeamResponseDTO> teams = teamService.getTeams();
+        List<TeamResponseDTO> teams = teamService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(teams);
     }
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('USF_OPERATOR')")
     @GetMapping("/{id}")
     public ResponseEntity<TeamResponseDTO> getTeamById(@PathVariable Long id) {
-        TeamResponseDTO teamResponseDTO = teamService.getTeamById(id);
+        TeamResponseDTO teamResponseDTO = teamService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(teamResponseDTO);
     }
 
     @PreAuthorize("hasRole('USF_OPERATOR')")
     @GetMapping("/{id}/doctor")
     public ResponseEntity<List<DoctorResponseDTO>> getDoctorsByTeam(@PathVariable Long id) {
-        List<DoctorResponseDTO> doctorsByTeam = teamService.getDoctorsInTeam(id);
+        List<DoctorResponseDTO> doctorsByTeam = teamService.findDoctorsInTeam(id);
         return ResponseEntity.status(HttpStatus.OK).body(doctorsByTeam);
     }
 

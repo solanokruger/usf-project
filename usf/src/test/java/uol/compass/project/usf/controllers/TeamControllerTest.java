@@ -41,7 +41,7 @@ public class TeamControllerTest {
         TeamRequestDTO request = getTeamRequestDTO();
         TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
 
-        when(teamService.createTeam(any())).thenReturn(teamResponseDTO);
+        when(teamService.create(any())).thenReturn(teamResponseDTO);
 
         String input = TestUtils.mapToJson(request);
 
@@ -61,7 +61,7 @@ public class TeamControllerTest {
     void findAll() throws Exception {
         TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
 
-        Mockito.when(teamService.getTeams()).thenReturn(List.of(teamResponseDTO));
+        Mockito.when(teamService.findAll()).thenReturn(List.of(teamResponseDTO));
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
@@ -78,7 +78,7 @@ public class TeamControllerTest {
     void findById() throws Exception {
         TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
 
-        when(teamService.getTeamById(any())).thenReturn(teamResponseDTO);
+        when(teamService.findById(any())).thenReturn(teamResponseDTO);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(ID_URL)

@@ -46,7 +46,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public DoctorResponseDTO attachDoctorToTeam(Long idDoctor, Long idTeam) {
-        TeamEntity team = teamService.getTeamByIdVerication(idTeam);
+        TeamEntity team = teamService.findTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
 
         doctor.setTeam(team);
@@ -58,7 +58,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public DoctorResponseDTO disattachDoctorFromTeam(Long idDoctor, Long idTeam) {
-        teamService.getTeamByIdVerication(idTeam);
+        teamService.findTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
 
         doctor.setTeam(null);
