@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import uol.compass.project.usf.config.security.user.UserRepository;
 
 @Service
-public class AutenticationService implements UserDetailsService {
+public class AuthenticationService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.config.security.token.TokenService;
 import uol.compass.project.usf.config.security.user.UserRepository;
@@ -26,7 +25,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     private final UserRepository repository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         var tokenJWT = getToken(request);
 
         if (tokenJWT != null) {
