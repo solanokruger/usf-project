@@ -1,0 +1,1193 @@
+openapi: 3.0.3
+info:
+  title: Swagger USF API - OpenAPI 0.0.1
+  description: |-
+    A USF (Unidade de Saúde da Família) nada mais é que uma unidade pública de saúde destinada
+    a realizar atenção contínua nas especialidades básicas, com uma equipe multiprofissional
+    habiitada para desenvolver as atividades de promoção, proteção e recuperação, características
+    do nível primário de atenção. Após conversa com funcionários dessas unidades notamos que há uma
+    complexidade na gestão desse ambiente, pois precisam fazer a comunicação com outras USFs, seja para
+    realizar pedidos de recursos ou para gestão de profissionais, de maneira manual através de pranchetas 
+    e documentos por escrito. Fazendo o sistema desses ambientes vitais para o cuidado das comunidades brasileiras 
+    ficam propensos a erros e lentidão no atendimento.
+    
+    Objetivando desenvolvimento para esse serviço, desenvolvemos uma API, para automatizar esses processos defasados.
+
+    
+    Alguns links que podem ser interessantes:
+    - [Repositório da USF API](https://github.com/solanokruger/usf-project)
+    - [Toda documentação do projeto](https://docs.google.com/document/d/1Rgm3JiFKQBkO_tDVDDw1Mr-FGm9hP7MV-BGx2f4m3HE/edit?usp=sharing)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: luis.gustavo@compasso.com.br
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+    description: API local
+tags:
+  - name: Doctor
+    description: Everything about Doctors
+  - name: Team
+    description: Information about Teams
+  - name: USF
+    description: Operations about user
+  - name: Request
+    description: Requests for itens
+  - name: Resource
+    description: Information about the itens
+  - name: Inventory
+    description: Information about the storage 
+paths:
+  /doctor:
+    post:
+      tags:
+        - Doctor
+      summary: Add a doctor 
+      description: Add a new doctor to the database
+      operationId: addDoctor
+      requestBody:
+        description: Create a new doctor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Doctor
+      summary: List all Doctors
+      description: Returns a single pet
+      operationId: getDoctor
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Doctor not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /doctor/{idDoctor}:
+    put:
+      tags:
+        - Doctor
+      summary: Update an existing doctor
+      description: Update an existing doctor by Id
+      operationId: updateDoctor
+      requestBody:
+        description: Update an existent doctor in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Doctor
+      summary: Find doctor by ID
+      description: Returns a single doctor
+      operationId: getDoctorById
+      parameters:
+        - name: doctorId
+          in: path
+          description: ID of doctor to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Doctor not found
+        '404':
+          description: Doctor not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    delete:
+      tags:
+        - Doctor
+      summary: Deletes a doctor
+      description: delete a doctor
+      operationId: deleteDoctor
+      parameters:
+        - name: doctorId
+          in: path
+          description: Doctor id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid pet value
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /doctor{idDoctor}/team/{idTeam}: 
+    post:
+      tags:
+        - Doctor
+      summary: Link a Doctor to a Team
+      description: Link a Doctor to a Team
+      operationId: linkDoctorTeam
+      parameters:
+        - name: idDoctor
+          in: path
+          description: ID of the doctor that needs to be linked
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: idTeam
+          in: path
+          description: ID of the team that doctor will be linked
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Doctor
+      summary: Remove a Doctor for a Team
+      description: Remove a Doctor for especific Team
+      operationId: deleteDoctorTeam
+      parameters:
+        - name: idDoctor
+          in: path
+          description: ID of the doctor that needs to be removed
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: idTeam
+          in: path
+          description: ID of the team that doctor will be removed
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Doctor not found
+        '404':
+          description: Doctor not found
+
+  /team:
+    post:
+      tags:
+        - Team
+      summary: Add a new team
+      description: Add a new team
+      operationId: addTeam
+      requestBody:
+        description: Create a new team
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Team
+      summary: Returns all Team
+      description: Returns a map of status codes to quantities
+      operationId: getInventory
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+      security:
+        - api_key: []
+  /team/{idTeam}:
+    get:
+      tags:
+        - Team
+      summary: Find team by ID
+      description: Returns a single team
+      operationId: getTeamById
+      parameters:
+        - name: idTeam
+          in: path
+          description: ID of team to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Team not found
+        '404':
+          description: Team not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    put:
+      tags:
+        - Team
+      summary: Update an existing team
+      description: Update an existing team by Id
+      operationId: updateTeam
+      requestBody:
+        description: Update an existent doctor in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Team not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    delete:
+      tags:
+        - Team
+      summary: Deletes a team
+      description: delete a doctor
+      operationId: deleteTeam
+      parameters:
+        - name: idTeam
+          in: path
+          description: Team id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid team value
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /team{idTeam}/usf/{idUsf}:
+   post:
+      tags:
+        - Team
+      summary: Link a Doctor to a Team
+      description: Link a Doctor to a Team
+      operationId: linkDoctorTeam
+      parameters:
+        - name: idTeam
+          in: path
+          description: ID of the team that needs to be linked
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: idUsf
+          in: path
+          description: ID of the usf that team will be linked
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '405':
+          description: Invalid input
+   delete:
+      tags:
+        - Team
+      summary: Remove a Team for a Usf
+      description: Remove a Team for especific Usf
+      operationId: deleteTeamUsf
+      parameters:
+        - name: idTeam
+          in: path
+          description: ID of the team that needs to be removed
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: idUsf
+          in: path
+          description: ID of the usf that team will be removed
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Team not found
+        '404':
+          description: Team not found
+  /usf:
+    get:
+      tags:
+        - USF
+      summary: List all USFs
+      description: Returns all USFs
+      operationId: getDoctor
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usf'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Usf'
+        '404':
+          description: Usf not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    post:
+      tags:
+        - USF
+      summary: Add a USFs 
+      description: Add a new usf to the database
+      operationId: addUsf
+      requestBody:
+        description: Create a new Usf
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usf'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Usf'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Usf'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usf'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Usf'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /usf/{idUsf}:
+    put:
+      tags:
+        - USF
+      summary: Update an existing Usf
+      description: Update an existing usf by Id
+      operationId: updateUsf
+      requestBody:
+        description: Update an existent usf in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usf'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Usf'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Usf'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Usf not found
+        '404':
+          description: Usf not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - USF
+      summary: Find Usf by ID
+      description: Returns a single Usf
+      operationId: getUsfById
+      parameters:
+        - name: usfId
+          in: path
+          description: ID of usf to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usf'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Usf'
+        '400':
+          description: USF not found
+        '404':
+          description: USF not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    delete:
+      tags:
+        - USF
+      summary: Deletes a Usf
+      description: delete a Usf
+      operationId: deleteUsf
+      parameters:
+        - name: usfId
+          in: path
+          description: Usf id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: USF not found
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /request:
+    post:
+      tags:
+        - Request
+      summary: New request 
+      description: Add a new request 
+      operationId: addRequest
+      requestBody:
+        description: Create a new request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Request'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Request
+      summary: List all Requests
+      description: Returns all requests
+      operationId: getRequests
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '404':
+          description: Request not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /request/{requestId}:
+    put:
+      tags:
+        - Request
+      summary: Update an existing Request
+      description: Update an existing request by Id
+      operationId: updateRequest
+      requestBody:
+        description: Update an existent request in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Request'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '400':
+          description: Request not found
+        '404':
+          description: Request not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Request
+      summary: Find Request by ID
+      description: Returns a single Request
+      operationId: getRequestById
+      parameters:
+        - name: requestId
+          in: path
+          description: ID of request to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '400':
+          description: Request not found
+        '404':
+          description: Request not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    delete:
+      tags:
+        - Request
+      summary: Deletes a Request
+      description: delete a Request
+      operationId: deleteRequest
+      parameters:
+        - name: requestId
+          in: path
+          description: Request id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Request not found
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+
+
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+  /user/createWithList:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: Creates list of users with given input array
+      operationId: createUsersWithListInput
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: successful operation
+  /user/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: ''
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid username/password supplied
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+  /user/{username}:
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      description: ''
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: 'The name that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be deleted
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent user in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        default:
+          description: successful operation
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+components:
+  schemas:
+    Request:
+      type: object
+      properties:
+        idRequest:
+          type: integer
+          format: int64
+          example: 1
+        idResource:
+          type: integer
+          format: int64
+          example: 10 
+        answeredDate:
+          type: string
+          example: 29/12/2022  
+        statusRequest:
+          type: string
+          example: approved    
+        idUsf:
+          type: integer
+          example: 7
+
+    Order:
+      type: object
+      properties:
+        idTeam:
+          type: integer
+          format: int64
+          example: 10
+        doctorId:
+          type: integer
+          format: int64
+          example: 1
+        color:
+          type: string
+          description: Color of the Team
+          example: blue
+      xml:
+        name: order
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 100000
+        username:
+          type: string
+          example: fehguy
+        address:
+          type: array
+          xml:
+            name: addresses
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Address'
+      xml:
+        name: customer
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: 437 Lytton
+        city:
+          type: string
+          example: Palo Alto
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: '94301'
+      xml:
+        name: address
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Dogs
+      xml:
+        name: category
+    Team: 
+      type: object
+      properties:
+        idTeam:
+          type: integer
+          format: int64
+          example: 10  
+        idDoctor:
+          type: integer
+          format: int64
+          example: 1
+        color:
+          type: string
+          example: blue
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+        phone:
+          type: string
+          example: '12345'
+        userStatus:
+          type: integer
+          description: User Status
+          format: int32
+          example: 1
+      xml:
+        name: user
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: tag
+    Usf:
+      type: object
+      properties:
+        idUsf:
+          type: integer
+          format: int64
+          example: 3
+        name:
+          type: string
+          example: USF de São Pedro
+        idCurrentTeam:
+          type: integer
+          format: int64
+          example: 47
+    Pet:
+      required:
+        - name
+        - occupation
+        - idTeam
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        idTeam:
+          type: integer
+          format: int64
+          example: null
+        name:
+          type: string
+          example: Pedro Afonso
+        occupation:
+          type: string
+          example: Doctor
+      xml:
+        name: pet
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    Pet:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pet'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pet'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
