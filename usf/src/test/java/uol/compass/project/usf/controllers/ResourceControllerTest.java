@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(value = ResourceController.class)
+@WebMvcTest(controllers = ResourceController.class)
 public class ResourceControllerTest {
 
     public static final String BASE_URL = "/resource";
