@@ -782,7 +782,281 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
-
+  /resource:
+    post:
+      tags:
+        - Resource
+      summary: Add a new resource
+      description: Add a new resource
+      operationId: addResource
+      requestBody:
+        description: Create a new resource
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Resource'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Resource
+      summary: Returns all Resources
+      description: Returns all Resources and informations
+      operationId: getResource
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Resource'
+      security:
+        - api_key: []
+  /resource/{resourceId}:
+    put:
+      tags:
+        - Resource
+      summary: Update an existing resource
+      description: Update an existing resource by Id
+      operationId: updateResource
+      requestBody:
+        description: Update an existent resource in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Resource'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '400':
+          description: Resource not found
+        '404':
+          description: Resource not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Resource
+      summary: Find Resource by ID
+      description: Returns a single Resource
+      operationId: getResourceById
+      parameters:
+        - name: resourceId
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '400':
+          description: USF not found
+        '404':
+          description: USF not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    delete:
+      tags:
+        - Resource
+      summary: Deletes a Resource
+      description: delete a Resource
+      operationId: deleteResource
+      parameters:
+        - name: resourceId
+          in: path
+          description: Resource id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Resource not found
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+  /inventory:
+    post:
+      tags:
+        - Inventory
+      summary: Add a new inventory
+      description: Add a new inventory
+      operationId: addInventory
+      requestBody:
+        description: Create a new inventory
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Inventory
+      summary: Returns all inventory
+      description: Returns all Inventory and informations
+      operationId: getInventory
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+      security:
+        - api_key: []
+  /inventory/{inventoryId}:
+    put:
+      tags:
+        - Inventory
+      summary: Update an existing Inventory
+      description: Update an existing inventory by Id
+      operationId: updateInventory
+      requestBody:
+        description: Update an existent inventory in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '400':
+          description: Inventory not found
+        '404':
+          description: Inventory not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    get:
+      tags:
+        - Inventory
+      summary: Find Inventory by ID
+      description: Returns a single Inventory
+      operationId: getInventoryById
+      parameters:
+        - name: inventoryId
+          in: path
+          description: ID of inventory to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '400':
+          description: Inventory not found
+        '404':
+          description: Inventory not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
 
   /user:
     post:
@@ -1055,6 +1329,44 @@ components:
           example: Dogs
       xml:
         name: category
+    Inventory:
+      type: object
+      properties:
+        idResource:
+          type: integer
+          format: int64
+          example: 4511
+        idUsf:
+          type: integer
+          format: int64
+          example: 1
+        ammount:
+          type: integer
+          format: int64
+          example: 50000   
+    Resource:
+      type: object
+      properties:
+        idResource:
+          type: integer
+          format: int64
+          example: 4511
+        name:
+          type: string
+          example: Vacina cepa H1N1/H3N2/B
+        description:
+          type: string
+          example: Vacina trivalente previne contra três tipos de vírus influenza.
+        category:
+          type: string
+          example: Vacinas
+        status:   
+          type: string
+          example: in storage
+        minAmmount:
+          type: integer
+          format: int64
+          example: 450000
     Team: 
       type: object
       properties:
