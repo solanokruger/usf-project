@@ -11,6 +11,9 @@ public enum ErrorCode {
     INVALID_PARAMETER("Paramêtro do pedido inválido"),
     INTERNAL_SERVER_ERROR("Erro interno do servidor"),
 
+    TOKEN_NOT_CREATED("Erro ao lançar Token JWT"),
+    TOKEN_NOT_VALID("Token JWT inválido ou expirado!"),
+
     USF_NOT_FOUND("USF não encontrada"),
     TEAM_NOT_FOUND("Equipe não encontrado"),
     DOCTOR_NOT_FOUND("Médico não encontrado"),

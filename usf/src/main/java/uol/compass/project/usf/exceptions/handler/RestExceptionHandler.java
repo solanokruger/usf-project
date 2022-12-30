@@ -117,6 +117,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
+    
+    @ExceptionHandler(TokenNotCreatedExpection.class)
+    public final ResponseEntity<Object> handleTokenNotCreatedException(TokenNotCreatedExpection ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.TOKEN_NOT_CREATED, ex);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(TokenNotValid.class)
+    public final ResponseEntity<Object> handleTokenNotValidException(TokenNotValid ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.TOKEN_NOT_VALID, ex);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(exceptionResponse);
+    }
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex) {

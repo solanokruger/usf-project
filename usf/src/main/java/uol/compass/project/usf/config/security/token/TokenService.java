@@ -8,6 +8,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uol.compass.project.usf.config.security.user.UserEntity;
+import uol.compass.project.usf.exceptions.TokenNotCreatedExpection;
+import uol.compass.project.usf.exceptions.TokenNotValid;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -28,8 +30,7 @@ public class TokenService {
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
-            //500
-            throw new RuntimeException("Erro ao lançar token JWT");
+            throw new TokenNotCreatedExpection();
         }
 
     }
@@ -43,8 +44,7 @@ public class TokenService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-                //401
-            throw new RuntimeException("Token JWT inválido ou expirado!");
+            throw new TokenNotValid();
         }
     }
 
