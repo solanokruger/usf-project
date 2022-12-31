@@ -1,7 +1,10 @@
 package uol.compass.project.usf.controllers;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,40 +17,35 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
-import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
-import uol.compass.project.usf.services.TeamServiceImpl;
+import uol.compass.project.usf.model.dto.request.DoctorRequestDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseParameters;
+import uol.compass.project.usf.services.DoctorServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
 @AutoConfigureMockMvc(addFilters = false)
-@WebMvcTest(controllers = TeamController.class)
-@ContextConfiguration(classes = TeamController.class)
-public class TeamControllerTest {
-
-    public static final String BASE_URL = "/team";
+@WebMvcTest(controllers = DoctorController.class)
+@ContextConfiguration(classes = DoctorController.class)
+public class DoctorControllerTest {
+    
+    public static final String BASE_URL = "/doctor";
 
     public static final String ID_URL = BASE_URL + "/1";
 
-    public static final String ID_TEAM_USF_URL = ID_URL + "/usf/1";
+    public static final String ID_DOCTOR_TEAM_URL = ID_URL + "/team/1";
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private TeamServiceImpl teamService;
+    private DoctorServiceImpl doctorService;
 
     @Test
     void create() throws Exception {
-        TeamRequestDTO request = getTeamRequestDTO();
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        DoctorRequestDTO request = getDoctorRequestDTO();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        when(teamService.create(any())).thenReturn(teamResponseDTO);
+        when(doctorService.create(any())).thenReturn(doctorResponseDTO);
 
         String input = TestUtils.mapToJson(request);
 
@@ -64,32 +62,15 @@ public class TeamControllerTest {
     }
 
     @Test
-    void linkTeamToUsf() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
-
-        when(teamService.attachTeamToUsf(any(), any())).thenReturn(teamResponseDTO);
-
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.post(ID_TEAM_USF_URL)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-
-        assertEquals(HttpStatus.OK.value(), response.getStatus());
-    }
-
-    @Test
     void findAll() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        DoctorResponseParameters doctorResponseParameters = new DoctorResponseParameters();
 
-        Mockito.when(teamService.findAll()).thenReturn(List.of(teamResponseDTO));
+        when(doctorService.findAll(any())).thenReturn(doctorResponseParameters);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
         MockHttpServletResponse response = result.getResponse();
@@ -99,9 +80,9 @@ public class TeamControllerTest {
 
     @Test
     void findById() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        when(teamService.findById(any())).thenReturn(teamResponseDTO);
+        when(doctorService.findById(any())).thenReturn(doctorResponseDTO);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(ID_URL)
@@ -116,34 +97,17 @@ public class TeamControllerTest {
 
     @Test
     void update() throws Exception {
-        TeamRequestDTO request = getTeamRequestDTO();
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
+        DoctorRequestDTO request = getDoctorRequestDTO();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        when(teamService.update(any(), any())).thenReturn(teamResponseDTO);
+        when(doctorService.update(any(), any())).thenReturn(doctorResponseDTO);
 
-        String input = uol.compass.project.usf.utils.TestUtils.mapToJson(request);
+        String input = TestUtils.mapToJson(request);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.put(ID_URL)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(input)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-
-        assertEquals(HttpStatus.OK.value(), response.getStatus());
-    }
-
-    @Test
-    void deleteTeamFromUsf() throws Exception {
-        TeamResponseDTO teamResponseDTO = new TeamResponseDTO();
-
-        when(teamService.disattachTeamFromUsf(any(), any())).thenReturn(teamResponseDTO);
-
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.delete(ID_TEAM_USF_URL)
-                        .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -165,9 +129,44 @@ public class TeamControllerTest {
         assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
     }
 
-    private TeamRequestDTO getTeamRequestDTO() {
-        return TeamRequestDTO.builder()
-                .color("Blue")
+    @Test
+    void attachDoctorToTeam() throws Exception {
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
+
+        when(doctorService.attachDoctorToTeam(any(), any())).thenReturn(doctorResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.post(ID_DOCTOR_TEAM_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void disattachDoctorFromTeam() throws Exception {
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
+
+        when(doctorService.disattachDoctorFromTeam(any(), any())).thenReturn(doctorResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.delete(ID_DOCTOR_TEAM_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    private DoctorRequestDTO getDoctorRequestDTO() {
+        return DoctorRequestDTO.builder()
+                .name("Carlos")
+                .specialization("oftalmologista")
                 .build();
     }
 
