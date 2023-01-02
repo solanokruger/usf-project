@@ -15,10 +15,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.services.TeamServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,6 +37,8 @@ public class TeamControllerTest {
     public static final String ID_URL = BASE_URL + "/1";
 
     public static final String ID_TEAM_USF_URL = ID_URL + "/usf/1";
+
+    public static final String ID_DOCTOR = ID_URL + "/doctor";
 
     @Autowired
     private MockMvc mvc;
@@ -105,6 +109,23 @@ public class TeamControllerTest {
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(ID_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void findDoctorsById() throws Exception {
+        List<DoctorResponseDTO> doctorResponseDTO = new ArrayList<>();
+
+        when(teamService.findDoctorsInTeam(any())).thenReturn(doctorResponseDTO);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(ID_DOCTOR)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();

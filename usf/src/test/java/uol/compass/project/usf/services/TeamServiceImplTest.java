@@ -9,11 +9,13 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +39,7 @@ public class TeamServiceImplTest {
     ModelMapper modelMapper;
 
     @Test
-    public void shouldCreateTeamTest_success(){
+    public void shouldCreateTeamTest_success() {
         TeamEntity team = new TeamEntity();
         TeamRequestDTO teamRequestDTO = new TeamRequestDTO();
         TeamResponseDTO responseDTO = new TeamResponseDTO();
@@ -52,7 +54,7 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void shouldFindAllTeamsTest_success(){
+    public void shouldFindAllTeamsTest_success() {
         TeamEntity team = new TeamEntity();
 
         Mockito.when(teamRepository.findAll()).thenReturn(List.of(team));
@@ -63,7 +65,7 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void shouldFindTeamByIdTest_success(){
+    public void shouldFindTeamByIdTest_success() {
         TeamEntity team = new TeamEntity();
         TeamResponseDTO responseDTO = new TeamResponseDTO();
 
@@ -75,7 +77,19 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void shouldUpdateTeam_success(){
+    public void shouldFindDoctorsByTeam_success() {
+        TeamEntity team = new TeamEntity();
+        List<DoctorResponseDTO> responseDTO = new ArrayList<>();
+
+        Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
+
+        List<DoctorResponseDTO> response = teamService.findDoctorsInTeam(ID);
+
+        assertEquals(response, responseDTO);
+    }
+
+    @Test
+    public void shouldUpdateTeam_success() {
         TeamEntity team = new TeamEntity();
         TeamResponseDTO response = new TeamResponseDTO();
         TeamRequestDTO request = new TeamRequestDTO();
@@ -133,6 +147,5 @@ public class TeamServiceImplTest {
 
         verify(teamRepository).deleteById(any());
     }
-
 
 }
