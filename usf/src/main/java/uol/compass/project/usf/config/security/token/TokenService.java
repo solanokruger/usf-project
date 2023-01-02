@@ -32,7 +32,6 @@ public class TokenService {
         } catch (JWTCreationException exception){
             throw new TokenNotCreatedExpection();
         }
-
     }
 
     public String getSubject(String tokenJWT) {
