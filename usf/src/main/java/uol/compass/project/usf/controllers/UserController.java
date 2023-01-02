@@ -5,9 +5,9 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.model.dto.request.CreateUserRoleDTO;
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.services.RoleUserService;
 import uol.compass.project.usf.services.UserServiceImpl;
@@ -35,9 +36,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PatchMapping(value = "/update/{id}")
     public ResponseEntity<UserResponseDTO> update(@PathVariable("id") Long id,
-            @RequestBody @Valid UserRequestDTO request) {
+            @RequestBody @Valid UserRequestUpdateDTO request) {
         UserResponseDTO response = userService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

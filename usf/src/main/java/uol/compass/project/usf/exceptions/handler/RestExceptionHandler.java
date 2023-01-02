@@ -132,6 +132,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(exceptionResponse);
     }
 
+    @ExceptionHandler(PasswordNotValidException.class)
+    public final ResponseEntity<Object> handlePasswordNotValidException(PasswordNotValidException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.PASSWORD_NOT_VALID, ex);
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
+    }
+
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.INTERNAL_SERVER_ERROR, ex);

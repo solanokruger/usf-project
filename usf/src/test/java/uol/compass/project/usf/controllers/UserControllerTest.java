@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.model.entities.UserEntity;
 import uol.compass.project.usf.repositories.UserRepository;
@@ -79,7 +80,7 @@ public class UserControllerTest {
 
     @Test
     void update() throws Exception {
-        UserRequestDTO request = getUserRequestDTO();
+        UserRequestUpdateDTO request = getUserRequestUpdateDTO();
         UserResponseDTO userResponseDTO = new UserResponseDTO();
 
         when(userService.update(any(), any())).thenReturn(userResponseDTO);
@@ -87,7 +88,7 @@ public class UserControllerTest {
         String input = TestUtils.mapToJson(request);
 
         MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.put(UPDATE_URL)
+                .perform(MockMvcRequestBuilders.patch(UPDATE_URL)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(input)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -103,6 +104,14 @@ public class UserControllerTest {
                 .name("teste")
                 .login("testeLogin")
                 .password("12345")
+                .build();
+    }
+
+    private UserRequestUpdateDTO getUserRequestUpdateDTO() {
+        return UserRequestUpdateDTO.builder()
+                .oldPassword("12345")
+                .name("teste")
+                .newPassword("54321")
                 .build();
     }
 }

@@ -9,8 +9,10 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.model.entities.UserEntity;
 import uol.compass.project.usf.repositories.UserRepository;
@@ -18,6 +20,7 @@ import uol.compass.project.usf.repositories.UserRepository;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -34,6 +37,10 @@ public class UserServiceImplTest {
 
     @Spy
     private ModelMapper modelMapper;
+
+    private BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Test
     public void shouldCreateUserTest_success(){
@@ -54,16 +61,18 @@ public class UserServiceImplTest {
     @Test
     public void shouldUpdateUserTest_success(){
         UserEntity user = new UserEntity();
+        user.setId(ID);
+        user.setPassword("$2a$10$vughfMsGcLLI3kyXAeDe8.AoxRZL8RBy04oXv8I9yX6lJZh6Y5kjC");
 
-        UserResponseDTO userResponseDTO = new UserResponseDTO();
-        UserRequestDTO request = new UserRequestDTO();
-        request.setPassword("12345");
+        UserRequestUpdateDTO request = new UserRequestUpdateDTO();
+        request.setOldPassword("123");
+        request.setNewPassword("321");
 
         Mockito.when(userRepository.findById(any())).thenReturn(Optional.of(user));
         Mockito.when(userRepository.save(any())).thenReturn(user);
 
         UserResponseDTO response = userService.update(ID, request);
 
-        Assert.assertEquals(response.getId(), userResponseDTO.getId());
+        assertTrue(passwordEncoder().matches("321", response.getPassword()));
     }
 }

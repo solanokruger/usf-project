@@ -5,9 +5,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import uol.compass.project.usf.exceptions.PasswordNotValidException;
 import uol.compass.project.usf.exceptions.UserAlreadyExistsException;
 import uol.compass.project.usf.exceptions.UserNotFoundException;
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.model.entities.UserEntity;
 import uol.compass.project.usf.repositories.UserRepository;
@@ -41,12 +43,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO update(Long id, UserRequestDTO request) {
-        getUserEntity(id);
+    public UserResponseDTO update(Long id, UserRequestUpdateDTO request) {
+        UserEntity userToUpdate = getUserEntity(id);
 
-        UserEntity userToUpdate = modelMapper.map(request, UserEntity.class);
-        userToUpdate.setId(id);
-        userToUpdate.setPassword(passwordEncoder().encode(userToUpdate.getPassword()));
+        if (!passwordEncoder().matches(request.getOldPassword(), userToUpdate.getPassword())) {
+            throw new PasswordNotValidException();
+        }
+
+        userToUpdate.setName(request.getName());
+        userToUpdate.setPassword(passwordEncoder().encode(request.getNewPassword()));
         UserEntity updatedUser = userRepository.save(userToUpdate);
 
         return modelMapper.map(updatedUser, UserResponseDTO.class);
