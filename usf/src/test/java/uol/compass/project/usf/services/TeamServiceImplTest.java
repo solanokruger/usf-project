@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import uol.compass.project.usf.model.dto.request.TeamRequestDTO;
 import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.TeamResponseDTO;
+import uol.compass.project.usf.model.entities.DoctorEntity;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
@@ -20,6 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 import static org.mockito.Mockito.*;
@@ -78,14 +81,29 @@ public class TeamServiceImplTest {
 
     @Test
     public void shouldFindDoctorsByTeam_success() {
-        TeamEntity team = new TeamEntity();
-        List<DoctorResponseDTO> responseDTO = new ArrayList<>();
+        TeamEntity team = new TeamEntity(1L, "blue", null, new ArrayList<>());
+        
+        team = setDoctorsToTeam(team);
 
         Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
 
         List<DoctorResponseDTO> response = teamService.findDoctorsInTeam(ID);
 
-        assertEquals(response, responseDTO);
+        assertEquals(ID, response.get(0).getId());
+        assertTrue(response instanceof List);
+        assertEquals(DoctorResponseDTO.class, response.get(0).getClass());
+        assertNotNull(response);
+        assertEquals(2, response.size());
+    }
+
+    private TeamEntity setDoctorsToTeam(TeamEntity team) {
+        DoctorEntity doctor1 = new DoctorEntity(1L, "João", "Oftalmologista", null);
+        DoctorEntity doctor2 = new DoctorEntity(2L, "Alberto", "Cardiologista", null);
+
+        team.getDoctors().add(doctor1);
+        team.getDoctors().add(doctor2);
+
+        return team;
     }
 
     @Test

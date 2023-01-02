@@ -37,6 +37,7 @@ public class UsfServiceImpl implements UsfService {
         Page<UsfEntity> page = usfRepository.findAll(pageable);
 
         return createUsfResponseParameters(page);
+        // return page.map(e -> modelMapper.map(e, UsfResponseDTO.class));
     }
 
     @Override

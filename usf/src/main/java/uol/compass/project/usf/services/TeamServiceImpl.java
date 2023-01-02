@@ -44,7 +44,7 @@ public class TeamServiceImpl implements TeamService{
     public List<DoctorResponseDTO> findDoctorsInTeam(Long id) {
         TeamEntity team = findTeamByIdVerication(id);
         List<DoctorEntity> allDoctors = team.getDoctors();
-        return modelMapper.map(allDoctors, List.class);
+        return allDoctors.stream().map(doctor -> modelMapper.map(doctor, DoctorResponseDTO.class)).toList();
     }
 
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
