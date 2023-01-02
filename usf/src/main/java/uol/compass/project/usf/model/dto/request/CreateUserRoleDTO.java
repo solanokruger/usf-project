@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.role;
+package uol.compass.project.usf.model.dto.request;
 
 import java.util.List;
 

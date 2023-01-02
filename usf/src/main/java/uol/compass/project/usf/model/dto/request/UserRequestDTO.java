@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.model.dto.request;
 
 import javax.validation.constraints.NotBlank;
 

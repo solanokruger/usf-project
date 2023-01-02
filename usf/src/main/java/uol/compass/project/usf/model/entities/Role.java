@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.role;
+package uol.compass.project.usf.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

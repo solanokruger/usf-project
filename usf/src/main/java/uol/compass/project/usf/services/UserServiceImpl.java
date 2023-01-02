@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.exceptions.UserAlreadyExistsException;
 import uol.compass.project.usf.exceptions.UserNotFoundException;
+import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
+import uol.compass.project.usf.model.entities.UserEntity;
+import uol.compass.project.usf.repositories.UserRepository;
 
 @Service
 @RequiredArgsConstructor

@@ -1,6 +1,9 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.services;
 
 import org.springframework.stereotype.Service;
+
+import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 
 @Service
 public interface UserService {

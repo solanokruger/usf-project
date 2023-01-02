@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.role;
+package uol.compass.project.usf.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,10 +8,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.config.security.user.UserResponseDTO;
-import uol.compass.project.usf.config.security.user.UserEntity;
 import uol.compass.project.usf.exceptions.UserNotFoundException;
-import uol.compass.project.usf.config.security.user.UserRepository;
+import uol.compass.project.usf.model.dto.request.CreateUserRoleDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
+import uol.compass.project.usf.model.entities.Role;
+import uol.compass.project.usf.model.entities.UserEntity;
+import uol.compass.project.usf.repositories.UserRepository;
 
 @Service
 @RequiredArgsConstructor

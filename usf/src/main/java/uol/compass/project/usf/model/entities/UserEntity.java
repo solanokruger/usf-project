@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.model.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uol.compass.project.usf.config.security.role.Role;
 
 @Data
 @AllArgsConstructor

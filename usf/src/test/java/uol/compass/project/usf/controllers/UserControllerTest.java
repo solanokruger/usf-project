@@ -1,4 +1,4 @@
-package uol.compass.project.usf.security.user;
+package uol.compass.project.usf.controllers;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.config.security.role.RoleUserService;
-import uol.compass.project.usf.config.security.user.*;
+
+import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
+import uol.compass.project.usf.model.entities.UserEntity;
+import uol.compass.project.usf.repositories.UserRepository;
+import uol.compass.project.usf.services.RoleUserService;
+import uol.compass.project.usf.services.UserServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package uol.compass.project.usf.security.user;
+package uol.compass.project.usf.services;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,11 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import uol.compass.project.usf.config.security.user.*;
+
+import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
+import uol.compass.project.usf.model.entities.UserEntity;
+import uol.compass.project.usf.repositories.UserRepository;
 
 import java.util.Optional;
 

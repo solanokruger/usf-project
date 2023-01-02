@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.controllers;
 
 import javax.validation.Valid;
 
@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.config.security.role.CreateUserRoleDTO;
-import uol.compass.project.usf.config.security.role.RoleUserService;
+import uol.compass.project.usf.model.dto.request.CreateUserRoleDTO;
+import uol.compass.project.usf.model.dto.request.UserRequestDTO;
+import uol.compass.project.usf.model.dto.response.UserResponseDTO;
+import uol.compass.project.usf.services.RoleUserService;
+import uol.compass.project.usf.services.UserServiceImpl;
 
 @RestController
 @RequiredArgsConstructor

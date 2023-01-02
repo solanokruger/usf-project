@@ -1,11 +1,11 @@
-package uol.compass.project.usf.config.security.user;
+package uol.compass.project.usf.model.dto.response;
 
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uol.compass.project.usf.config.security.role.Role;
+import uol.compass.project.usf.model.entities.Role;
 
 @Data
 @AllArgsConstructor
