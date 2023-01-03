@@ -10,10 +10,10 @@ info:
     realizar pedidos de recursos ou para gestão de profissionais, de maneira manual através de pranchetas 
     e documentos por escrito. Fazendo o sistema desses ambientes vitais para o cuidado das comunidades brasileiras 
     ficam propensos a erros e lentidão no atendimento.
-    
+
     Objetivando desenvolvimento para esse serviço, desenvolvemos uma API, para automatizar esses processos defasados.
 
-    
+
     Alguns links que podem ser interessantes:
     - [Repositório da USF API](https://github.com/solanokruger/usf-project)
     - [Toda documentação do projeto](https://docs.google.com/document/d/1Rgm3JiFKQBkO_tDVDDw1Mr-FGm9hP7MV-BGx2f4m3HE/edit?usp=sharing)
@@ -52,25 +52,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'          
+                $ref: "#/components/schemas/Pet"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
+                $ref: "#/components/schemas/Pet"
+        "400":
           description: Bad Request
       security:
         - petstore_auth:
@@ -83,16 +83,16 @@ paths:
       description: Retorna uma lista de Doutores
       operationId: getDoctor
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'          
+                $ref: "#/components/schemas/Pet"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'     
-        '404':
+                $ref: "#/components/schemas/Pet"
+        "404":
           description: Doctor not found
       security:
         - api_key: []
@@ -111,29 +111,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: "#/components/schemas/Pet"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'          
+                $ref: "#/components/schemas/Pet"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
+                $ref: "#/components/schemas/Pet"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Doctor not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -154,18 +154,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'          
+                $ref: "#/components/schemas/Pet"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
+                $ref: "#/components/schemas/Pet"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Doctor not found
       security:
         - api_key: []
@@ -187,13 +187,13 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
       security:
         - petstore_auth:
             - write:pets
             - read:pets
-  /doctor{idDoctor}/team/{idTeam}: 
+  /doctor{idDoctor}/team/{idTeam}:
     post:
       tags:
         - Doctor
@@ -219,25 +219,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
+              $ref: "#/components/schemas/Order"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Order'
+              $ref: "#/components/schemas/Order"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Order'
+              $ref: "#/components/schemas/Order"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
-        '405':
+                $ref: "#/components/schemas/Order"
+        "405":
           description: Invalid input
-        '400':
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Doctor not found
     delete:
       tags:
@@ -261,9 +261,9 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Doctor not found
 
   /team:
@@ -278,27 +278,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'          
+                $ref: "#/components/schemas/Team"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Team'
-        '400':
+                $ref: "#/components/schemas/Team"
+        "400":
           description: Bad request
-        '405':
+        "405":
           description: Invalid input
       security:
         - petstore_auth:
@@ -311,13 +311,13 @@ paths:
       description: Retorna uma lista com todos os times
       operationId: getTeam
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'
-        '400':
+                $ref: "#/components/schemas/Team"
+        "400":
           description: Bad request
       security:
         - api_key: []
@@ -337,18 +337,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'          
+                $ref: "#/components/schemas/Team"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Team'
-        '400':
+                $ref: "#/components/schemas/Team"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Team not found
       security:
         - api_key: []
@@ -366,29 +366,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: "#/components/schemas/Team"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'          
+                $ref: "#/components/schemas/Team"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Team'
-        '400':
+                $ref: "#/components/schemas/Team"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Team not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -409,14 +409,14 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
       security:
         - petstore_auth:
             - write:pets
             - read:pets
   /team{idTeam}/usf/{idUsf}:
-   post:
+    post:
       tags:
         - Team
       summary: Vincula um time a uma usf
@@ -441,27 +441,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usf'
-        '400':
+                $ref: "#/components/schemas/Usf"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: USF not found
-        '405':
+        "405":
           description: Invalid input
-   delete:
+    delete:
       tags:
         - Team
       summary: Remove um time de uma USF
@@ -483,9 +483,9 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Team not found
 
   /usf:
@@ -496,18 +496,18 @@ paths:
       description: Retorna todas Usfs
       operationId: getUsf
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usf'          
+                $ref: "#/components/schemas/Usf"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Usf'
-        '400':
+                $ref: "#/components/schemas/Usf"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: USF not found
       security:
         - api_key: []
@@ -525,27 +525,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usf'          
+                $ref: "#/components/schemas/Usf"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Usf'
-        '400':
+                $ref: "#/components/schemas/Usf"
+        "400":
           description: Bad request
-        '405':
+        "405":
           description: Invalid input
       security:
         - petstore_auth:
@@ -563,29 +563,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Usf'
+              $ref: "#/components/schemas/Usf"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usf'          
+                $ref: "#/components/schemas/Usf"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Usf'
-        '400':
+                $ref: "#/components/schemas/Usf"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Usf not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -606,18 +606,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usf'          
+                $ref: "#/components/schemas/Usf"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Usf'
-        '400':
+                $ref: "#/components/schemas/Usf"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: USF not found
       security:
         - api_key: []
@@ -639,7 +639,7 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
       security:
         - petstore_auth:
@@ -650,35 +650,35 @@ paths:
     post:
       tags:
         - Request
-      summary: Adiciona uma nova Requisição 
-      description: Adiciona uma nova Requisição 
+      summary: Adiciona uma nova Requisição
+      description: Adiciona uma nova Requisição
       operationId: addRequest
       requestBody:
         description: Cria uma nova Requisição
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Request'          
+                $ref: "#/components/schemas/Request"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'
-        '400':
+                $ref: "#/components/schemas/Request"
+        "400":
           description: Bad request
-        '405':
+        "405":
           description: Invalid input
       security:
         - petstore_auth:
@@ -691,18 +691,18 @@ paths:
       description: Retorna todas Requesições
       operationId: getRequests
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Request'          
+                $ref: "#/components/schemas/Request"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'
-        '400':
+                $ref: "#/components/schemas/Request"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Request not found
       security:
         - api_key: []
@@ -721,29 +721,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Request'
+              $ref: "#/components/schemas/Request"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Request'          
+                $ref: "#/components/schemas/Request"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'
-        '400':
+                $ref: "#/components/schemas/Request"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Request not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -764,18 +764,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Request'          
+                $ref: "#/components/schemas/Request"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'
-        '400':
+                $ref: "#/components/schemas/Request"
+        "400":
           description: Bad Request
-        '404':
+        "404":
           description: Request not found
       security:
         - api_key: []
@@ -797,7 +797,7 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad Request
       security:
         - petstore_auth:
@@ -816,27 +816,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Resource'          
+                $ref: "#/components/schemas/Resource"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Resource'
-        '400':
+                $ref: "#/components/schemas/Resource"
+        "400":
           description: Bad request
-        '405':
+        "405":
           description: Invalid input
       security:
         - petstore_auth:
@@ -849,26 +849,26 @@ paths:
       description: Retorna todos os Recursos
       operationId: getResource
       responses:
-        '200':
+        "200":
           description: OK
-        '400':
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Resource'          
+                $ref: "#/components/schemas/Resource"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Resource'
+                $ref: "#/components/schemas/Resource"
       security:
         - api_key: []
   /resource/{resourceId}:
     put:
       tags:
         - Resource
-      summary: Atualiza um recurso 
+      summary: Atualiza um recurso
       description: Atualiza um recurso existente pelo id
       operationId: updateResource
       requestBody:
@@ -876,29 +876,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Resource'
+              $ref: "#/components/schemas/Resource"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Resource'          
+                $ref: "#/components/schemas/Resource"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Resource'
-        '400':
+                $ref: "#/components/schemas/Resource"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Resource not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -919,18 +919,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Resource'          
+                $ref: "#/components/schemas/Resource"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Resource'
-        '400':
+                $ref: "#/components/schemas/Resource"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Resource not found
       security:
         - api_key: []
@@ -952,9 +952,9 @@ paths:
             type: integer
             format: int64
       responses:
-        '400':
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Resource not found
       security:
         - petstore_auth:
@@ -973,27 +973,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Inventory'          
+                $ref: "#/components/schemas/Inventory"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Inventory'
-        '400':
+                $ref: "#/components/schemas/Inventory"
+        "400":
           description: Bad request
-        '405':
+        "405":
           description: Invalid input
       security:
         - petstore_auth:
@@ -1006,18 +1006,18 @@ paths:
       description: Lista todos os inventários
       operationId: getInventory
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Inventory'          
+                $ref: "#/components/schemas/Inventory"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Inventory'
-        '400': 
+                $ref: "#/components/schemas/Inventory"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Inventory not found
       security:
         - api_key: []
@@ -1033,29 +1033,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Inventory'
+              $ref: "#/components/schemas/Inventory"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Inventory'          
+                $ref: "#/components/schemas/Inventory"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Inventory'
-        '400':
+                $ref: "#/components/schemas/Inventory"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Inventory not found
-        '405':
+        "405":
           description: Validation exception
       security:
         - petstore_auth:
@@ -1076,18 +1076,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Inventory'          
+                $ref: "#/components/schemas/Inventory"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Inventory'
-        '400':
+                $ref: "#/components/schemas/Inventory"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Inventory not found
       security:
         - api_key: []
@@ -1107,23 +1107,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
         default:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
   /user/createWithList:
     post:
       tags:
@@ -1137,17 +1137,17 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'          
+                $ref: "#/components/schemas/User"
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
         default:
           description: successful operation
   /user/login:
@@ -1155,7 +1155,7 @@ paths:
       tags:
         - User
       summary: Logs user into the system
-      description: ''
+      description: ""
       operationId: loginUser
       parameters:
         - name: username
@@ -1171,7 +1171,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           headers:
             X-Rate-Limit:
@@ -1191,14 +1191,14 @@ paths:
             application/json:
               schema:
                 type: string
-        '400':
+        "400":
           description: Invalid username/password supplied
   /user/logout:
     get:
       tags:
         - User
       summary: Logs out current logged in user session
-      description: ''
+      description: ""
       operationId: logoutUser
       parameters: []
       responses:
@@ -1209,28 +1209,28 @@ paths:
       tags:
         - User
       summary: Get user by user name
-      description: ''
+      description: ""
       operationId: getUserByName
       parameters:
         - name: username
           in: path
-          description: 'The name that needs to be fetched. Use user1 for testing. '
+          description: "The name that needs to be fetched. Use user1 for testing. "
           required: true
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'          
+                $ref: "#/components/schemas/User"
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Invalid username supplied
-        '404':
+        "404":
           description: User not found
     put:
       tags:
@@ -1250,13 +1250,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
         default:
           description: successful operation
@@ -1274,27 +1274,13 @@ paths:
           schema:
             type: string
       responses:
-        '400':
+        "400":
           description: Invalid username supplied
-        '404':
+        "404":
           description: User not found
 
 components:
   schemas:
-
-    EnumCategoryResource:
-      type: string
-      enum:
-        - EQUIPAMENTO
-        - MEDICAMENTO
-
-    EnumStatusSolicitation:
-      type: string
-      enum:
-        - PENDENTE
-        - CONCLUIDO
-        - CANCELADO
-
     DoctorRequestDTO:
       type: object
       properties:
@@ -1321,7 +1307,7 @@ components:
         idResource: 1
         idUsf: 1
         amount: 50
-        
+
     ResourceRequestDTO:
       type: object
       properties:
@@ -1376,7 +1362,7 @@ components:
         name:
           type: string
         address:
-         type: string
+          type: string
       example:
         name: Unidade de Saúde da Família da Avenida 2 de Julho
         address: Avenida 2 de Julho, número 15
@@ -1410,23 +1396,317 @@ components:
         password: 54321
 
     CreateUserRoleDTO:
-          type: object
-          properties:
-            idUser:
-              type: integer
-              format: int64
-            idRoles:
-              type: array
-              items:
-                type: integer
-                format: int64
-          example:
-            idUser: 1
-            idRoles: [1,2,3]
+      type: object
+      properties:
+        idUser:
+          type: integer
+          format: int64
+        idRoles:
+          type: array
+          items:
+            type: integer
+            format: int64
+      example:
+        idUser: 1
+        idRoles: [1, 2, 3]
 
+    TeamEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        color:
+          type: string
+      example:
+        id: 1
+        color: azul
 
+    DoctorResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        specialization:
+          type: string
+        team:
+          $ref: "#/components/schemas/TeamEntity"
+      example:
+        id: 1
+        name: Gabriel
+        specialization: Dermatologista
 
+    DoctorResponseParameters:
+      type: object
+      properties:
+        numberOfElements:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        doctor:
+          type: array
+          items:
+            $ref: "#/components/schemas/DoctorResponseDTO"
+      example:
+        numberOfElements: 10
+        totalElements: 10
+        totalPages: 1
 
+    ResourceEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum: [EQUIPAMENTO, MEDICAMENTO]
+      example:
+        id: 1
+        name: ÁLCOOL
+        description: Álcool 70% antisseptico
+        category: EQUIPAMENTO
+
+    UsfEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        address:
+          type: string
+      example:
+        id: 1
+        name: Unidade de Saúde da Família da Avenida 2 de Julho
+        address: Avenida 2 de Julho, número 15
+
+    InventoryResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        resource:
+          $ref: "#/components/schemas/ResourceEntity"
+        usf:
+          $ref: "#/components/schemas/UsfEntity"
+        amount:
+          type: integer
+      example:
+        id: 1
+        amount: 67
+
+    InventoryResponseParameters:
+      type: object
+      properties:
+        numberOfElements:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        inventory:
+          type: array
+          items:
+            $ref: "#/components/schemas/InventoryResponseDTO"
+      example:
+        numberOfElements: 10
+        totalElements: 10
+        totalPages: 1
+
+    ResourceResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum: [EQUIPAMENTO, MEDICAMENTO]
+      example:
+        id: 1
+        name: ÁLCOOL
+        description: Álcool 70% antisseptico
+        category: EQUIPAMENTO
+
+    ResourceResponseParameters:
+      type: object
+      properties:
+        numberOfElements:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        resources:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceResponseDTO"
+      example:
+        numberOfElements: 10
+        totalElements: 10
+        totalPages: 1
+
+    SolicitationResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        resource:
+          $ref: "#/components/schemas/ResourceEntity"
+        requestDate:
+          type: string
+          format: date-time
+        answerDate:
+          type: string
+          format: date-time
+        statusSolicitation:
+          type: string
+          enum: [PENDENTE, CONCLUIDO, CANCELADO]
+        usf:
+          $ref: "#/components/schemas/UsfEntity"
+        necessaryAmount:
+          type: integer
+          format: int64
+      example:
+        id: 1
+        requestDate: 2023-01-03T11:12:32Z
+        answerDate: null
+        statusSolicitation: PENDENTE
+        necessaryAmount: 32
+
+    SolicitationResponseParameters:
+      type: object
+      properties:
+        numberOfElements:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        solicitation:
+          type: array
+          items:
+            $ref: "#/components/schemas/SolicitationResponseDTO"
+      example:
+        numberOfElements: 10
+        totalElements: 10
+        totalPages: 1
+
+    DoctorEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        specilization:
+          type: string
+      example:
+        id: 1
+        name: Marcos
+        specialization: Cardiologista
+
+    TeamResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        color:
+          type: string
+        currentUsf:
+          $ref: "#/components/schemas/UsfEntity"
+        doctors:
+          type: array
+          items:
+            $ref: "#/components/schemas/DoctorEntity"
+      example:
+        id: 1
+        color: vermelho
+
+    UsfResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        currentTeam:
+          $ref: "#/components/schemas/TeamEntity"
+        address:
+          type: string
+      example:
+        id: 1
+        name: Unidade de Saúde da Família da Avenida 2 de Julho
+        address: Avenida 2 de Julho, número 15
+
+    UsfResponseParameters:
+      type: object
+      properties:
+        numberOfElements:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        usf:
+          type: array
+          items:
+            $ref: "#/components/schemas/UsfResponseDTO"
+      example:
+        numberOfElements: 10
+        totalElements: 10
+        totalPages: 1
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    UserResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
 
     Request:
       type: object
@@ -1438,13 +1718,13 @@ components:
         idResource:
           type: integer
           format: int64
-          example: 10 
+          example: 10
         answeredDate:
           type: string
-          example: 29/12/2022  
+          example: 29/12/2022
         statusRequest:
           type: string
-          example: approved    
+          example: approved
         idUsf:
           type: integer
           example: 7
@@ -1482,7 +1762,7 @@ components:
             name: addresses
             wrapped: true
           items:
-            $ref: '#/components/schemas/Address'
+            $ref: "#/components/schemas/Address"
       xml:
         name: customer
     Address:
@@ -1499,7 +1779,7 @@ components:
           example: CA
         zip:
           type: string
-          example: '94301'
+          example: "94301"
       xml:
         name: address
     Category:
@@ -1528,7 +1808,7 @@ components:
         ammount:
           type: integer
           format: int64
-          example: 50000   
+          example: 50000
     Resource:
       type: object
       properties:
@@ -1545,20 +1825,20 @@ components:
         category:
           type: string
           example: Vacinas
-        status:   
+        status:
           type: string
           example: in storage
         minAmmount:
           type: integer
           format: int64
           example: 450000
-    Team: 
+    Team:
       type: object
       properties:
         idTeam:
           type: integer
           format: int64
-          example: 10  
+          example: 10
         idDoctor:
           type: integer
           format: int64
@@ -1587,10 +1867,10 @@ components:
           example: john@email.com
         password:
           type: string
-          example: '12345'
+          example: "12345"
         phone:
           type: string
-          example: '12345'
+          example: "12345"
         userStatus:
           type: integer
           description: User Status
@@ -1656,17 +1936,17 @@ components:
         message:
           type: string
       xml:
-        name: '##default'
+        name: "##default"
   requestBodies:
     Pet:
       description: Pet object that needs to be added to the store
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Pet'
+            $ref: "#/components/schemas/Pet"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Pet'
+            $ref: "#/components/schemas/Pet"
     UserArray:
       description: List of user object
       content:
@@ -1674,7 +1954,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
   securitySchemes:
     petstore_auth:
       type: oauth2
