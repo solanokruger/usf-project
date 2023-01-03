@@ -45,1239 +45,1238 @@ paths:
       tags:
         - Doctor
       summary: Adiciona um novo Doutor.
-      description: Adicionar um novo Doutor no sistema.
+      description: Adicionar um novo Doutor no banco.
       operationId: addDoctor
-      requestBody:
-        description: Criando um novo Doutor.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Pet"
-        required: true
+  #     requestBody:
+  #       description: Criando um novo Doutor.
+  #       content:
+  #         application/json:
+  #           schema:
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Pet"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Pet"
+  #       required: true
       responses:
         "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Bad Request
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Doctor
-      summary: Listar todos Doutores
-      description: Retorna uma lista de Doutores
-      operationId: getDoctor
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "404":
-          description: Doctor not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /doctor/{idDoctor}:
-    put:
-      tags:
-        - Doctor
-      summary: Atualiza um Doutor existente
-      description: Atualiza um Doutor existente pelo ID
-      operationId: updateDoctor
-      requestBody:
-        description: Atualiza um Doutor existente pelo ID
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Pet"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Pet"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Bad Request
-        "404":
-          description: Doctor not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Doctor
-      summary: Procura um Doutor pelo ID
-      description: Retorna apenas um Doutor
-      operationId: getDoctorById
-      parameters:
-        - name: doctorId
-          in: path
-          description: ID do Doutor para atualizar.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Bad Request
-        "404":
-          description: Doctor not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    delete:
-      tags:
-        - Doctor
-      summary: Remove um Doutor pelo ID
-      description: Remove um Doutor pelo ID
-      operationId: deleteDoctor
-      parameters:
-        - name: doctorId
-          in: path
-          description: ID do Doutor para remover
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /doctor{idDoctor}/team/{idTeam}:
-    post:
-      tags:
-        - Doctor
-      summary: Vincula um Doutor a um Time
-      description: Vincula um Doutor a um Time
-      operationId: linkDoctorTeam
-      parameters:
-        - name: idDoctor
-          in: path
-          description: ID do Doutor a ser vinculado.
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: idTeam
-          in: path
-          description: ID do Time que o Doutor irá ser vinculado.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Order"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Order"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Order"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "405":
-          description: Invalid input
-        "400":
-          description: Bad Request
-        "404":
-          description: Doctor not found
-    delete:
-      tags:
-        - Doctor
-      summary: Remove o Doutor de um Time
-      description: Remove um Doutor de um time específico.
-      operationId: deleteDoctorTeam
-      parameters:
-        - name: idDoctor
-          in: path
-          description: ID do Doutor a ser removido.
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: idTeam
-          in: path
-          description: ID do time que o Doutor irá ser removido.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-        "404":
-          description: Doctor not found
+          description: CREATED
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #       "400":
+  #         description: Bad Request
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Doctor
+  #     summary: Listar todos Doutores
+  #     description: Retorna uma lista de Doutores
+  #     operationId: getDoctor
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #       "404":
+  #         description: Doctor not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  # /doctor/{idDoctor}:
+  #   put:
+  #     tags:
+  #       - Doctor
+  #     summary: Atualiza um Doutor existente
+  #     description: Atualiza um Doutor existente pelo ID
+  #     operationId: updateDoctor
+  #     requestBody:
+  #       description: Atualiza um Doutor existente pelo ID
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Pet"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Pet"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Pet"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Doctor not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Doctor
+  #     summary: Procura um Doutor pelo ID
+  #     description: Retorna apenas um Doutor
+  #     operationId: getDoctorById
+  #     parameters:
+  #       - name: doctorId
+  #         in: path
+  #         description: ID do Doutor para atualizar.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Pet"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Doctor not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   delete:
+  #     tags:
+  #       - Doctor
+  #     summary: Remove um Doutor pelo ID
+  #     description: Remove um Doutor pelo ID
+  #     operationId: deleteDoctor
+  #     parameters:
+  #       - name: doctorId
+  #         in: path
+  #         description: ID do Doutor para remover
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  # /doctor{idDoctor}/team/{idTeam}:
+  #   post:
+  #     tags:
+  #       - Doctor
+  #     summary: Vincula um Doutor a um Time
+  #     description: Vincula um Doutor a um Time
+  #     operationId: linkDoctorTeam
+  #     parameters:
+  #       - name: idDoctor
+  #         in: path
+  #         description: ID do Doutor a ser vinculado.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do Time que o Doutor irá ser vinculado.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Order"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Order"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Order"
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Order"
+  #       "405":
+  #         description: Invalid input
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Doctor not found
+  #   delete:
+  #     tags:
+  #       - Doctor
+  #     summary: Remove o Doutor de um Time
+  #     description: Remove um Doutor de um time específico.
+  #     operationId: deleteDoctorTeam
+  #     parameters:
+  #       - name: idDoctor
+  #         in: path
+  #         description: ID do Doutor a ser removido.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do time que o Doutor irá ser removido.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Doctor not found
 
-  /team:
-    post:
-      tags:
-        - Team
-      summary: Adiciona um novo time.
-      description: Adiciona um novo time.
-      operationId: addTeam
-      requestBody:
-        description: Cria um novo time.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Team"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Team"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Team"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Team"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Team"
-        "400":
-          description: Bad request
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Team
-      summary: Retorna todos os times
-      description: Retorna uma lista com todos os times
-      operationId: getTeam
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Team"
-        "400":
-          description: Bad request
-      security:
-        - api_key: []
-  /team/{idTeam}:
-    get:
-      tags:
-        - Team
-      summary: Procura um time pelo ID
-      description: Retorna apenas um time
-      operationId: getTeamById
-      parameters:
-        - name: idTeam
-          in: path
-          description: ID do time para Requisição.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Team"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Team"
-        "400":
-          description: Bad Request
-        "404":
-          description: Team not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    put:
-      tags:
-        - Team
-      summary: Atualiza um time
-      description: Atualiza um time existente pelo ID
-      operationId: updateTeam
-      requestBody:
-        description: Atualiza o time
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Team"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Team"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Team"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Team"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Team"
-        "400":
-          description: Bad Request
-        "404":
-          description: Team not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    delete:
-      tags:
-        - Team
-      summary: Remove um time
-      description: Remove um time
-      operationId: deleteTeam
-      parameters:
-        - name: idTeam
-          in: path
-          description: ID do time para deletar.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /team{idTeam}/usf/{idUsf}:
-    post:
-      tags:
-        - Team
-      summary: Vincula um time a uma usf
-      description: Vincula um time a uma usf
-      operationId: linkDoctorTeam
-      parameters:
-        - name: idTeam
-          in: path
-          description: ID do time que vai ser vinculado.
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: idUsf
-          in: path
-          description: ID da USF que vai ser vinculada.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Usf"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usf"
-        "400":
-          description: Bad request
-        "404":
-          description: USF not found
-        "405":
-          description: Invalid input
-    delete:
-      tags:
-        - Team
-      summary: Remove um time de uma USF
-      description: Remove um determinado time de uma determinada USF
-      operationId: deleteTeamUsf
-      parameters:
-        - name: idTeam
-          in: path
-          description: ID do time que vai ser removido.
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: idUsf
-          in: path
-          description: ID da Usf que vai ser removida.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-        "404":
-          description: Team not found
+  # /team:
+  #   post:
+  #     tags:
+  #       - Team
+  #     summary: Adiciona um novo time.
+  #     description: Adiciona um novo time.
+  #     operationId: addTeam
+  #     requestBody:
+  #       description: Cria um novo time.
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #       "400":
+  #         description: Bad request
+  #       "405":
+  #         description: Invalid input
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Team
+  #     summary: Retorna todos os times
+  #     description: Retorna uma lista com todos os times
+  #     operationId: getTeam
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #       "400":
+  #         description: Bad request
+  #     security:
+  #       - api_key: []
+  # /team/{idTeam}:
+  #   get:
+  #     tags:
+  #       - Team
+  #     summary: Procura um time pelo ID
+  #     description: Retorna apenas um time
+  #     operationId: getTeamById
+  #     parameters:
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do time para Requisição.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Team not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   put:
+  #     tags:
+  #       - Team
+  #     summary: Atualiza um time
+  #     description: Atualiza um time existente pelo ID
+  #     operationId: updateTeam
+  #     requestBody:
+  #       description: Atualiza o time
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Team"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Team"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Team not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   delete:
+  #     tags:
+  #       - Team
+  #     summary: Remove um time
+  #     description: Remove um time
+  #     operationId: deleteTeam
+  #     parameters:
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do time para deletar.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  # /team{idTeam}/usf/{idUsf}:
+  #   post:
+  #     tags:
+  #       - Team
+  #     summary: Vincula um time a uma usf
+  #     description: Vincula um time a uma usf
+  #     operationId: linkDoctorTeam
+  #     parameters:
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do time que vai ser vinculado.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #       - name: idUsf
+  #         in: path
+  #         description: ID da USF que vai ser vinculada.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: USF not found
+  #       "405":
+  #         description: Invalid input
+  #   delete:
+  #     tags:
+  #       - Team
+  #     summary: Remove um time de uma USF
+  #     description: Remove um determinado time de uma determinada USF
+  #     operationId: deleteTeamUsf
+  #     parameters:
+  #       - name: idTeam
+  #         in: path
+  #         description: ID do time que vai ser removido.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #       - name: idUsf
+  #         in: path
+  #         description: ID da Usf que vai ser removida.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Team not found
 
-  /usf:
-    get:
-      tags:
-        - USF
-      summary: Lista todas USFs
-      description: Retorna todas Usfs
-      operationId: getUsf
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usf"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Usf"
-        "400":
-          description: Bad request
-        "404":
-          description: USF not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    post:
-      tags:
-        - USF
-      summary: Cadastra uma nova USF
-      description: Cadastra uma nova USF
-      operationId: addUsf
-      requestBody:
-        description: Cadastra uma nova USF
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Usf"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usf"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Usf"
-        "400":
-          description: Bad request
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /usf/{idUsf}:
-    put:
-      tags:
-        - USF
-      summary: Atualiza uma USF existente
-      description: Atualiza uma USF existente pelo Id
-      operationId: updateUsf
-      requestBody:
-        description: Atualiza uma USF existente pelo Id
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Usf"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Usf"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usf"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Usf"
-        "400":
-          description: Bad Request
-        "404":
-          description: Usf not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - USF
-      summary: Procura uma USF pelo ID
-      description: Retorna uma USF
-      operationId: getUsfById
-      parameters:
-        - name: usfId
-          in: path
-          description: ID da USF para retornar.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usf"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Usf"
-        "400":
-          description: Bad Request
-        "404":
-          description: USF not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    delete:
-      tags:
-        - USF
-      summary: Remove a USF
-      description: Remove a USF
-      operationId: deleteUsf
-      parameters:
-        - name: usfId
-          in: path
-          description: ID da USF para remover.
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+  # /usf:
+  #   get:
+  #     tags:
+  #       - USF
+  #     summary: Lista todas USFs
+  #     description: Retorna todas Usfs
+  #     operationId: getUsf
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: USF not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   post:
+  #     tags:
+  #       - USF
+  #     summary: Cadastra uma nova USF
+  #     description: Cadastra uma nova USF
+  #     operationId: addUsf
+  #     requestBody:
+  #       description: Cadastra uma nova USF
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #       "400":
+  #         description: Bad request
+  #       "405":
+  #         description: Invalid input
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  # /usf/{idUsf}:
+  #   put:
+  #     tags:
+  #       - USF
+  #     summary: Atualiza uma USF existente
+  #     description: Atualiza uma USF existente pelo Id
+  #     operationId: updateUsf
+  #     requestBody:
+  #       description: Atualiza uma USF existente pelo Id
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Usf"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Usf not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - USF
+  #     summary: Procura uma USF pelo ID
+  #     description: Retorna uma USF
+  #     operationId: getUsfById
+  #     parameters:
+  #       - name: usfId
+  #         in: path
+  #         description: ID da USF para retornar.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Usf"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: USF not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   delete:
+  #     tags:
+  #       - USF
+  #     summary: Remove a USF
+  #     description: Remove a USF
+  #     operationId: deleteUsf
+  #     parameters:
+  #       - name: usfId
+  #         in: path
+  #         description: ID da USF para remover.
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
 
-  /request:
-    post:
-      tags:
-        - Request
-      summary: Adiciona uma nova Requisição
-      description: Adiciona uma nova Requisição
-      operationId: addRequest
-      requestBody:
-        description: Cria uma nova Requisição
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Request"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Request"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Request"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Request"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Request"
-        "400":
-          description: Bad request
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Request
-      summary: Lista todas Requesições
-      description: Retorna todas Requesições
-      operationId: getRequests
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Request"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Request"
-        "400":
-          description: Bad request
-        "404":
-          description: Request not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /request/{requestId}:
-    put:
-      tags:
-        - Request
-      summary: Atualiza uma Requisição
-      description: Atualiza uma Requisição pelo ID.
-      operationId: updateRequest
-      requestBody:
-        description: Atualiza uma requisição pelo ID.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Request"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Request"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Request"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Request"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Request"
-        "400":
-          description: Bad Request
-        "404":
-          description: Request not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Request
-      summary: Procura a Requisição pelo ID
-      description: Retorna uma requisição
-      operationId: getRequestById
-      parameters:
-        - name: requestId
-          in: path
-          description: ID da Requisição
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Request"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Request"
-        "400":
-          description: Bad Request
-        "404":
-          description: Request not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    delete:
-      tags:
-        - Request
-      summary: Remove a requisição
-      description: Remove a requisição
-      operationId: deleteRequest
-      parameters:
-        - name: requestId
-          in: path
-          description: ID da requisição para remover
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad Request
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+  # /request:
+  #   post:
+  #     tags:
+  #       - Request
+  #     summary: Adiciona uma nova Requisição
+  #     description: Adiciona uma nova Requisição
+  #     operationId: addRequest
+  #     requestBody:
+  #       description: Cria uma nova Requisição
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #       "400":
+  #         description: Bad request
+  #       "405":
+  #         description: Invalid input
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Request
+  #     summary: Lista todas Requesições
+  #     description: Retorna todas Requesições
+  #     operationId: getRequests
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Request not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  # /request/{requestId}:
+  #   put:
+  #     tags:
+  #       - Request
+  #     summary: Atualiza uma Requisição
+  #     description: Atualiza uma Requisição pelo ID.
+  #     operationId: updateRequest
+  #     requestBody:
+  #       description: Atualiza uma requisição pelo ID.
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Request"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Request not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Request
+  #     summary: Procura a Requisição pelo ID
+  #     description: Retorna uma requisição
+  #     operationId: getRequestById
+  #     parameters:
+  #       - name: requestId
+  #         in: path
+  #         description: ID da Requisição
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Request"
+  #       "400":
+  #         description: Bad Request
+  #       "404":
+  #         description: Request not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   delete:
+  #     tags:
+  #       - Request
+  #     summary: Remove a requisição
+  #     description: Remove a requisição
+  #     operationId: deleteRequest
+  #     parameters:
+  #       - name: requestId
+  #         in: path
+  #         description: ID da requisição para remover
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad Request
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
 
-  /resource:
-    post:
-      tags:
-        - Resource
-      summary: Add a new resource
-      description: Add a new resource
-      operationId: addResource
-      requestBody:
-        description: Create a new resource
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Resource"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Resource"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Resource"
-        required: true
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Resource"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Resource"
-        "400":
-          description: Bad request
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Resource
-      summary: Retorna todos os Recursos
-      description: Retorna todos os Recursos
-      operationId: getResource
-      responses:
-        "200":
-          description: OK
-        "400":
-          description: Bad request
-        "404":
-          description: Resource not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Resource"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Resource"
-      security:
-        - api_key: []
-  /resource/{resourceId}:
-    put:
-      tags:
-        - Resource
-      summary: Atualiza um recurso
-      description: Atualiza um recurso existente pelo id
-      operationId: updateResource
-      requestBody:
-        description: Atualiza um recurso existente pelo id
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Resource"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Resource"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Resource"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Resource"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Resource"
-        "400":
-          description: Bad request
-        "404":
-          description: Resource not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Resource
-      summary: Procura um recurso pelo ID
-      description: Retorna apenas um recurso
-      operationId: getResourceById
-      parameters:
-        - name: resourceId
-          in: path
-          description: ID do recurso que vai ser retornado
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Resource"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Resource"
-        "400":
-          description: Bad request
-        "404":
-          description: Resource not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    delete:
-      tags:
-        - Resource
-      summary: Remove um recurso
-      description: Remove um recurso pelo seu ID
-      operationId: deleteResource
-      parameters:
-        - name: resourceId
-          in: path
-          description: ID do recurso que será removido
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Bad request
-        "404":
-          description: Resource not found
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+  # /resource:
+  #   post:
+  #     tags:
+  #       - Resource
+  #     summary: Add a new resource
+  #     description: Add a new resource
+  #     operationId: addResource
+  #     requestBody:
+  #       description: Create a new resource
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #       "400":
+  #         description: Bad request
+  #       "405":
+  #         description: Invalid input
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Resource
+  #     summary: Retorna todos os Recursos
+  #     description: Retorna todos os Recursos
+  #     operationId: getResource
+  #     responses:
+  #       "200":
+  #         description: OK
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Resource not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #     security:
+  #       - api_key: []
+  # /resource/{resourceId}:
+  #   put:
+  #     tags:
+  #       - Resource
+  #     summary: Atualiza um recurso
+  #     description: Atualiza um recurso existente pelo id
+  #     operationId: updateResource
+  #     requestBody:
+  #       description: Atualiza um recurso existente pelo id
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Resource"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Resource not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Resource
+  #     summary: Procura um recurso pelo ID
+  #     description: Retorna apenas um recurso
+  #     operationId: getResourceById
+  #     parameters:
+  #       - name: resourceId
+  #         in: path
+  #         description: ID do recurso que vai ser retornado
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Resource"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Resource not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   delete:
+  #     tags:
+  #       - Resource
+  #     summary: Remove um recurso
+  #     description: Remove um recurso pelo seu ID
+  #     operationId: deleteResource
+  #     parameters:
+  #       - name: resourceId
+  #         in: path
+  #         description: ID do recurso que será removido
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Resource not found
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
 
-  /inventory:
-    post:
-      tags:
-        - Inventory
-      summary: Adiciona um novo inventário
-      description: Adiciona um novo inventário
-      operationId: addInventory
-      requestBody:
-        description: Adiciona um novo inventário
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-        "400":
-          description: Bad request
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Inventory
-      summary: Lista todos os inventários
-      description: Lista todos os inventários
-      operationId: getInventory
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-        "400":
-          description: Bad request
-        "404":
-          description: Inventory not found
-      security:
-        - api_key: []
-  /inventory/{inventoryId}:
-    put:
-      tags:
-        - Inventory
-      summary: Atualiza um inventário existente
-      description: Atualiza um inventário existente pelo ID.
-      operationId: updateInventory
-      requestBody:
-        description: Atualiza um inventário pelo ID.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Inventory"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-        "400":
-          description: Bad request
-        "404":
-          description: Inventory not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    get:
-      tags:
-        - Inventory
-      summary: Procura um inventário pelo ID
-      description: Retorna somente um inventário
-      operationId: getInventoryById
-      parameters:
-        - name: inventoryId
-          in: path
-          description: ID do inventário para procura
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Inventory"
-        "400":
-          description: Bad request
-        "404":
-          description: Inventory not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - write:pets
-            - read:pets
+  # /inventory:
+  #   post:
+  #     tags:
+  #       - Inventory
+  #     summary: Adiciona um novo inventário
+  #     description: Adiciona um novo inventário
+  #     operationId: addInventory
+  #     requestBody:
+  #       description: Adiciona um novo inventário
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #       "400":
+  #         description: Bad request
+  #       "405":
+  #         description: Invalid input
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Inventory
+  #     summary: Lista todos os inventários
+  #     description: Lista todos os inventários
+  #     operationId: getInventory
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Inventory not found
+  #     security:
+  #       - api_key: []
+  # /inventory/{inventoryId}:
+  #   put:
+  #     tags:
+  #       - Inventory
+  #     summary: Atualiza um inventário existente
+  #     description: Atualiza um inventário existente pelo ID.
+  #     operationId: updateInventory
+  #     requestBody:
+  #       description: Atualiza um inventário pelo ID.
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/Inventory"
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Inventory not found
+  #       "405":
+  #         description: Validation exception
+  #     security:
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
+  #   get:
+  #     tags:
+  #       - Inventory
+  #     summary: Procura um inventário pelo ID
+  #     description: Retorna somente um inventário
+  #     operationId: getInventoryById
+  #     parameters:
+  #       - name: inventoryId
+  #         in: path
+  #         description: ID do inventário para procura
+  #         required: true
+  #         schema:
+  #           type: integer
+  #           format: int64
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/Inventory"
+  #       "400":
+  #         description: Bad request
+  #       "404":
+  #         description: Inventory not found
+  #     security:
+  #       - api_key: []
+  #       - petstore_auth:
+  #           - write:pets
+  #           - read:pets
 
-  /user:
-    post:
-      tags:
-        - User
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/User"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        default:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/User"
-  /user/createWithList:
-    post:
-      tags:
-        - User
-      summary: Creates list of users with given input array
-      description: Creates list of users with given input array
-      operationId: createUsersWithListInput
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: "#/components/schemas/User"
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/User"
-        default:
-          description: successful operation
-  /user/login:
-    get:
-      tags:
-        - User
-      summary: Logs user into the system
-      description: ""
-      operationId: loginUser
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: false
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: false
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/xml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-        "400":
-          description: Invalid username/password supplied
-  /user/logout:
-    get:
-      tags:
-        - User
-      summary: Logs out current logged in user session
-      description: ""
-      operationId: logoutUser
-      parameters: []
-      responses:
-        default:
-          description: successful operation
-  /user/{username}:
-    get:
-      tags:
-        - User
-      summary: Get user by user name
-      description: ""
-      operationId: getUserByName
-      parameters:
-        - name: username
-          in: path
-          description: "The name that needs to be fetched. Use user1 for testing. "
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/User"
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
-    put:
-      tags:
-        - User
-      summary: Update user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-        - name: username
-          in: path
-          description: name that need to be deleted
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Update an existent user in the store
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/User"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        default:
-          description: successful operation
-    delete:
-      tags:
-        - User
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
+  # /user:
+  #   post:
+  #     tags:
+  #       - User
+  #     summary: Create user
+  #     description: This can only be done by the logged in user.
+  #     operationId: createUser
+  #     requestBody:
+  #       description: Created user object
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #     responses:
+  #       default:
+  #         description: successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  # /user/createWithList:
+  #   post:
+  #     tags:
+  #       - User
+  #     summary: Creates list of users with given input array
+  #     description: Creates list of users with given input array
+  #     operationId: createUsersWithListInput
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: array
+  #             items:
+  #               $ref: "#/components/schemas/User"
+  #     responses:
+  #       "200":
+  #         description: Successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #       default:
+  #         description: successful operation
+  # /user/login:
+  #   get:
+  #     tags:
+  #       - User
+  #     summary: Logs user into the system
+  #     description: ""
+  #     operationId: loginUser
+  #     parameters:
+  #       - name: username
+  #         in: query
+  #         description: The user name for login
+  #         required: false
+  #         schema:
+  #           type: string
+  #       - name: password
+  #         in: query
+  #         description: The password for login in clear text
+  #         required: false
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: successful operation
+  #         headers:
+  #           X-Rate-Limit:
+  #             description: calls per hour allowed by the user
+  #             schema:
+  #               type: integer
+  #               format: int32
+  #           X-Expires-After:
+  #             description: date in UTC when token expires
+  #             schema:
+  #               type: string
+  #               format: date-time
+  #         content:
+  #           application/xml:
+  #             schema:
+  #               type: string
+  #           application/json:
+  #             schema:
+  #               type: string
+  #       "400":
+  #         description: Invalid username/password supplied
+  # /user/logout:
+  #   get:
+  #     tags:
+  #       - User
+  #     summary: Logs out current logged in user session
+  #     description: ""
+  #     operationId: logoutUser
+  #     parameters: []
+  #     responses:
+  #       default:
+  #         description: successful operation
+  # /user/{username}:
+  #   get:
+  #     tags:
+  #       - User
+  #     summary: Get user by user name
+  #     description: ""
+  #     operationId: getUserByName
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: "The name that needs to be fetched. Use user1 for testing. "
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "200":
+  #         description: successful operation
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #           application/xml:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #       "400":
+  #         description: Invalid username supplied
+  #       "404":
+  #         description: User not found
+  #   put:
+  #     tags:
+  #       - User
+  #     summary: Update user
+  #     description: This can only be done by the logged in user.
+  #     operationId: updateUser
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: name that need to be deleted
+  #         required: true
+  #         schema:
+  #           type: string
+  #     requestBody:
+  #       description: Update an existent user in the store
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #         application/xml:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             $ref: "#/components/schemas/User"
+  #     responses:
+  #       default:
+  #         description: successful operation
+  #   delete:
+  #     tags:
+  #       - User
+  #     summary: Delete user
+  #     description: This can only be done by the logged in user.
+  #     operationId: deleteUser
+  #     parameters:
+  #       - name: username
+  #         in: path
+  #         description: The name that needs to be deleted
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       "400":
+  #         description: Invalid username supplied
+  #       "404":
+  #         description: User not found
 
 components:
   schemas:
@@ -1707,17 +1706,3 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Role"
-
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
