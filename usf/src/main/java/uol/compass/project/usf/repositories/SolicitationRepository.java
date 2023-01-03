@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface SolicitationRepository extends JpaRepository<SolicitationEntity, Long> {
 
-//    List<SolicitationEntity> findByStatusSolicitation(EnumStatusSolicitation statusSolicitation);
+
 }

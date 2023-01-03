@@ -51,14 +51,6 @@ public class SolicitationController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-//    @PreAuthorize("hasRole('USF_OPERATOR')")
-//    @GetMapping
-//    public ResponseEntity<SolicitationResponseDTO> findByStatus() {
-//        EnumStatusSolicitation statusSolicitation = EnumStatusSolicitation.PENDENTE;
-//        SolicitationResponseDTO response = solicitationService.findByStatus(statusSolicitation);
-//        return ResponseEntity.status(HttpStatus.OK).body(response);
-//    }
-
     @PreAuthorize("hasRole('USF_OPERATOR')")
     @PatchMapping(value = "/{id}")
     public ResponseEntity<SolicitationResponseDTO> update(@PathVariable("id") Long id,
