@@ -37,6 +37,8 @@ tags:
     description: Tudo sobre os itens.
   - name: Inventory
     description: Tudo sobre o inventário.
+  - name: User
+    description: Tudo sobre os usuários.
 paths:
   /doctor:
     post:
@@ -485,6 +487,7 @@ paths:
           description: Bad Request
         '404':
           description: Team not found
+
   /usf:
     get:
       tags:
@@ -642,6 +645,7 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
+
   /request:
     post:
       tags:
@@ -695,7 +699,7 @@ paths:
                 $ref: '#/components/schemas/Request'          
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'4
+                $ref: '#/components/schemas/Request'
         '400':
           description: Bad request
         '404':
@@ -799,6 +803,7 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
+
   /resource:
     post:
       tags:
@@ -955,6 +960,7 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
+
   /inventory:
     post:
       tags:
@@ -1092,7 +1098,7 @@ paths:
   /user:
     post:
       tags:
-        - user
+        - User
       summary: Create user
       description: This can only be done by the logged in user.
       operationId: createUser
@@ -1121,7 +1127,7 @@ paths:
   /user/createWithList:
     post:
       tags:
-        - user
+        - User
       summary: Creates list of users with given input array
       description: Creates list of users with given input array
       operationId: createUsersWithListInput
@@ -1147,7 +1153,7 @@ paths:
   /user/login:
     get:
       tags:
-        - user
+        - User
       summary: Logs user into the system
       description: ''
       operationId: loginUser
@@ -1190,7 +1196,7 @@ paths:
   /user/logout:
     get:
       tags:
-        - user
+        - User
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
@@ -1201,7 +1207,7 @@ paths:
   /user/{username}:
     get:
       tags:
-        - user
+        - User
       summary: Get user by user name
       description: ''
       operationId: getUserByName
@@ -1228,7 +1234,7 @@ paths:
           description: User not found
     put:
       tags:
-        - user
+        - User
       summary: Update user
       description: This can only be done by the logged in user.
       operationId: updateUser
@@ -1256,7 +1262,7 @@ paths:
           description: successful operation
     delete:
       tags:
-        - user
+        - User
       summary: Delete user
       description: This can only be done by the logged in user.
       operationId: deleteUser
@@ -1272,8 +1278,156 @@ paths:
           description: Invalid username supplied
         '404':
           description: User not found
+
 components:
   schemas:
+
+    EnumCategoryResource:
+      type: string
+      enum:
+        - EQUIPAMENTO
+        - MEDICAMENTO
+
+    EnumStatusSolicitation:
+      type: string
+      enum:
+        - PENDENTE
+        - CONCLUIDO
+        - CANCELADO
+
+    DoctorRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        specialization:
+          type: string
+      example:
+        name: Társila
+        specialization: Oftalmologista
+
+    InventoryRequestDTO:
+      type: object
+      properties:
+        idResource:
+          type: integer
+          format: int64
+        idUsf:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+      example:
+        idResource: 1
+        idUsf: 1
+        amount: 50
+        
+    ResourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+      example:
+        name: Gaze
+        description: Usada pra fazer curativos em machucados na pele
+        category: EQUIPAMENTO
+
+    SolicitationRequestDTO:
+      type: object
+      properties:
+        idResource:
+          type: integer
+          format: int64
+        idUsf:
+          type: integer
+          format: int64
+        necessaryAmount:
+          type: integer
+          format: int64
+      example:
+        idResource: 1
+        idUsf: 1
+        necessaryAmount: 50
+
+    SolicitationUpdateRequestDTO:
+      type: object
+      properties:
+        necessaryAmount:
+          type: integer
+          format: int64
+      example:
+        necessaryAmount: 30
+
+    TeamRequestDTO:
+      type: object
+      properties:
+        color:
+          type: string
+      example:
+        color: azul
+
+    UsfRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+         type: string
+      example:
+        name: Unidade de Saúde da Família da Avenida 2 de Julho
+        address: Avenida 2 de Julho, número 15
+
+    UserRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+      example:
+        name: Gustavo
+        login: admin
+        password: 12345
+
+    UserUpdateRequestDTO:
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        name:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: 12345
+        name: Miguel
+        password: 54321
+
+    CreateUserRoleDTO:
+          type: object
+          properties:
+            idUser:
+              type: integer
+              format: int64
+            idRoles:
+              type: array
+              items:
+                type: integer
+                format: int64
+          example:
+            idUser: 1
+            idRoles: [1,2,3]
+
+
+
+
+
     Request:
       type: object
       properties:
