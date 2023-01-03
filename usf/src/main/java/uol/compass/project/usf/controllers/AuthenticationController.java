@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uol.compass.project.usf.config.security.authentication.AuthenticationData;
 import uol.compass.project.usf.config.security.token.JwtTokenData;
-import uol.compass.project.usf.config.security.token.TokenService;
 import uol.compass.project.usf.model.entities.UserEntity;
+import uol.compass.project.usf.services.TokenService;
 
 import javax.validation.Valid;
 

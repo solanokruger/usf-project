@@ -1,4 +1,4 @@
-package uol.compass.project.usf.config.security.token;
+package uol.compass.project.usf.services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
