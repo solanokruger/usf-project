@@ -20,6 +20,7 @@ import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
 
 @RestController
@@ -49,6 +50,14 @@ public class SolicitationController {
         SolicitationResponseDTO response = solicitationService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+//    @PreAuthorize("hasRole('USF_OPERATOR')")
+//    @GetMapping
+//    public ResponseEntity<SolicitationResponseDTO> findByStatus() {
+//        EnumStatusSolicitation statusSolicitation = EnumStatusSolicitation.PENDENTE;
+//        SolicitationResponseDTO response = solicitationService.findByStatus(statusSolicitation);
+//        return ResponseEntity.status(HttpStatus.OK).body(response);
+//    }
 
     @PreAuthorize("hasRole('USF_OPERATOR')")
     @PatchMapping(value = "/{id}")

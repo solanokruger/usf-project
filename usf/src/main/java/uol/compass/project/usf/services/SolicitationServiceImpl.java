@@ -56,6 +56,14 @@ public class SolicitationServiceImpl implements SolicitationService {
         return modelMapper.map(solicitation, SolicitationResponseDTO.class);
     }
 
+//    @Override
+//    public SolicitationResponseDTO findByStatus(EnumStatusSolicitation statusSolicitation) {
+//        List<SolicitationEntity> solicitations = solicitationRepository.findByStatusSolicitation(statusSolicitation);
+//
+//
+//        return modelMapper.map(solicitations, SolicitationResponseDTO.class);
+//    }
+
     @Override
     public SolicitationResponseDTO update(Long id, SolicitationUpdateRequestDTO request) {
         SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
