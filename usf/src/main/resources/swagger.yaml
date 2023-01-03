@@ -60,7 +60,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -89,7 +89,7 @@ paths:
                 $ref: '#/components/schemas/Pet'          
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pet'
+                $ref: '#/components/schemas/Pet'     
         '404':
           description: Doctor not found
       security:
@@ -233,6 +233,10 @@ paths:
                 $ref: '#/components/schemas/Order'
         '405':
           description: Invalid input
+        '400':
+          description: Bad Request
+        '404':
+          description: Doctor not found
     delete:
       tags:
         - Doctor
@@ -290,6 +294,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Team'
+        '400':
+          description: Bad request
         '405':
           description: Invalid input
       security:
@@ -300,8 +306,8 @@ paths:
       tags:
         - Team
       summary: Retorna todos os times
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
+      description: Retorna uma lista com todos os times
+      operationId: getTeam
       responses:
         '200':
           description: OK
@@ -309,6 +315,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Team'
+        '400':
+          description: Bad request
       security:
         - api_key: []
   /team/{idTeam}:
@@ -445,6 +453,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Usf'
+        '400':
+          description: Bad request
+        '404':
+          description: USF not found
         '405':
           description: Invalid input
    delete:
@@ -490,6 +502,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Usf'
+        '400':
+          description: Bad request
         '404':
           description: USF not found
       security:
@@ -526,6 +540,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Usf'
+        '400':
+          description: Bad request
         '405':
           description: Invalid input
       security:
@@ -656,6 +672,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Request'
+        '400':
+          description: Bad request
         '405':
           description: Invalid input
       security:
@@ -677,7 +695,9 @@ paths:
                 $ref: '#/components/schemas/Request'          
             application/xml:
               schema:
-                $ref: '#/components/schemas/Request'
+                $ref: '#/components/schemas/Request'4
+        '400':
+          description: Bad request
         '404':
           description: Request not found
       security:
@@ -809,6 +829,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Resource'
+        '400':
+          description: Bad request
         '405':
           description: Invalid input
       security:
@@ -818,12 +840,16 @@ paths:
     get:
       tags:
         - Resource
-      summary: Returns all Resources
-      description: Returns all Resources and informations
+      summary: Retorna todos os Recursos
+      description: Retorna todos os Recursos
       operationId: getResource
       responses:
         '200':
-          description: successful operation
+          description: OK
+        '400':
+          description: Bad request
+        '404':
+          description: Resource not found
           content:
             application/json:
               schema:
@@ -837,11 +863,11 @@ paths:
     put:
       tags:
         - Resource
-      summary: Update an existing resource
-      description: Update an existing resource by Id
+      summary: Atualiza um recurso 
+      description: Atualiza um recurso existente pelo id
       operationId: updateResource
       requestBody:
-        description: Update an existent resource in the database
+        description: Atualiza um recurso existente pelo id
         content:
           application/json:
             schema:
@@ -855,7 +881,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -864,7 +890,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Resource'
         '400':
-          description: Resource not found
+          description: Bad request
         '404':
           description: Resource not found
         '405':
@@ -876,20 +902,20 @@ paths:
     get:
       tags:
         - Resource
-      summary: Find Resource by ID
-      description: Returns a single Resource
+      summary: Procura um recurso pelo ID
+      description: Retorna apenas um recurso
       operationId: getResourceById
       parameters:
         - name: resourceId
           in: path
-          description: ID of resource to return
+          description: ID do recurso que vai ser retornado
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '200':
-          description: successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -898,9 +924,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Resource'
         '400':
-          description: USF not found
+          description: Bad request
         '404':
-          description: USF not found
+          description: Resource not found
       security:
         - api_key: []
         - petstore_auth:
@@ -909,19 +935,21 @@ paths:
     delete:
       tags:
         - Resource
-      summary: Deletes a Resource
-      description: delete a Resource
+      summary: Remove um recurso
+      description: Remove um recurso pelo seu ID
       operationId: deleteResource
       parameters:
         - name: resourceId
           in: path
-          description: Resource id to delete
+          description: ID do recurso que será removido
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '400':
+          description: Bad request
+        '404':
           description: Resource not found
       security:
         - petstore_auth:
@@ -931,11 +959,11 @@ paths:
     post:
       tags:
         - Inventory
-      summary: Add a new inventory
-      description: Add a new inventory
+      summary: Adiciona um novo inventário
+      description: Adiciona um novo inventário
       operationId: addInventory
       requestBody:
-        description: Create a new inventory
+        description: Adiciona um novo inventário
         content:
           application/json:
             schema:
@@ -949,7 +977,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -957,6 +985,8 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Inventory'
+        '400':
+          description: Bad request
         '405':
           description: Invalid input
       security:
@@ -966,12 +996,12 @@ paths:
     get:
       tags:
         - Inventory
-      summary: Returns all inventory
-      description: Returns all Inventory and informations
+      summary: Lista todos os inventários
+      description: Lista todos os inventários
       operationId: getInventory
       responses:
         '200':
-          description: successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -979,17 +1009,21 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Inventory'
+        '400': 
+          description: Bad request
+        '404':
+          description: Inventory not found
       security:
         - api_key: []
   /inventory/{inventoryId}:
     put:
       tags:
         - Inventory
-      summary: Update an existing Inventory
-      description: Update an existing inventory by Id
+      summary: Atualiza um inventário existente
+      description: Atualiza um inventário existente pelo ID.
       operationId: updateInventory
       requestBody:
-        description: Update an existent inventory in the database
+        description: Atualiza um inventário pelo ID.
         content:
           application/json:
             schema:
@@ -1003,7 +1037,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -1012,7 +1046,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Inventory'
         '400':
-          description: Inventory not found
+          description: Bad request
         '404':
           description: Inventory not found
         '405':
@@ -1024,20 +1058,20 @@ paths:
     get:
       tags:
         - Inventory
-      summary: Find Inventory by ID
-      description: Returns a single Inventory
+      summary: Procura um inventário pelo ID
+      description: Retorna somente um inventário
       operationId: getInventoryById
       parameters:
         - name: inventoryId
           in: path
-          description: ID of inventory to return
+          description: ID do inventário para procura
           required: true
           schema:
             type: integer
             format: int64
       responses:
         '200':
-          description: successful operation
+          description: OK
           content:
             application/json:
               schema:
@@ -1046,7 +1080,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Inventory'
         '400':
-          description: Inventory not found
+          description: Bad request
         '404':
           description: Inventory not found
       security:
