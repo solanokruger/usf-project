@@ -1,4 +1,4 @@
-package uol.compass.project.usf.exceptions.handler;
+package uol.compass.project.usf.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
@@ -17,7 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import uol.compass.project.usf.constants.ErrorCode;
 import uol.compass.project.usf.model.dto.ExceptionResponse;
-import uol.compass.project.usf.exceptions.*;
+import uol.compass.project.usf.model.exceptions.*;
 
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;

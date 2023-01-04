@@ -13,7 +13,7 @@ import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.enums.EnumCategoryResource;
 import uol.compass.project.usf.repositories.ResourceRepository;
-import uol.compass.project.usf.exceptions.ResourceNotFoundException;
+import uol.compass.project.usf.model.exceptions.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package uol.compass.project.usf.exceptions;
+package uol.compass.project.usf.model.exceptions;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

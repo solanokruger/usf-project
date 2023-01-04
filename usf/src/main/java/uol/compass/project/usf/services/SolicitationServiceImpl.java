@@ -17,7 +17,7 @@ import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters
 import uol.compass.project.usf.model.entities.SolicitationEntity;
 import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.repositories.SolicitationRepository;
-import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
+import uol.compass.project.usf.model.exceptions.SolicitationNotFoundException;
 
 @Service
 @RequiredArgsConstructor

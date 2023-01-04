@@ -25,13 +25,8 @@ public class TeamController {
     @PostMapping
     @Transactional
     public ResponseEntity<Object> createTeam(@RequestBody @Valid TeamRequestDTO teamRequestDTO) {
-        try {
-            validateTeamParameter(teamRequestDTO);
-            TeamResponseDTO teamResponseDTO = teamService.create(teamRequestDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(teamResponseDTO);
-        } catch (IllegalStateException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        TeamResponseDTO teamResponseDTO = teamService.create(teamRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(teamResponseDTO);
     }
 
     @PreAuthorize("hasRole('USF_OPERATOR')")
@@ -86,13 +81,6 @@ public class TeamController {
         return ResponseEntity.noContent().build();
     }
 
-    private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
-        char[] chars = teamRequestDTO.getColor().toCharArray();
-        for (char c : chars) {
-            if (!Character.isAlphabetic(c)) {
-                throw new IllegalStateException();
-            }
-        }
-    }
+
 
 }

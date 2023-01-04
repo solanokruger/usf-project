@@ -5,9 +5,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.exceptions.PasswordNotValidException;
-import uol.compass.project.usf.exceptions.UserAlreadyExistsException;
-import uol.compass.project.usf.exceptions.UserNotFoundException;
+import uol.compass.project.usf.model.exceptions.PasswordNotValidException;
+import uol.compass.project.usf.model.exceptions.UserAlreadyExistsException;
+import uol.compass.project.usf.model.exceptions.UserNotFoundException;
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
 import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;

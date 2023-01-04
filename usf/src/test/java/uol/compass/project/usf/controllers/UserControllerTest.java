@@ -15,8 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import uol.compass.project.usf.model.dto.request.DoctorRequestDTO;
 import uol.compass.project.usf.model.dto.request.UserRequestDTO;
 import uol.compass.project.usf.model.dto.request.UserRequestUpdateDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.model.entities.UserEntity;
 import uol.compass.project.usf.repositories.UserRepository;

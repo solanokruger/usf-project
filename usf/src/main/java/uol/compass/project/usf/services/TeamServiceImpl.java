@@ -11,7 +11,7 @@ import uol.compass.project.usf.model.entities.DoctorEntity;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
-import uol.compass.project.usf.exceptions.TeamNotFoundException;
+import uol.compass.project.usf.model.exceptions.TeamNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,9 @@ public class TeamServiceImpl implements TeamService{
     private final UsfServiceImpl usfService;
 
     public TeamResponseDTO create(TeamRequestDTO teamRequestDTO) {
+
+        validateTeamParameter(teamRequestDTO);
+
         validateTeamColor(teamRequestDTO);
         TeamEntity teamEntity = modelMapper.map(teamRequestDTO, TeamEntity.class);
         TeamEntity createdTeam = teamRepository.save(teamEntity);
@@ -84,6 +87,15 @@ public class TeamServiceImpl implements TeamService{
     public void delete(Long id) {
         findTeamByIdVerication(id);
         teamRepository.deleteById(id);
+    }
+
+    private void validateTeamParameter(TeamRequestDTO teamRequestDTO) {
+        char[] chars = teamRequestDTO.getColor().toCharArray();
+        for (char c : chars) {
+            if (!Character.isAlphabetic(c)) {
+                throw new IllegalStateException("Informe apenas letras no parâmetro color");
+            }
+        }
     }
 
     public void validateTeamColor(TeamRequestDTO teamRequestDTO) {

@@ -10,7 +10,7 @@ import uol.compass.project.usf.model.dto.response.InventoryResponseDTO;
 import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
 import uol.compass.project.usf.model.entities.InventoryEntity;
 import uol.compass.project.usf.repositories.InventoryRepository;
-import uol.compass.project.usf.exceptions.InventoryNotFoundException;
+import uol.compass.project.usf.model.exceptions.InventoryNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -38,6 +38,7 @@ public class TeamServiceImplTest {
     TeamRepository teamRepository;
     @Mock
     UsfServiceImpl usfService;
+
     @Spy
     ModelMapper modelMapper;
 
@@ -45,6 +46,7 @@ public class TeamServiceImplTest {
     public void shouldCreateTeamTest_success() {
         TeamEntity team = new TeamEntity();
         TeamRequestDTO teamRequestDTO = new TeamRequestDTO();
+        teamRequestDTO.setColor("blue");
         TeamResponseDTO responseDTO = new TeamResponseDTO();
 
         Mockito.when(teamRepository.save(any())).thenReturn(team);
