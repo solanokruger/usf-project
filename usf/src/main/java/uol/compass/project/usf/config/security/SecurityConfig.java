@@ -37,7 +37,8 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .cors()
+                .and().build();
     }
 
     @Bean

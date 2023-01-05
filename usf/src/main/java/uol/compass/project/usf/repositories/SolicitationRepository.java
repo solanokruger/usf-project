@@ -6,9 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
 import uol.compass.project.usf.model.entities.SolicitationEntity;
-import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
-
-import java.util.List;
 
 @Repository
 public interface SolicitationRepository extends JpaRepository<SolicitationEntity, Long> {
