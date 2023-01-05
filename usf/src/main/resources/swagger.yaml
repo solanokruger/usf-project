@@ -68,6 +68,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -84,6 +86,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DoctorResponseParameters"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /doctor/{idDoctor}:
     get:
@@ -109,6 +113,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DoctorResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: DOCTOR NOT FOUND
           content:
@@ -151,6 +157,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: DOCTOR NOT FOUND
           content:
@@ -181,6 +189,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NotFoundException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /doctor{idDoctor}/team/{idTeam}:
     post:
@@ -213,6 +223,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DoctorResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: DOCTOR OR TEAM NOT FOUND
           content:
@@ -250,6 +262,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DoctorResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: DOCTOR OR TEAM NOT FOUND
           content:
@@ -285,6 +299,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -303,6 +319,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TeamResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /team/{idTeam}:
     get:
@@ -328,6 +346,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TeamResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM NOT FOUND
           content:
@@ -370,6 +390,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM NOT FOUND
           content:
@@ -394,6 +416,8 @@ paths:
             type: integer
             format: int64
       responses:
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM NOT FOUND
           content:
@@ -427,6 +451,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/DoctorResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM NOT FOUND
           content:
@@ -465,6 +491,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TeamResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM OR USF NOT FOUND
           content:
@@ -502,6 +530,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TeamResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: TEAM OR USF NOT FOUND
           content:
@@ -538,6 +568,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -554,6 +586,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UsfResponseParameters"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /usf/{idUsf}:
     get:
@@ -579,6 +613,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UsfResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: USF NOT FOUND
           content:
@@ -614,6 +650,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: USF NOT FOUND
           content:
@@ -638,6 +676,8 @@ paths:
             type: integer
             format: int64
       responses:
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: USF NOT FOUND
           content:
@@ -674,6 +714,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -690,6 +732,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SolicitationResponseParameters"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /solicitation/{solicitationId}:
     get:
@@ -715,6 +759,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SolicitationResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: SOLICITATION NOT FOUND
           content:
@@ -758,6 +804,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: SOLICITATION NOT FOUND
           content:
@@ -782,6 +830,8 @@ paths:
             type: integer
             format: int64
       responses:
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: SOLICITATION NOT FOUND
           content:
@@ -817,6 +867,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -833,6 +885,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResourceResponseParameters"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /resource/{resourceId}:
     get:
@@ -858,6 +912,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResourceResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: RESOURCE NOT FOUND
           content:
@@ -901,6 +957,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: RESOURCE NOT FOUND
           content:
@@ -925,6 +983,8 @@ paths:
             type: integer
             format: int64
       responses:
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: RESOURCE NOT FOUND
           content:
@@ -961,6 +1021,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
     get:
       security:
@@ -977,6 +1039,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InventoryResponseParameters"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /inventory/{inventoryId}:
     get:
@@ -1002,6 +1066,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InventoryResponseDTO"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: INVENTORY NOT FOUND
           content:
@@ -1045,6 +1111,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: INVENTORY NOT FOUND
           content:
@@ -1069,6 +1137,8 @@ paths:
             type: integer
             format: int64
       responses:
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: INVENTORY NOT FOUND
           content:
@@ -1103,6 +1173,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /user/update/{id}:
     post:
@@ -1133,6 +1205,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: USER NOT FOUND
           content:
@@ -1167,6 +1241,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MethodArgumentNotValidException"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
 
   /login:
     post:
@@ -1656,6 +1732,9 @@ components:
       properties:
         jwtToken:
           type: string
+
+    UnauthorizedError:
+      description: Access token is missing or invalid
 
   securitySchemes:
     bearerAuth:
