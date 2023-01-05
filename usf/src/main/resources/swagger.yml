@@ -99,7 +99,7 @@ paths:
       description: Retorna apenas um Doutor
       operationId: getDoctorById
       parameters:
-        - name: doctorId
+        - name: idDoctor
           in: path
           description: ID do Doutor para buscar.
           required: true
@@ -131,7 +131,7 @@ paths:
       description: Atualiza um Doutor existente pelo ID
       operationId: updateDoctor
       parameters:
-        - name: doctorId
+        - name: idDoctor
           in: path
           description: ID do Doutor para atualizar.
           required: true
@@ -175,7 +175,7 @@ paths:
       description: Remove um Doutor pelo ID
       operationId: deleteDoctor
       parameters:
-        - name: doctorId
+        - name: idDoctor
           in: path
           description: ID do Doutor para remover
           required: true
@@ -468,7 +468,7 @@ paths:
         - Team
       summary: Vincula um time a uma usf
       description: Vincula um time a uma usf
-      operationId: linkDoctorTeam
+      operationId: linkTeamUsf
       parameters:
         - name: idTeam
           in: path
@@ -599,7 +599,7 @@ paths:
       description: Retorna uma USF
       operationId: getUsfById
       parameters:
-        - name: usfId
+        - name: idUsf
           in: path
           description: ID da USF para retornar.
           required: true
@@ -630,6 +630,14 @@ paths:
       summary: Atualiza uma USF existente
       description: Atualiza uma USF existente pelo Id
       operationId: updateUsf
+      parameters:
+        - name: idUsf
+          in: path
+          description: ID da USF para retornar.
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Atualiza uma USF existente pelo Id
         content:
@@ -668,7 +676,7 @@ paths:
       description: Remove a USF
       operationId: deleteUsf
       parameters:
-        - name: usfId
+        - name: idUsf
           in: path
           description: ID da USF para remover.
           required: true
@@ -1185,6 +1193,14 @@ paths:
       summary: Atualiza usuário
       description: Utualiza dados do usuário por id
       operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          description: ID do usuário para atualizar
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
