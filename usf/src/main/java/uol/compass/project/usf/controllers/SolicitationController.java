@@ -13,13 +13,14 @@ import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/solicitation")
 public class SolicitationController {
-    
+
     private final SolicitationServiceImpl solicitationService;
 
     @PreAuthorize("hasRole('USF_OPERATOR')")
@@ -31,7 +32,8 @@ public class SolicitationController {
 
     @PreAuthorize("hasRole('USF_OPERATOR') or hasRole('ADMIN')")
     @GetMapping
-    public ResponseEntity<SolicitationResponseParameters> findAll(@RequestParam(required = false) String status, Pageable pageable) {
+    public ResponseEntity<SolicitationResponseParameters> findAll(
+            @RequestParam(required = false) EnumStatusSolicitation status, Pageable pageable) {
         SolicitationResponseParameters response = solicitationService.findAll(status, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -46,7 +48,7 @@ public class SolicitationController {
     @PreAuthorize("hasRole('USF_OPERATOR')")
     @PatchMapping(value = "/{id}")
     public ResponseEntity<SolicitationResponseDTO> update(@PathVariable("id") Long id,
-                            @RequestBody @Valid SolicitationUpdateRequestDTO request) {
+            @RequestBody @Valid SolicitationUpdateRequestDTO request) {
         SolicitationResponseDTO response = solicitationService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

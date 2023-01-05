@@ -43,7 +43,7 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
     @Override
-    public SolicitationResponseParameters findAll(String status, Pageable pageable) {
+    public SolicitationResponseParameters findAll(EnumStatusSolicitation status, Pageable pageable) {
         Page<SolicitationEntity> page = status == null ?
                 solicitationRepository.findAll(pageable) :
                 solicitationRepository.findAllByStatusSolicitation(status, pageable);
