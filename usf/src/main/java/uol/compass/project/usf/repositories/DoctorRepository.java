@@ -6,4 +6,6 @@ import uol.compass.project.usf.model.entities.DoctorEntity;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<DoctorEntity, Long> {
+
+    Page <DoctorEntity> findallByName (String name, Pageable pageable);
 }
