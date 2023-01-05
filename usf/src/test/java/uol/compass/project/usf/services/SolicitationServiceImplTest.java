@@ -2,6 +2,7 @@ package uol.compass.project.usf.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
@@ -13,12 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
+import org.mockito.internal.matchers.Null;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
+import org.springframework.lang.Nullable;
 import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
@@ -26,6 +27,7 @@ import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters
 import uol.compass.project.usf.model.entities.ResourceEntity;
 import uol.compass.project.usf.model.entities.SolicitationEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
+import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -76,9 +78,10 @@ public class SolicitationServiceImplTest {
         Page<SolicitationEntity> page = new PageImpl<>(List.of(solicitation));
         SolicitationResponseParameters expectedSolicitationResponseParameters = getSolicitationResponseParameters();
 
-        Mockito.when(solicitationRepository.findAll((Pageable) any())).thenReturn(page);
+        Mockito.when(solicitationRepository.findAllByStatusSolicitation(any(), (Pageable) any())).thenReturn(page);
 
-        SolicitationResponseParameters solicitationResponseParameters = solicitationService.findAll(any(Pageable.class));
+        SolicitationResponseParameters solicitationResponseParameters =
+                solicitationService.findAll(anyString(), (Pageable) any());
 
         assertEquals(expectedSolicitationResponseParameters, solicitationResponseParameters);
     }

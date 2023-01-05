@@ -10,7 +10,7 @@ public interface SolicitationService {
     
     SolicitationResponseDTO create(SolicitationRequestDTO request);
 
-    SolicitationResponseParameters findAll(Pageable pageable);
+    SolicitationResponseParameters findAll(String status, Pageable pageable);
 
     SolicitationResponseDTO findById(Long id);
 

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import uol.compass.project.usf.constants.ErrorCode;
+import uol.compass.project.usf.exceptions.*;
 import uol.compass.project.usf.model.dto.ExceptionResponse;
-import uol.compass.project.usf.model.exceptions.*;
 
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;

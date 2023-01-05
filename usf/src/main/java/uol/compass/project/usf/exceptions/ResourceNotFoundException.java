@@ -1,22 +1,21 @@
-package uol.compass.project.usf.model.exceptions;
+package uol.compass.project.usf.exceptions;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import uol.compass.project.usf.constants.ErrorCode;
 
 @Getter
-public class InventoryNotFoundException extends RuntimeException {
-
+public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     private final String details;
     private final ErrorCode errorCode;
     private final HttpStatus httpStatus;
 
-    public InventoryNotFoundException(){
-        super (ErrorCode.INVENTORY_NOT_FOUND.name());
+    public ResourceNotFoundException() {
+        super(ErrorCode.RESOURCE_NOT_FOUND.name());
         this.httpStatus = HttpStatus.NOT_FOUND;
-        this.errorCode = ErrorCode.INVENTORY_NOT_FOUND;
-        this.details = ErrorCode.INVENTORY_NOT_FOUND.getMessage();
+        this.errorCode = ErrorCode.RESOURCE_NOT_FOUND;
+        this.details = ErrorCode.RESOURCE_NOT_FOUND.getMessage();
     }
 }

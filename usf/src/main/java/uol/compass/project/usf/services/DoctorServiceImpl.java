@@ -11,7 +11,7 @@ import uol.compass.project.usf.model.dto.response.DoctorResponseParameters;
 import uol.compass.project.usf.model.entities.DoctorEntity;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.repositories.DoctorRepository;
-import uol.compass.project.usf.model.exceptions.DoctorNotFoundException;
+import uol.compass.project.usf.exceptions.DoctorNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,8 +1,9 @@
-package uol.compass.project.usf.security.token;
+package uol.compass.project.usf.services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 
@@ -25,28 +28,47 @@ public class TokenServiceTest {
     @InjectMocks
     TokenService tokenService;
 
-    @Test
-    public void shouldGenerateTokenTest(){
-        UserEntity user = new UserEntity();
+    String expectedToken;
+
+    String expectedSubjectToken;
+    UserEntity user = new UserEntity();
+
+    @BeforeEach
+    public void setUp(){
         user.setLogin("teste");
 
         ReflectionTestUtils.setField(tokenService, "secret", "12345678");
 
-        String secret = (String) ReflectionTestUtils.getField(TokenService.class, "secret");
-        Assertions.assertNotNull(secret);
+        String secret = "12345678";
+
         var algorithm = Algorithm.HMAC256(secret);
 
-        String token = JWT.create()
+        expectedToken = JWT.create()
                 .withIssuer("USF API")
                 .withSubject(user.getLogin())
                 .withExpiresAt(LocalDateTime.now().plusHours(1).toInstant(ZoneOffset.of("-03:00")))
                 .sign(algorithm);
 
-        Mockito.when(JWT.create()
-                .withIssuer(anyString())
-                .withSubject(anyString())
-                .withExpiresAt((Instant) any())
-                .sign(algorithm))
-                .thenReturn(token);
+        expectedSubjectToken = JWT.require(algorithm)
+                .withIssuer("USF API")
+                .build()
+                .verify(expectedToken)
+                .getSubject();
+    }
+
+    @Test
+    void shouldGenerateTokenTest(){
+        String token = tokenService.generateToken(user);
+
+        assertNotNull(token);
+        assertEquals(token, expectedToken);
+    }
+
+    @Test
+    void shouldGetSubject(){
+        String token = tokenService.getSubject(expectedToken);
+
+        assertNotNull(token);
+        assertEquals(token, expectedSubjectToken);
     }
 }

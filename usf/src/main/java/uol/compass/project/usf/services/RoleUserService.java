@@ -8,7 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.model.exceptions.UserNotFoundException;
+import uol.compass.project.usf.exceptions.UserNotFoundException;
 import uol.compass.project.usf.model.dto.request.CreateUserRoleDTO;
 import uol.compass.project.usf.model.dto.response.UserResponseDTO;
 import uol.compass.project.usf.model.entities.Role;

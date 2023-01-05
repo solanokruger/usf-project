@@ -11,7 +11,7 @@ import uol.compass.project.usf.model.entities.DoctorEntity;
 import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.TeamRepository;
-import uol.compass.project.usf.model.exceptions.TeamNotFoundException;
+import uol.compass.project.usf.exceptions.TeamNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

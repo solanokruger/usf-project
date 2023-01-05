@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.exceptions;
+package uol.compass.project.usf.exceptions;
 
 import org.springframework.http.HttpStatus;
 
@@ -6,7 +6,7 @@ import lombok.Getter;
 import uol.compass.project.usf.constants.ErrorCode;
 
 @Getter
-public class SolicitationNotFoundException extends RuntimeException {
+public class UsfNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,11 +14,11 @@ public class SolicitationNotFoundException extends RuntimeException {
     private final ErrorCode errorCode;
     private final HttpStatus httpStatus;
 
-    public SolicitationNotFoundException() {
-        super(ErrorCode.SOLICITATION_NOT_FOUND.name());
+    public UsfNotFoundException() {
+        super(ErrorCode.USF_NOT_FOUND.name());
         this.httpStatus = HttpStatus.NOT_FOUND;
-        this.errorCode = ErrorCode.SOLICITATION_NOT_FOUND;
-        this.details = ErrorCode.SOLICITATION_NOT_FOUND.getMessage();
+        this.errorCode = ErrorCode.USF_NOT_FOUND;
+        this.details = ErrorCode.USF_NOT_FOUND.getMessage();
     }
 
 }

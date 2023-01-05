@@ -14,7 +14,7 @@ import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
 import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
 import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
-import uol.compass.project.usf.model.exceptions.UsfNotFoundException;
+import uol.compass.project.usf.exceptions.UsfNotFoundException;
 
 @Service
 @RequiredArgsConstructor

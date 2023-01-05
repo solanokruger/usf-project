@@ -64,7 +64,7 @@ public class SolicitationControllerTest {
     void findAll() throws Exception {
         SolicitationResponseParameters solicitationResponseParameters = new SolicitationResponseParameters();
 
-        when(solicitationService.findAll(any())).thenReturn(solicitationResponseParameters);
+        when(solicitationService.findAll(any(), any())).thenReturn(solicitationResponseParameters);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)

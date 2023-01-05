@@ -6,21 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
 import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
 import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
 
 @RestController
@@ -39,8 +31,8 @@ public class SolicitationController {
 
     @PreAuthorize("hasRole('USF_OPERATOR') or hasRole('ADMIN')")
     @GetMapping
-    public ResponseEntity<SolicitationResponseParameters> findAll(Pageable pageable) {
-        SolicitationResponseParameters response = solicitationService.findAll(pageable);
+    public ResponseEntity<SolicitationResponseParameters> findAll(@RequestParam(required = false) String status, Pageable pageable) {
+        SolicitationResponseParameters response = solicitationService.findAll(status, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

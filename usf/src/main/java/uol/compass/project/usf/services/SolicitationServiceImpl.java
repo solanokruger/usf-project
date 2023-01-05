@@ -17,7 +17,7 @@ import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters
 import uol.compass.project.usf.model.entities.SolicitationEntity;
 import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.repositories.SolicitationRepository;
-import uol.compass.project.usf.model.exceptions.SolicitationNotFoundException;
+import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -43,9 +43,10 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
     @Override
-    public SolicitationResponseParameters findAll(Pageable pageable) {
-        Page<SolicitationEntity> page = solicitationRepository.findAll(pageable);
-
+    public SolicitationResponseParameters findAll(String status, Pageable pageable) {
+        Page<SolicitationEntity> page = status == null ?
+                solicitationRepository.findAll(pageable) :
+                solicitationRepository.findAllByStatusSolicitation(status, pageable);
         return createSolicitationResponseParameters(page);
     }
 

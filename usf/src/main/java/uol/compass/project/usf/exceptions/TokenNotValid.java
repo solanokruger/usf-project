@@ -1,4 +1,4 @@
-package uol.compass.project.usf.model.exceptions;
+package uol.compass.project.usf.exceptions;
 
 import org.springframework.http.HttpStatus;
 
