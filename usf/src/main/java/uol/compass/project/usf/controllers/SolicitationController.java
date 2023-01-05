@@ -53,9 +53,9 @@ public class SolicitationController {
 
     @PreAuthorize("hasRole('USF_OPERATOR')")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        solicitationService.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<SolicitationResponseDTO> delete(@PathVariable("id") Long id) {
+        SolicitationResponseDTO response = solicitationService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 }

@@ -16,6 +16,6 @@ public interface SolicitationService {
 
     SolicitationResponseDTO update(Long id, SolicitationUpdateRequestDTO request);
 
-    void delete(Long id);
+    SolicitationResponseDTO delete(Long id);
 
 }

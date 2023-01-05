@@ -74,9 +74,12 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
     @Override
-    public void delete(Long id) {
-        getSolicitationEntity(id);
-        solicitationRepository.deleteById(id);
+    public SolicitationResponseDTO delete(Long id) {
+        SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
+        solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.SUSPENSO);
+        SolicitationEntity updatedSolicitation = solicitationRepository.save(solicitationToUpdate);
+
+        return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
     }
 
     private SolicitationEntity getSolicitationEntity(Long id) {

@@ -125,7 +125,7 @@ public class SolicitationControllerTest {
 
         MockHttpServletResponse response = result.getResponse();
 
-        assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
     private SolicitationUpdateRequestDTO getSolicitationUpdateRequestDTO() {

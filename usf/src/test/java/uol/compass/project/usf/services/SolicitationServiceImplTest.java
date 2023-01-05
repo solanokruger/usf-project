@@ -119,10 +119,9 @@ public class SolicitationServiceImplTest {
         SolicitationEntity solicitation = new SolicitationEntity();
 
         Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
-
+        Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);
+        
         solicitationService.delete(ID);
-
-        verify(solicitationRepository).deleteById(any());
     }
 
     private SolicitationResponseParameters getSolicitationResponseParameters() {
