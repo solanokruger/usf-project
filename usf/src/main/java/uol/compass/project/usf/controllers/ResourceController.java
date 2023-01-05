@@ -50,7 +50,6 @@ public class ResourceController {
             @RequestBody ResourceRequestDTO request) {
         ResourceResponseDTO responseDTO = resourceService.update(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-
     }
 
     @PreAuthorize("hasRole('ADMIN')")
