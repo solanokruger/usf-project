@@ -372,6 +372,7 @@ paths:
             type: integer
             format: int64
       requestBody:
+        required: true
         description: Atualiza o time
         content:
           application/json:
@@ -838,6 +839,12 @@ paths:
             type: integer
             format: int64
       responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SolicitationResponseDTO"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
         "404":
@@ -1164,6 +1171,7 @@ paths:
       description: Usuários só podem ser criados pelo administrador
       operationId: createUser
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -1240,6 +1248,7 @@ paths:
       description: Define cargos no sistema ao usuário através do id
       operationId: setRoleUser
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -1268,6 +1277,7 @@ paths:
       description: Usa o login e senha e recebe um token
       operationId: login
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -1349,7 +1359,7 @@ components:
     SolicitationUpdateRequestDTO:
       type: object
       properties:
-        necessaryAmount:
+        amountAdded:
           type: integer
           format: int64
       example:
