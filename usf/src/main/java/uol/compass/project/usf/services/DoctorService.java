@@ -10,7 +10,7 @@ public interface DoctorService {
     
     DoctorResponseDTO create(DoctorRequestDTO request);
 
-    DoctorResponseParameters findAll(Pageable pageable);
+    DoctorResponseParameters findAll(String name, Pageable pageable);
 
     DoctorResponseDTO findById(Long id);
 

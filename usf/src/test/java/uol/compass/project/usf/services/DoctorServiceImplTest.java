@@ -65,7 +65,7 @@ public class DoctorServiceImplTest {
 
         Mockito.when(doctorRepository.findAll((Pageable) any())).thenReturn(page);
 
-        DoctorResponseParameters doctorResponseParameters = doctorService.findAll(any(Pageable.class));
+        DoctorResponseParameters doctorResponseParameters = doctorService.findAll(null, any(Pageable.class));
 
         assertEquals(expectedDoctorResponseParameters, doctorResponseParameters);
     }

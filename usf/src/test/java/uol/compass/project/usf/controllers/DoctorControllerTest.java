@@ -65,7 +65,7 @@ public class DoctorControllerTest {
     void findAll() throws Exception {
         DoctorResponseParameters doctorResponseParameters = new DoctorResponseParameters();
 
-        when(doctorService.findAll(any())).thenReturn(doctorResponseParameters);
+        when(doctorService.findAll(any(), any())).thenReturn(doctorResponseParameters);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)

@@ -32,8 +32,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public DoctorResponseParameters findAll(Pageable pageable) {
-        Page<DoctorEntity> page = doctorRepository.findAll(pageable);
+    public DoctorResponseParameters findAll(String name, Pageable pageable) {
+        Page<DoctorEntity> page = name == null ?
+        doctorRepository.findAll(pageable) :
+        doctorRepository.findByNameContaining(name, pageable);
         return createDoctorResponseParameters(page);
     }
 

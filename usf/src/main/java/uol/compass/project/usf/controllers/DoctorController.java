@@ -29,8 +29,8 @@ public class DoctorController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public ResponseEntity<DoctorResponseParameters> findAll(Pageable pageable) {
-        DoctorResponseParameters response = doctorService.findAll(pageable);
+    public ResponseEntity<DoctorResponseParameters> findAll(@RequestParam(required = false) String name, Pageable pageable) {
+        DoctorResponseParameters response = doctorService.findAll(name, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
