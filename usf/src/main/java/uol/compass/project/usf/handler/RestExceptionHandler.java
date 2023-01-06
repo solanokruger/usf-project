@@ -6,6 +6,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -74,6 +77,24 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public final ResponseEntity<Object> handleInternalAuthenticationServiceException(InternalAuthenticationServiceException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USER_NOT_FOUND, ex);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public final ResponseEntity<Object> handleInternalAccessDeniedException(AccessDeniedException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.TOKEN_NOT_VALID, ex);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public final ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.USER_NOT_FOUND, ex);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
+    }
+    
     @ExceptionHandler(TeamNotFoundException.class)
     public final ResponseEntity<Object> handleTeamNotFoundException(TeamNotFoundException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.TEAM_NOT_FOUND, ex);
