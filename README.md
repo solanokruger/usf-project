@@ -76,7 +76,6 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 ![image](https://user-images.githubusercontent.com/79091246/211013331-c3d6bfae-34a4-48a4-abce-4e787464c016.png)
 
 
-
 ## Documentação da API
 ### Doctor
 #### Cria um doutor
@@ -87,7 +86,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -104,7 +103,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -121,7 +120,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idDoctor`      | `long` | **Obrigatório**. O idDoctor do doutor que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -139,7 +138,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idDoctor`      | `long` | **Obrigatório**. O idDoctor do doutor que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -157,7 +156,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idDoctor`      | `long` | **Obrigatório**. O idDoctor do doutor que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -174,7 +173,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :---------- | :--------- | :------------------------------------------ |
 | `idDoctor`      | `long` | **Obrigatório**. O ID do doutor que você quer vincular |
 | `idTeam`      | `long` | **Obrigatório**. O ID do time que você quer vincular |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -192,7 +191,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :---------- | :--------- | :------------------------------------------ |
 | `idDoctor`      | `long` | **Obrigatório**. O ID do doutor que você quer desvincular |
 | `idTeam`      | `long` | **Obrigatório**. O ID do time que você quer desvincular |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -211,7 +210,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -228,7 +227,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -245,7 +244,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -263,7 +262,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -281,7 +280,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -296,7 +295,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer visualizar|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -313,7 +312,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer vincular|
 |`idUSF`|`long`|**Obrigatório**. O idUsf da USF que você quer vincular|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -331,7 +330,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O idTeam do time que você quer desvincular|
 |`idUSF`|`long`|**Obrigatório**. O idUsf da USF que você quer desvincular|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -349,7 +348,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -366,7 +365,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -383,7 +382,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idUsf`      | `long` | **Obrigatório**. O idUsf do time que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -401,7 +400,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idUsf`      | `long` | **Obrigatório**. O idUsf da usf que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -419,7 +418,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idUsf`      | `long` | **Obrigatório**. O idUsf da usf que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -436,7 +435,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -453,7 +452,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -470,7 +469,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `idTeam`      | `long` | **Obrigatório**. O solicitationId da solicitação que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -488,7 +487,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `solicitationId`      | `long` | **Obrigatório**. O solicitationId da solicitação que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -506,7 +505,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `solicitationId`      | `long` | **Obrigatório**. O solicitationId da solicitação que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -523,7 +522,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -540,7 +539,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -557,7 +556,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `resourceId`      | `long` | **Obrigatório**. O resourceId do recurso que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -575,7 +574,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `resourceId`      | `long` | **Obrigatório**. O resourceId do recurso que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -593,7 +592,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `resourceId`      | `long` | **Obrigatório**. O resourceId do recusro que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -610,7 +609,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -627,7 +626,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -644,7 +643,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `inventoryId`      | `long` | **Obrigatório**. O inventoryId do inventário que você quer |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -662,7 +661,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `resourceId`      | `long` | **Obrigatório**. O inventoryId do inventário que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -680,7 +679,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `inventoryId`      | `long` | **Obrigatório**. O inventoryId do inventário que você quer remover|
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -696,7 +695,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 ```
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `token` | `string` | **Obrigatório**. Token de Acesso |
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -713,7 +712,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `Id`      | `long` | **Obrigatório**. O id do usuário que você quer atualizar|
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
@@ -729,7 +728,7 @@ POST /user/role
 ```
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-|`api_key`|`string`|**Obrigatório**. A chave da sua API|
+|`token`|`string`|**Obrigatório**. Token de Acesso|
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
