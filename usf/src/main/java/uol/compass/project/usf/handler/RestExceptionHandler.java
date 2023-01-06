@@ -22,7 +22,6 @@ import uol.compass.project.usf.constants.ErrorCode;
 import uol.compass.project.usf.exceptions.*;
 import uol.compass.project.usf.model.dto.ExceptionResponse;
 
-import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,7 +166,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(PropertyReferenceException.class)
-    public final ResponseEntity<Object> handleIllegalArgumentException(PropertyReferenceException ex) {
+    public final ResponseEntity<Object> handlePropertyReferenceException(PropertyReferenceException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.BAD_REQUEST, ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
     }
@@ -175,11 +174,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<Object> objectAldreadyRegistered(DataIntegrityViolationException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(NotFoundException.class)
-    protected ResponseEntity<Object> objectNotRegistered(NotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 }

@@ -155,5 +155,4 @@ public class RestExceptionHandlerTest {
         assertEquals(ResponseEntity.class, response.getClass());
     }
 
-
 }
