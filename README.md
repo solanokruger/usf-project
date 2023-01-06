@@ -69,7 +69,7 @@ Objetivando desenvolvimento para esse serviço, desenvolvemos uma API, para auto
 ## Cobertura dos testes
 
 Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Métodos e 81% em Linhas
-![image](https://user-images.githubusercontent.com/79091246/211013130-21d7096f-e902-4376-9c70-bc9856924677.png)
+![image](https://user-images.githubusercontent.com/79091246/211033374-96bbecf1-a7f0-49db-b246-b52e6dc317ca.png)
 
 
 #### Pastas removidas dos testes: 
