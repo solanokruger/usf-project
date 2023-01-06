@@ -76,6 +76,7 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 ![image](https://user-images.githubusercontent.com/79091246/211013331-c3d6bfae-34a4-48a4-abce-4e787464c016.png)
 
 
+
 ## Documentação da API
 ### Doctor
 #### Cria um doutor
@@ -92,7 +93,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todos os doutores
 
@@ -107,7 +109,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna um doutor
 
@@ -123,7 +126,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Doctor Not Found |
 
 #### Atualiza um doutor
@@ -141,7 +145,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Doctor Not Found |
 
 #### Remove um doutor
@@ -156,7 +161,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Doctor Not Found |
 
 #### Vincula um doutor em um time
@@ -173,7 +179,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Doctor Not Found |
 
 #### Desnvincula um doutor de um time
@@ -190,7 +197,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Doctor Not Found |
 
 ### Team
@@ -209,7 +217,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todos os times
 
@@ -224,7 +233,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna um time
 
@@ -240,7 +250,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 #### Atualiza um time
@@ -258,7 +269,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 #### Remove um time
@@ -273,7 +285,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 #### Retorna todos doutores que pertencem a um time 
@@ -288,7 +301,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 #### Vincula um time a uma USF 
@@ -304,7 +318,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 #### Desnvincula um time de uma usf
@@ -321,7 +336,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Team Not Found |
 
 ### USF
@@ -339,7 +355,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todas as usf's
 
@@ -354,7 +371,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna uma USF
 
@@ -370,7 +388,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| USF Not Found |
 
 #### Atualiza uma USF
@@ -388,7 +407,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| USF Not Found |
 
 #### Remove uma usf
@@ -403,7 +423,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| USF Not Found |
 
 ### Solicitation
@@ -421,7 +442,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todas as solicitações
 
@@ -436,7 +458,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna uma solicitação
 
@@ -452,7 +475,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Solicitation Not Found |
 
 #### Atualiza uma solicitação
@@ -470,7 +494,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Solicitation Not Found |
 
 #### Remove uma solicitação
@@ -485,7 +510,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Solicitation Not Found |
 
 ### Resource
@@ -503,7 +529,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todos os recursos
 
@@ -518,7 +545,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna um recurso
 
@@ -534,7 +562,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Resource Not Found |
 
 #### Atualiza um recurso
@@ -552,7 +581,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Resource Not Found |
 
 #### Remove uma solicitação
@@ -567,7 +597,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Resource Not Found |
 
 ### Inventory
@@ -585,7 +616,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna todos os inventários
 
@@ -600,7 +632,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-| `403`| Access token is missing or invalid |
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Retorna um inventário
 
@@ -616,7 +649,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
 | `200`| OK |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Inventory Not Found |
 
 #### Atualiza um inventário
@@ -634,7 +668,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Inventory Not Found |
 
 #### Remove um inventário
@@ -649,7 +684,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 
 | Response      | Descrição                           |
 | :----------  | :---------------------------------- |
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| Inventory Not Found |
 
 ### Segurança
@@ -666,7 +702,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Atualiza um usuário
 
@@ -682,7 +719,8 @@ Os testes estão com uma porcentagem de cobertura de: 94% em Classes, 80% em Mé
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 |`404`| User Not Found |
 
 #### Define cargos aos usuários 
@@ -697,7 +735,8 @@ POST /user/role
 | :----------  | :---------------------------------- |
 | `200`| OK |
 |`400`| Bad Request|
-|`403`| Access token is missing or invalid|
+|`401`| Access token is missing or invalid |
+|`403`| Forbidden |
 
 #### Logar no Sistema
 ```http
