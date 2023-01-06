@@ -52,6 +52,7 @@ public class TeamServiceImpl implements TeamService{
 
     public TeamResponseDTO update(Long id, TeamRequestDTO teamRequestDTO) {
         findTeamByIdVerication(id);
+        validateTeamParameter(teamRequestDTO);
         TeamEntity newTeam = modelMapper.map(teamRequestDTO, TeamEntity.class);
         newTeam.setId(id);
         teamRepository.save(newTeam);

@@ -111,8 +111,12 @@ public class TeamServiceImplTest {
     @Test
     public void shouldUpdateTeam_success() {
         TeamEntity team = new TeamEntity();
+        team.setColor("blue");
         TeamResponseDTO response = new TeamResponseDTO();
+        response.setColor("blue");
         TeamRequestDTO request = new TeamRequestDTO();
+        request.setColor("blue");
+
 
         Mockito.when(teamRepository.findById(any())).thenReturn(Optional.of(team));
         Mockito.when(teamRepository.save(any())).thenReturn(team);
