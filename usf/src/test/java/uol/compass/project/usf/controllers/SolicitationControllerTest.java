@@ -130,7 +130,7 @@ public class SolicitationControllerTest {
 
     private SolicitationUpdateRequestDTO getSolicitationUpdateRequestDTO() {
         return SolicitationUpdateRequestDTO.builder()
-                .necessaryAmount(Long.valueOf(1))
+                .amountAdded(Long.valueOf(1))
                 .build();
     }
 

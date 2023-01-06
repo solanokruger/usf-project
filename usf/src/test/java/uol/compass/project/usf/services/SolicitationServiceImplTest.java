@@ -97,10 +97,11 @@ public class SolicitationServiceImplTest {
     @Test
     void shouldUpdateSolicitation_sucess() {
         SolicitationEntity solicitation = new SolicitationEntity();
+        solicitation.setNecessaryAmount(2L);
         SolicitationResponseDTO solicitationResponseDto = new SolicitationResponseDTO();
         solicitationResponseDto.setNecessaryAmount(1L);
         SolicitationUpdateRequestDTO request = new SolicitationUpdateRequestDTO();
-        request.setNecessaryAmount(1L);
+        request.setAmountAdded(1L);
 
         Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
         Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);

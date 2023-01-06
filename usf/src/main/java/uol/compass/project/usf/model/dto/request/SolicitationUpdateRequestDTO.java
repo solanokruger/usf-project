@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class SolicitationUpdateRequestDTO {
     
     @NotNull
-    private Long necessaryAmount;
+    private Long amountAdded;
 
 }

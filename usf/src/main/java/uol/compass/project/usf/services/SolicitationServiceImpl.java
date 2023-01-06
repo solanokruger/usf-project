@@ -57,17 +57,17 @@ public class SolicitationServiceImpl implements SolicitationService {
         return modelMapper.map(solicitation, SolicitationResponseDTO.class);
     }
 
-
     @Override
     public SolicitationResponseDTO update(Long id, SolicitationUpdateRequestDTO request) {
         SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
+        solicitationToUpdate.setNecessaryAmount(solicitationToUpdate.getNecessaryAmount() - request.getAmountAdded());
 
-        if (request.getNecessaryAmount() == 0) {
+        if (solicitationToUpdate.getNecessaryAmount() <= 0) {
+            solicitationToUpdate.setNecessaryAmount(0L);
             solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUIDO);
             solicitationToUpdate.setAnswerDate(LocalDateTime.now());
         }
 
-        solicitationToUpdate.setNecessaryAmount(request.getNecessaryAmount());
         SolicitationEntity updatedSolicitation = solicitationRepository.save(solicitationToUpdate);
 
         return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
