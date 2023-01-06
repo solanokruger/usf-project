@@ -1,6 +1,7 @@
 package uol.compass.project.usf.model.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class UsfEntity {
 
     private String name;
 
-    @OneToOne(mappedBy = "currentUSF")
+    @OneToOne(mappedBy = "currentUSF", fetch = FetchType.LAZY)
     @JoinColumn(name = "current_team_id")
     @JsonIgnore
     private TeamEntity currentTeam;

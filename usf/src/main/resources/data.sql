@@ -14,7 +14,7 @@ insert into doctor (`name`, `specialization`) values ('Pedro Henrique Castro', '
 insert into doctor (`name`, `specialization`) values ('Pedro Argolo de Souza', 'Cardiologista');
 insert into doctor (`name`, `specialization`) values ('Tarsila Catarina Vitoriano', 'Dermatologista');
 
-insert into resource (`category`, `description`, `name`) values ('MEDICAMENTO', 'Neusaldina', 'Remedio para dor de cabeça');
+insert into resource (`category`, `description`, `name`) values ('MEDICAMENTO', 'Neusaldina', 'Remedio para dor de cabeca');
 insert into resource (`category`, `description`, `name`) values ('EQUIPAMENTO', 'Gaze', 'Item de saude e cuidados pessoais que na maioria das vezes e usada pra fazer curativos em machucados na pele');
 
 insert into team (`color`) values ('Azul');

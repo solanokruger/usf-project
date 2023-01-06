@@ -22,7 +22,7 @@ public class TeamEntity {
     @Column(name = "color")
     private String color;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_usf_id")
     @JsonIgnore
     private UsfEntity currentUSF;
