@@ -65,6 +65,18 @@ Objetivando desenvolvimento para esse serviço, desenvolvemos uma API, para auto
 | `RF031` | `A API permite ao Operador de USF logar ao sistema com login e senha` |
 | `RF032` | `A API permite ao Operador de USF trocar o login e senha dele` |
 
+### Requisitos não funcionais 
+
+
+| ID   | Descrição       |       
+| :---------- | :--------- |
+| `RN001` | `Requisições precisam ser retornadas com sucesso ou falha` | 
+| `RN002` | `Utilizar boas práticas na construção da API` | 
+| `RN003` | `Implementar tratamento de erro/exceções` | 
+| `RN004` | `Definição de um arquivo Swagger` | 
+| `RN005` | `Cobertura de testes com no mínimo 80%` | 
+| `RN006` | `Autenticação e autorização via Token JWT` | 
+| `RN007` | `Não pode criar pedidos de recurso sem alcançar a quantidade mínima recomendada` | 
 
 ## Cobertura dos testes
 
