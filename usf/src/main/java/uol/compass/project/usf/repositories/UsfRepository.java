@@ -2,8 +2,10 @@ package uol.compass.project.usf.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uol.compass.project.usf.entities.UsfEntity;
+import org.springframework.stereotype.Repository;
+import uol.compass.project.usf.model.entities.UsfEntity;
 
+@Repository
 public interface UsfRepository extends JpaRepository<UsfEntity, Long> {
 
 }

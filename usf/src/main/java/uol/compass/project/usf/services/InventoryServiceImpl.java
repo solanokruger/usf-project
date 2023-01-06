@@ -5,12 +5,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import uol.compass.project.usf.dto.request.InventoryRequestDTO;
-import uol.compass.project.usf.dto.response.InventoryResponseDTO;
-import uol.compass.project.usf.dto.response.InventoryResponseParameters;
-import uol.compass.project.usf.entities.InventoryEntity;
-import uol.compass.project.usf.exceptions.InventoryNotFoundException;
+import uol.compass.project.usf.model.dto.request.InventoryRequestDTO;
+import uol.compass.project.usf.model.dto.response.InventoryResponseDTO;
+import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
+import uol.compass.project.usf.model.entities.InventoryEntity;
 import uol.compass.project.usf.repositories.InventoryRepository;
+import uol.compass.project.usf.exceptions.InventoryNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,11 +19,18 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
+    private final ResourceServiceImpl resourceService;
+    private final UsfServiceImpl usfService;
     private final ModelMapper modelMapper;
 
     @Override
     public InventoryResponseDTO create(InventoryRequestDTO request) {
-        InventoryEntity inventoryToCreate = modelMapper.map(request, InventoryEntity.class);
+        InventoryEntity inventoryToCreate = new InventoryEntity();
+
+        inventoryToCreate.setResource(resourceService.getResourceByIdVerification(request.getIdResource()));
+        inventoryToCreate.setUsf(usfService.getUsfEntity(request.getIdUsf()));
+        inventoryToCreate.setAmount(request.getAmount());
+
         InventoryEntity inventoryCreated = inventoryRepository.save(inventoryToCreate);
 
         return modelMapper.map(inventoryCreated, InventoryResponseDTO.class);
@@ -44,10 +51,12 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public InventoryResponseDTO update(Long id, InventoryRequestDTO request) {
-        getInventoryEntity(id);
+        InventoryEntity inventoryToUpdate = getInventoryEntity(id);
 
-        InventoryEntity inventoryToUpdate = modelMapper.map(request, InventoryEntity.class);
-        inventoryToUpdate.setId(id);
+        inventoryToUpdate.setResource(resourceService.getResourceByIdVerification(request.getIdResource()));
+        inventoryToUpdate.setUsf(usfService.getUsfEntity(request.getIdUsf()));
+        inventoryToUpdate.setAmount(request.getAmount());
+
         InventoryEntity updatedInventory = inventoryRepository.save(inventoryToUpdate);
 
         return modelMapper.map(updatedInventory, InventoryResponseDTO.class);

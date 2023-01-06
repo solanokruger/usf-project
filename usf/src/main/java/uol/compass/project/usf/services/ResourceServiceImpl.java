@@ -1,26 +1,27 @@
 package uol.compass.project.usf.services;
 
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseParameters;
-import uol.compass.project.usf.entities.ResourceEntity;
-import uol.compass.project.usf.enums.EnumCategoryResource;
-import uol.compass.project.usf.exceptions.ResourceNotFoundException;
+
+import lombok.RequiredArgsConstructor;
+import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.model.entities.ResourceEntity;
+import uol.compass.project.usf.model.enums.EnumCategoryResource;
 import uol.compass.project.usf.repositories.ResourceRepository;
+import uol.compass.project.usf.exceptions.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
-public class ResourceServiceImpl implements ResourceService{
+@RequiredArgsConstructor
+public class ResourceServiceImpl implements ResourceService {
 
     private final ModelMapper modelMapper;
 
@@ -36,9 +37,8 @@ public class ResourceServiceImpl implements ResourceService{
 
     @Override
     public ResourceResponseParameters getAllResources(EnumCategoryResource category, Pageable pageable) {
-        Page<ResourceEntity> page = category == null ?
-                resourceRepository.findAll(pageable):
-                resourceRepository.findAllByCategory(category, pageable);
+        Page<ResourceEntity> page = category == null ? resourceRepository.findAll(pageable)
+                : resourceRepository.findAllByCategory(category, pageable);
 
         return createResourceResponseParameters(page);
     }
@@ -90,7 +90,7 @@ public class ResourceServiceImpl implements ResourceService{
         for (int i = 0; i < all.size(); i++) {
             names.add(all.get(i).getName());
         }
-        if (names.contains(requestDTO.getName())){
+        if (names.contains(requestDTO.getName())) {
             throw new DataIntegrityViolationException("Recurso já registrado");
         }
     }

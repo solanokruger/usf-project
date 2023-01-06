@@ -11,11 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseParameters;
-import uol.compass.project.usf.entities.ResourceEntity;
-import uol.compass.project.usf.enums.EnumCategoryResource;
+import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
+import uol.compass.project.usf.model.entities.ResourceEntity;
+import uol.compass.project.usf.model.enums.EnumCategoryResource;
 import uol.compass.project.usf.repositories.ResourceRepository;
 
 import java.util.List;
@@ -57,7 +57,6 @@ public class ResourceServiceImplTest {
     @Test
     public void shouldFindAllResourcesTest_success(){
         ResourceEntity resource = new ResourceEntity();
-        ResourceResponseDTO response = new ResourceResponseDTO();
         Page<ResourceEntity> page = new PageImpl<>(List.of(resource));
         ResourceResponseParameters expectedResourceResponseParameters = getResourceResponseParameters();
 

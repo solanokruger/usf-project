@@ -11,10 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import uol.compass.project.usf.dto.request.UsfRequestDTO;
-import uol.compass.project.usf.dto.response.UsfResponseDTO;
-import uol.compass.project.usf.dto.response.UsfResponseParameters;
-import uol.compass.project.usf.entities.UsfEntity;
+import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
+import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
+import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
 
 import java.util.List;

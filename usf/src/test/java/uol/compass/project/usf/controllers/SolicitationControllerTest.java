@@ -8,22 +8,26 @@ import javax.ws.rs.core.MediaType;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
-import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
 import uol.compass.project.usf.services.SolicitationServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
+@AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(controllers = SolicitationController.class)
+@ContextConfiguration(classes = SolicitationController.class)
 public class SolicitationControllerTest {
     
     public static final String BASE_URL = "/solicitation";
@@ -60,7 +64,7 @@ public class SolicitationControllerTest {
     void findAll() throws Exception {
         SolicitationResponseParameters solicitationResponseParameters = new SolicitationResponseParameters();
 
-        when(solicitationService.findAll(any())).thenReturn(solicitationResponseParameters);
+        when(solicitationService.findAll(any(), any())).thenReturn(solicitationResponseParameters);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(BASE_URL)
@@ -121,12 +125,12 @@ public class SolicitationControllerTest {
 
         MockHttpServletResponse response = result.getResponse();
 
-        assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
     }
 
     private SolicitationUpdateRequestDTO getSolicitationUpdateRequestDTO() {
         return SolicitationUpdateRequestDTO.builder()
-                .necessaryAmount(Long.valueOf(1))
+                .amountAdded(Long.valueOf(1))
                 .build();
     }
 

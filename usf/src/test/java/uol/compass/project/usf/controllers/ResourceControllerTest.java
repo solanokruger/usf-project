@@ -3,17 +3,20 @@ package uol.compass.project.usf.controllers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uol.compass.project.usf.dto.request.ResourceRequestDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseDTO;
-import uol.compass.project.usf.dto.response.ResourceResponseParameters;
+
+import uol.compass.project.usf.model.dto.request.ResourceRequestDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseDTO;
+import uol.compass.project.usf.model.dto.response.ResourceResponseParameters;
 import uol.compass.project.usf.services.ResourceServiceImpl;
 import uol.compass.project.usf.utils.TestUtils;
 
@@ -21,7 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(controllers = ResourceController.class)
+@ContextConfiguration(classes = ResourceController.class)
 public class ResourceControllerTest {
 
     public static final String BASE_URL = "/resource";

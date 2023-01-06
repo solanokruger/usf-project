@@ -9,12 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.dto.request.UsfRequestDTO;
-import uol.compass.project.usf.dto.response.UsfResponseDTO;
-import uol.compass.project.usf.dto.response.UsfResponseParameters;
-import uol.compass.project.usf.entities.UsfEntity;
-import uol.compass.project.usf.exceptions.UsfNotFoundException;
+import uol.compass.project.usf.model.dto.request.UsfRequestDTO;
+import uol.compass.project.usf.model.dto.response.UsfResponseDTO;
+import uol.compass.project.usf.model.dto.response.UsfResponseParameters;
+import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.UsfRepository;
+import uol.compass.project.usf.exceptions.UsfNotFoundException;
 
 @Service
 @RequiredArgsConstructor

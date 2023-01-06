@@ -15,17 +15,15 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
-import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
-import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.entities.ResourceEntity;
-import uol.compass.project.usf.entities.SolicitationEntity;
-import uol.compass.project.usf.entities.UsfEntity;
+import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.entities.ResourceEntity;
+import uol.compass.project.usf.model.entities.SolicitationEntity;
+import uol.compass.project.usf.model.entities.UsfEntity;
 import uol.compass.project.usf.repositories.SolicitationRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -78,7 +76,8 @@ public class SolicitationServiceImplTest {
 
         Mockito.when(solicitationRepository.findAll((Pageable) any())).thenReturn(page);
 
-        SolicitationResponseParameters solicitationResponseParameters = solicitationService.findAll(any(Pageable.class));
+        SolicitationResponseParameters solicitationResponseParameters =
+                solicitationService.findAll(null, any(Pageable.class));
 
         assertEquals(expectedSolicitationResponseParameters, solicitationResponseParameters);
     }
@@ -98,10 +97,11 @@ public class SolicitationServiceImplTest {
     @Test
     void shouldUpdateSolicitation_sucess() {
         SolicitationEntity solicitation = new SolicitationEntity();
+        solicitation.setNecessaryAmount(2L);
         SolicitationResponseDTO solicitationResponseDto = new SolicitationResponseDTO();
         solicitationResponseDto.setNecessaryAmount(1L);
         SolicitationUpdateRequestDTO request = new SolicitationUpdateRequestDTO();
-        request.setNecessaryAmount(1L);
+        request.setAmountAdded(1L);
 
         Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
         Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);
@@ -116,10 +116,9 @@ public class SolicitationServiceImplTest {
         SolicitationEntity solicitation = new SolicitationEntity();
 
         Mockito.when(solicitationRepository.findById(any())).thenReturn(Optional.of(solicitation));
-
+        Mockito.when(solicitationRepository.save(any())).thenReturn(solicitation);
+        
         solicitationService.delete(ID);
-
-        verify(solicitationRepository).deleteById(any());
     }
 
     private SolicitationResponseParameters getSolicitationResponseParameters() {

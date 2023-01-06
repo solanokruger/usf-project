@@ -10,14 +10,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uol.compass.project.usf.dto.request.SolicitationRequestDTO;
-import uol.compass.project.usf.dto.request.SolicitationUpdateRequestDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseDTO;
-import uol.compass.project.usf.dto.response.SolicitationResponseParameters;
-import uol.compass.project.usf.entities.SolicitationEntity;
-import uol.compass.project.usf.enums.EnumStatusSolicitation;
-import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
+import uol.compass.project.usf.model.dto.request.SolicitationRequestDTO;
+import uol.compass.project.usf.model.dto.request.SolicitationUpdateRequestDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseDTO;
+import uol.compass.project.usf.model.dto.response.SolicitationResponseParameters;
+import uol.compass.project.usf.model.entities.SolicitationEntity;
+import uol.compass.project.usf.model.enums.EnumStatusSolicitation;
 import uol.compass.project.usf.repositories.SolicitationRepository;
+import uol.compass.project.usf.exceptions.SolicitationNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +34,8 @@ public class SolicitationServiceImpl implements SolicitationService {
     @Override
     public SolicitationResponseDTO create(SolicitationRequestDTO request) {
         SolicitationEntity solicitationToCreate = new SolicitationEntity();
-        solicitationToCreate.setIdResource(resourceService.getResourceByIdVerification(request.getIdResource()));
-        solicitationToCreate.setIdUsf(usfService.getUsfEntity(request.getIdUsf()));
+        solicitationToCreate.setResource(resourceService.getResourceByIdVerification(request.getIdResource()));
+        solicitationToCreate.setUsf(usfService.getUsfEntity(request.getIdUsf()));
         solicitationToCreate.setNecessaryAmount(request.getNecessaryAmount());
         SolicitationEntity solicitationCreated = solicitationRepository.save(solicitationToCreate);
 
@@ -43,9 +43,10 @@ public class SolicitationServiceImpl implements SolicitationService {
     }
 
     @Override
-    public SolicitationResponseParameters findAll(Pageable pageable) {
-        Page<SolicitationEntity> page = solicitationRepository.findAll(pageable);
-
+    public SolicitationResponseParameters findAll(EnumStatusSolicitation status, Pageable pageable) {
+        Page<SolicitationEntity> page = status == null ?
+                solicitationRepository.findAll(pageable) :
+                solicitationRepository.findAllByStatusSolicitation(status, pageable);
         return createSolicitationResponseParameters(page);
     }
 
@@ -59,22 +60,26 @@ public class SolicitationServiceImpl implements SolicitationService {
     @Override
     public SolicitationResponseDTO update(Long id, SolicitationUpdateRequestDTO request) {
         SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
+        solicitationToUpdate.setNecessaryAmount(solicitationToUpdate.getNecessaryAmount() - request.getAmountAdded());
 
-        if (request.getNecessaryAmount() == 0) {
+        if (solicitationToUpdate.getNecessaryAmount() <= 0) {
+            solicitationToUpdate.setNecessaryAmount(0L);
             solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.CONCLUIDO);
-            solicitationToUpdate.setAnsweredDate(LocalDateTime.now());
+            solicitationToUpdate.setAnswerDate(LocalDateTime.now());
         }
 
-        solicitationToUpdate.setNecessaryAmount(request.getNecessaryAmount());
         SolicitationEntity updatedSolicitation = solicitationRepository.save(solicitationToUpdate);
 
         return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
     }
 
     @Override
-    public void delete(Long id) {
-        getSolicitationEntity(id);
-        solicitationRepository.deleteById(id);
+    public SolicitationResponseDTO delete(Long id) {
+        SolicitationEntity solicitationToUpdate = getSolicitationEntity(id);
+        solicitationToUpdate.setStatusSolicitation(EnumStatusSolicitation.SUSPENSO);
+        SolicitationEntity updatedSolicitation = solicitationRepository.save(solicitationToUpdate);
+
+        return modelMapper.map(updatedSolicitation, SolicitationResponseDTO.class);
     }
 
     private SolicitationEntity getSolicitationEntity(Long id) {

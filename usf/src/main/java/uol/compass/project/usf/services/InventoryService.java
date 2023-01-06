@@ -2,9 +2,9 @@ package uol.compass.project.usf.services;
 
 
 import org.springframework.data.domain.Pageable;
-import uol.compass.project.usf.dto.request.InventoryRequestDTO;
-import uol.compass.project.usf.dto.response.InventoryResponseDTO;
-import uol.compass.project.usf.dto.response.InventoryResponseParameters;
+import uol.compass.project.usf.model.dto.request.InventoryRequestDTO;
+import uol.compass.project.usf.model.dto.response.InventoryResponseDTO;
+import uol.compass.project.usf.model.dto.response.InventoryResponseParameters;
 
 
 

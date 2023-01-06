@@ -5,13 +5,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import uol.compass.project.usf.dto.request.DoctorRequestDTO;
-import uol.compass.project.usf.dto.response.DoctorResponseDTO;
-import uol.compass.project.usf.dto.response.DoctorResponseParameters;
-import uol.compass.project.usf.entities.DoctorEntity;
-import uol.compass.project.usf.entities.TeamEntity;
-import uol.compass.project.usf.exceptions.DoctorNotFoundException;
+import uol.compass.project.usf.model.dto.request.DoctorRequestDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseDTO;
+import uol.compass.project.usf.model.dto.response.DoctorResponseParameters;
+import uol.compass.project.usf.model.entities.DoctorEntity;
+import uol.compass.project.usf.model.entities.TeamEntity;
 import uol.compass.project.usf.repositories.DoctorRepository;
+import uol.compass.project.usf.exceptions.DoctorNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
-    private final TeamService teamService;
+    private final TeamServiceImpl teamService;
     private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
 
@@ -32,8 +32,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public DoctorResponseParameters findAll(Pageable pageable) {
-        Page<DoctorEntity> page = doctorRepository.findAll(pageable);
+    public DoctorResponseParameters findAll(String name, Pageable pageable) {
+        Page<DoctorEntity> page = name == null ?
+        doctorRepository.findAll(pageable) :
+        doctorRepository.findByNameContaining(name, pageable);
         return createDoctorResponseParameters(page);
     }
 
@@ -44,14 +46,28 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctor, DoctorResponseDTO.class);
     }
 
-    public DoctorResponseDTO link(Long idDoctor, Long idTeam) {
-        TeamEntity team = modelMapper.map(teamService.getTeamById(idTeam), TeamEntity.class);
-
+    @Override
+    public DoctorResponseDTO attachDoctorToTeam(Long idDoctor, Long idTeam) {
+        TeamEntity team = teamService.findTeamByIdVerication(idTeam);
         DoctorEntity doctor = getDoctorEntity(idDoctor);
-        doctor.setIdTeam(team);
 
-        DoctorEntity doctorToSave = doctorRepository.save(doctor);
-        return modelMapper.map(doctorToSave, DoctorResponseDTO.class);
+        doctor.setTeam(team);
+
+        DoctorEntity doctorAttached = doctorRepository.save(doctor);
+
+        return modelMapper.map(doctorAttached, DoctorResponseDTO.class);
+    }
+
+    @Override
+    public DoctorResponseDTO disattachDoctorFromTeam(Long idDoctor, Long idTeam) {
+        teamService.findTeamByIdVerication(idTeam);
+        DoctorEntity doctor = getDoctorEntity(idDoctor);
+
+        doctor.setTeam(null);
+
+        DoctorEntity doctorDisattached = doctorRepository.save(doctor);
+
+        return modelMapper.map(doctorDisattached, DoctorResponseDTO.class);
     }
 
     @Override
